@@ -1,0 +1,22 @@
+.page-header
+  = link_to new_type_vehicle_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Type vehicle
+  %h1 Listing type_vehicles
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @type_vehicles.each do |type_vehicle|
+        %tr
+          %td= type_vehicle.name
+          %td= link_to 'Show', type_vehicle
+          %td= link_to 'Edit', edit_type_vehicle_path(type_vehicle)
+          %td= link_to 'Destroy', type_vehicle, data: { confirm: 'Are you sure?' }, method: :delete

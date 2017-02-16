@@ -31,8 +31,17 @@
               %a{href: "#"} Home
             %li
               %a{href: "#about"} About
-            %li
-              %a{href: "#contact"} Contact
+            %li.dropdown
+              %a{:href => "#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown", :role=>"button", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
+                Mantenedores 
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => type_vehicles_path()}
+                    Tipos de Vehículos
+                %li
+                  %a{:href => "#"}
+                    Link
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do
