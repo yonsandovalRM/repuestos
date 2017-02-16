@@ -1,14 +1,14 @@
 .page-header
   = link_to new_type_vehicle_path, class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-plus
-    New Type vehicle
-  %h1 Listing type_vehicles
+    Nuevo Tipo de Vehículo
+  %h1 Listado de tipo de vehículos
 
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
     %thead
       %tr
-        %th Name
+        %th Nombre
         %th
         %th
         %th
@@ -17,6 +17,12 @@
       - @type_vehicles.each do |type_vehicle|
         %tr
           %td= type_vehicle.name
-          %td= link_to 'Show', type_vehicle
-          %td= link_to 'Edit', edit_type_vehicle_path(type_vehicle)
-          %td= link_to 'Destroy', type_vehicle, data: { confirm: 'Are you sure?' }, method: :delete
+          %td
+            = link_to type_vehicle, :class=>"btn btn-info" do
+              %i.fa.fa-eye
+          %td
+            = link_to edit_type_vehicle_path(type_vehicle), :class=>"btn btn-warning" do
+              %i.fa.fa-pencil-square-o
+          %td
+            = link_to type_vehicle, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+              %i.fa.fa-trash-o

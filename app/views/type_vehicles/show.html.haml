@@ -1,12 +1,12 @@
 .page-header
   = link_to type_vehicles_path, class: 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
-    Back
+    Volver
   = link_to edit_type_vehicle_path(@type_vehicle), class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show type_vehicle
+    Editar
+  %h1 Ver tipo de vehículo
 
 %dl.dl-horizontal
-  %dt Name:
+  %dt Nombre:
   %dd= @type_vehicle.name

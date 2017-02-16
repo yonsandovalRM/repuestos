@@ -1,11 +1,11 @@
 .page-header
   = link_to <%= index_helper %>_path, class: 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
-    Back
+    Volver
   = link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary' do
     %span.glyphicon.glyphicon-pencil
-    Edit
-  %h1 Show <%= singular_table_name %>
+    Editar
+  %h1 Ver <%= singular_table_name %>
 
 %dl.dl-horizontal
   <%- for attribute in attributes -%>

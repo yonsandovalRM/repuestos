@@ -39,7 +39,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-generators', '~> 3.3.4'
 #gem for haml template
 gem 'haml-rails'
-
+#gem for datatables 
+gem 'jquery-datatables-rails', '~> 3.4.0'
+#gem for icons fontaewsome
+gem 'font-awesome-sass'
 
 
 group :development, :test do
