@@ -1,0 +1,1 @@
+json.array! @type_articles, partial: 'type_articles/type_article', as: :type_article

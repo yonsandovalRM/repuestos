@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :type_articles
   resources :type_vehicles
   root 'main#index'
 

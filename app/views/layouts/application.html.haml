@@ -40,8 +40,8 @@
                   %a{:href => type_vehicles_path()}
                     Tipos de Vehículos
                 %li
-                  %a{:href => "#"}
-                    Link
+                  %a{:href => type_articles_path()}
+                    Tipos de Artículos
     .container
       - flash.each do |name, msg|
         = content_tag :div, class: "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable", role: "alert" do

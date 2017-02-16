@@ -1,0 +1,22 @@
+.page-header
+  = link_to new_type_article_path, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Type article
+  %h1 Listing type_articles
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @type_articles.each do |type_article|
+        %tr
+          %td= type_article.name
+          %td= link_to 'Show', type_article
+          %td= link_to 'Edit', edit_type_article_path(type_article)
+          %td= link_to 'Destroy', type_article, data: { confirm: 'Are you sure?' }, method: :delete

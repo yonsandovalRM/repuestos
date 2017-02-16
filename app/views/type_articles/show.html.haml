@@ -1,0 +1,12 @@
+.page-header
+  = link_to type_articles_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_type_article_path(@type_article), class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show type_article
+
+%dl.dl-horizontal
+  %dt Name:
+  %dd= @type_article.name
