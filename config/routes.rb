@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :payment_methods
   resources :type_formats
   resources :type_articles
   resources :type_vehicles
