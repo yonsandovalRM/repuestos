@@ -1,0 +1,1 @@
+json.partial! "type_formats/type_format", type_format: @type_format

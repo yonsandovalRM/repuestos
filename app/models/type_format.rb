@@ -1,0 +1,2 @@
+class TypeFormat < ApplicationRecord
+end

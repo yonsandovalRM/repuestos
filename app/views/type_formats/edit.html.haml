@@ -1,0 +1,10 @@
+.page-header
+  = link_to type_formats_path, class: 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Volver
+  = link_to @type_format, class: 'btn btn-primary' do
+    %span.glyphicon.glyphicon-info-sign
+    Ver
+  %h1 Editando type_format
+
+= render 'form'

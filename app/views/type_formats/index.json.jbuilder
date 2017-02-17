@@ -1,0 +1,1 @@
+json.array! @type_formats, partial: 'type_formats/type_format', as: :type_format

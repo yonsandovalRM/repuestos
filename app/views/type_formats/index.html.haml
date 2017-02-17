@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_type_format_path, class: 'btn btn-success' do
+    %span.glyphicon.glyphicon-plus
+    Nuevo Type format
+  %h1 Listado de type_formats
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Name
+        %th
+        %th
+        %th
+
+    %tbody
+      - @type_formats.each do |type_format|
+        %tr
+          %td= type_format.name
+          %td
+            = link_to type_format, :class=>"btn btn-info" do
+              %i.fa.fa-eye
+          %td
+            = link_to edit_type_format_path(type_format), :class=>"btn btn-warning" do
+              %i.fa.fa-pencil-square-o
+          %td
+            = link_to  type_format, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+              %i.fa.fa-trash-o
