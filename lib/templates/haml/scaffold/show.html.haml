@@ -1,14 +1,16 @@
-.page-header
-  = link_to <%= index_helper %>_path, class: 'btn btn-default' do
-    %span.glyphicon.glyphicon-list-alt
-    Volver
-  = link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary' do
-    %span.glyphicon.glyphicon-pencil
-    Editar
-  %h1 Ver <%= singular_table_name %>
+.row
+	.col-md-12
+		.page-header
+			= link_to <%= index_helper %>_path, class: 'btn btn-default' do
+				%span.glyphicon.glyphicon-list-alt
+				Volver
+			= link_to edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), class: 'btn btn-primary' do
+				%span.glyphicon.glyphicon-pencil
+				Editar
+			%h1 Ver <%= singular_table_name %>
 
-%dl.dl-horizontal
-  <%- for attribute in attributes -%>
-  %dt <%= attribute.human_name %>:
-  %dd= @<%= singular_table_name %>.<%= attribute.name %>
-  <%- end -%>
+		%dl.dl-horizontal
+			<%- for attribute in attributes -%>
+			%dt <%= attribute.human_name %>:
+			%dd= @<%= singular_table_name %>.<%= attribute.name %>
+			<%- end -%>

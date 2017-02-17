@@ -1,28 +1,30 @@
-.page-header
-  = link_to new_payment_method_path, class: 'btn btn-success' do
-    %span.glyphicon.glyphicon-plus
-    Nueva forma de pago
-  %h1 Listado de formas de pago
+.row
+	.col-md-12
+		.page-header
+			= link_to new_payment_method_path, class: 'btn btn-success' do
+				%span.glyphicon.glyphicon-plus
+				Nueva forma de pago
+			%h1 Listado de formas de pago
 
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-        %th Nombre
-        %th
-        %th
-        %th
+		.table-responsive
+			%table.table.table-striped.table-bordered.table-hover
+				%thead
+					%tr
+						%th Nombre
+						%th
+						%th
+						%th
 
-    %tbody
-      - @payment_methods.each do |payment_method|
-        %tr
-          %td= payment_method.name
-          %td
-            = link_to payment_method, :class=>"btn btn-info" do
-              %i.fa.fa-eye
-          %td
-            = link_to edit_payment_method_path(payment_method), :class=>"btn btn-warning" do
-              %i.fa.fa-pencil-square-o
-          %td
-            = link_to  payment_method, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
-              %i.fa.fa-trash-o
+				%tbody
+					- @payment_methods.each do |payment_method|
+						%tr
+							%td= payment_method.name
+							%td
+								= link_to payment_method, :class=>"btn btn-info" do
+									%i.fa.fa-eye
+							%td
+								= link_to edit_payment_method_path(payment_method), :class=>"btn btn-warning" do
+									%i.fa.fa-pencil-square-o
+							%td
+								= link_to  payment_method, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+									%i.fa.fa-trash-o

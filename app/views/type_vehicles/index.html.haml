@@ -1,28 +1,30 @@
-.page-header
-  = link_to new_type_vehicle_path, class: 'btn btn-success' do
-    %span.glyphicon.glyphicon-plus
-    Nuevo Tipo de Vehículo
-  %h1 Listado de tipo de vehículos
+.row
+	.col-md-12
+		.page-header
+			= link_to new_type_vehicle_path, class: 'btn btn-success' do
+				%span.glyphicon.glyphicon-plus
+				Nuevo Tipo de Vehículo
+			%h1 Listado de tipo de vehículos
 
-.table-responsive
-  %table.table.table-striped.table-bordered.table-hover
-    %thead
-      %tr
-        %th Nombre
-        %th
-        %th
-        %th
+		.table-responsive
+			%table.table.table-striped.table-bordered.table-hover
+				%thead
+					%tr
+						%th Nombre
+						%th
+						%th
+						%th
 
-    %tbody
-      - @type_vehicles.each do |type_vehicle|
-        %tr
-          %td= type_vehicle.name
-          %td
-            = link_to type_vehicle, :class=>"btn btn-info" do
-              %i.fa.fa-eye
-          %td
-            = link_to edit_type_vehicle_path(type_vehicle), :class=>"btn btn-warning" do
-              %i.fa.fa-pencil-square-o
-          %td
-            = link_to type_vehicle, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
-              %i.fa.fa-trash-o
+				%tbody
+					- @type_vehicles.each do |type_vehicle|
+						%tr
+							%td= type_vehicle.name
+							%td
+								= link_to type_vehicle, :class=>"btn btn-info" do
+									%i.fa.fa-eye
+							%td
+								= link_to edit_type_vehicle_path(type_vehicle), :class=>"btn btn-warning" do
+									%i.fa.fa-pencil-square-o
+							%td
+								= link_to type_vehicle, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+									%i.fa.fa-trash-o
