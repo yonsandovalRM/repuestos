@@ -1,0 +1,40 @@
+.row
+	.col-md-12
+		.page-header
+			= link_to articles_path, class: 'btn btn-default' do
+				%span.glyphicon.glyphicon-list-alt
+				Volver
+			= link_to edit_article_path(@article), class: 'btn btn-primary' do
+				%span.glyphicon.glyphicon-pencil
+				Editar
+			%h1 Ver article
+
+		%dl.dl-horizontal
+			%dt Code:
+			%dd= @article.code
+			%dt Description:
+			%dd= @article.description
+			%dt Brand:
+			%dd= @article.brand
+			%dt Type article:
+			%dd= @article.type_article
+			%dt Type vehicle:
+			%dd= @article.type_vehicle
+			%dt Type format:
+			%dd= @article.type_format
+			%dt Status:
+			%dd= @article.status
+			%dt Applicant:
+			%dd= @article.applicant
+			%dt Pin:
+			%dd= @article.pin
+			%dt Pou:
+			%dd= @article.pou
+			%dt Discount:
+			%dd= @article.discount
+			%dt Stock:
+			%dd= @article.stock
+			%dt Stock store:
+			%dd= @article.stock_store
+			%dt Stock min:
+			%dd= @article.stock_min

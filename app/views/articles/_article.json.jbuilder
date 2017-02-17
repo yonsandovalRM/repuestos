@@ -1,0 +1,2 @@
+json.extract! article, :id, :code, :description, :brand_id, :type_article_id, :type_vehicle_id, :type_format_id, :status, :applicant, :pin, :pou, :discount, :stock, :stock_store, :stock_min, :created_at, :updated_at
+json.url article_url(article, format: :json)

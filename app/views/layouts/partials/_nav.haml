@@ -12,7 +12,8 @@
         %li.active
           %a{href: root_path()} Inicio
         %li
-          %a{href: "#about"} About
+          %a{:href => articles_path()}
+            Artículos
         %li.dropdown
           %a{:href => "#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown", :role=>"button", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
             Otros 

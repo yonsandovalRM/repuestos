@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  description: MyString
+  brand: one
+  type_article: one
+  type_vehicle: one
+  type_format: one
+  status: false
+  applicant: MyString
+  pin: 1
+  pou: 1
+  discount: 1
+  stock: 1
+  stock_store: 1
+  stock_min: 1
+
+two:
+  code: MyString
+  description: MyString
+  brand: two
+  type_article: two
+  type_vehicle: two
+  type_format: two
+  status: false
+  applicant: MyString
+  pin: 1
+  pou: 1
+  discount: 1
+  stock: 1
+  stock_store: 1
+  stock_min: 1

@@ -1,0 +1,62 @@
+= form_for @article, html: {  role: "form" } do |f|
+  -if @article.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@article.errors.count, "error")} prohibited this article from being saved:"
+
+      %ul
+        - @article.errors.full_messages.each do |msg|
+          %li= msg
+  .row
+    .col-md-4
+
+      .form-group
+        = f.label :code, class: 'control-label'
+        = f.text_field :code, class: 'form-control'
+      .form-group
+        = f.label :description, class: 'control-label'
+        = f.text_area :description, class: 'form-control'
+      .form-group
+        = f.label :brand, class: 'control-label'
+        = f.text_field :brand, class: 'form-control'
+      .form-group
+        = f.label :applicant, class: 'control-label'
+        = f.text_area :applicant, class: 'form-control'
+
+    .col-md-4
+      .form-group
+        = f.label :type_article, class: 'control-label'
+        = f.text_field :type_article, class: 'form-control'
+      .form-group
+        = f.label :type_vehicle, class: 'control-label'
+        = f.text_field :type_vehicle, class: 'form-control'
+      .form-group
+        = f.label :type_format, class: 'control-label'
+        = f.text_field :type_format, class: 'form-control'
+      .form-group
+        = f.label :pin, class: 'control-label'
+        = f.number_field :pin, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :pou, class: 'control-label'
+        = f.number_field :pou, class: 'form-control'
+      .form-group
+        = f.label :discount, class: 'control-label'
+        = f.number_field :discount, class: 'form-control'
+      .form-group
+        = f.label :stock, class: 'control-label'
+        = f.number_field :stock, class: 'form-control'
+      .form-group
+        = f.label :stock_store, class: 'control-label'
+        = f.number_field :stock_store, class: 'form-control'
+      .form-group
+        = f.label :stock_min, class: 'control-label'
+        = f.number_field :stock_min, class: 'form-control'
+      .form-group
+        = f.label :status, class: 'control-label'
+        = f.check_box :status, class: 'form-control'
+  .form-group
+    .col-sm-offset-2
+      = f.submit class: 'btn btn-primary'
