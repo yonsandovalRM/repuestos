@@ -6,7 +6,7 @@
           = link_to new_article_path, class: 'btn btn-success' do
             %span.glyphicon.glyphicon-plus
             Nuevo Article
-          %h1 Listado de articles
+          %h1 Listado de artículos
 
         .table-responsive
           %table.table.table-striped.table-bordered.table-hover
@@ -19,9 +19,8 @@
                 %th %Desc.
                 %th Stock
                 %th St. Bodega
-                %th Artículo
+                %th Familia
                 %th Vehículo
-                %th Formato
                 %th Estado
                 %th
                 %th
@@ -39,7 +38,6 @@
                   %td= article.stock_store
                   %td= article.type_article.name
                   %td= article.type_vehicle.name
-                  %td= article.type_format.name
                   %td
                     -if (article.status == true)
                       %span.label.label-success
