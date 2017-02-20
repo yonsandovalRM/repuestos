@@ -1,9 +1,11 @@
 .row
 	.col-md-12
-		.page-header
-			= link_to articles_path, class: 'btn btn-default' do
-				%span.glyphicon.glyphicon-list-alt
-				Volver
-			%h1 Nuevo article
+		.panel
+			.panel-body
+				.page-header
+					= link_to articles_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					%h1 Nuevo article
 
-		= render 'form'
+				= render 'form'

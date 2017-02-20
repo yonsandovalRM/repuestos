@@ -60,6 +60,8 @@ class ArticlesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +71,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:code, :description, :brand_id, :type_article_id, :type_vehicle_id, :type_format_id, :status, :applicant, :pin, :pou, :discount, :stock, :stock_store, :stock_min)
+      params.require(:article).permit(:code, :description, :brand_id, :type_article_id, :type_vehicle_id, :type_format_id, :status, :applicant, :pin, :pou, :discount, :stock, :stock_store, :stock_min, :photo)
     end
 end

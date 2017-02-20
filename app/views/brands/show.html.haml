@@ -1,14 +1,16 @@
 .row
 	.col-md-12
-		.page-header
-			= link_to brands_path, class: 'btn btn-default' do
-				%span.glyphicon.glyphicon-list-alt
-				Volver
-			= link_to edit_brand_path(@brand), class: 'btn btn-primary' do
-				%span.glyphicon.glyphicon-pencil
-				Editar
-			%h1 Ver brand
+		.panel
+			.panel-body
+				.page-header
+					= link_to brands_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_brand_path(@brand), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Ver brand
 
-		%dl.dl-horizontal
-			%dt Name:
-			%dd= @brand.name
+				%dl.dl-horizontal
+					%dt Name:
+					%dd= @brand.name

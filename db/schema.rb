@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170217165610) do
+ActiveRecord::Schema.define(version: 20170217174508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,8 +30,12 @@ ActiveRecord::Schema.define(version: 20170217165610) do
     t.integer  "stock"
     t.integer  "stock_store"
     t.integer  "stock_min"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
     t.index ["brand_id"], name: "index_articles_on_brand_id", using: :btree
     t.index ["type_article_id"], name: "index_articles_on_type_article_id", using: :btree
     t.index ["type_format_id"], name: "index_articles_on_type_format_id", using: :btree

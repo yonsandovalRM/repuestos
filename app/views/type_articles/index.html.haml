@@ -1,31 +1,32 @@
 .row
 	.col-md-12   
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_type_article_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nueva familia de artículos
+					%h1 Listado de familias de artículos
 
-		.page-header
-			= link_to new_type_article_path, class: 'btn btn-success' do
-				%span.glyphicon.glyphicon-plus
-				Nueva familia de artículos
-			%h1 Listado de familias de artículos
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+								%th Nombre
+								%th
+								%th
+								%th
 
-		.table-responsive
-			%table.table.table-striped.table-bordered.table-hover
-				%thead
-					%tr
-						%th Nombre
-						%th
-						%th
-						%th
-
-				%tbody
-					- @type_articles.each do |type_article|
-						%tr
-							%td= type_article.name
-							%td
-								= link_to type_article, :class => "btn btn-info" do
-									%i.fa.fa-eye
-							%td
-								= link_to edit_type_article_path(type_article), :class => "btn btn-warning" do
-									%i.fa.fa-pencil-square-o
-							%td
-								= link_to type_article, data: { confirm: 'Estas seguro?' }, method: :delete, :class => "btn btn-danger" do
-									%i.fa.fa-trash-o
+						%tbody
+							- @type_articles.each do |type_article|
+								%tr
+									%td= type_article.name
+									%td
+										= link_to type_article, :class => "btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_type_article_path(type_article), :class => "btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to type_article, data: { confirm: 'Estas seguro?' }, method: :delete, :class => "btn btn-danger" do
+											%i.fa.fa-trash-o

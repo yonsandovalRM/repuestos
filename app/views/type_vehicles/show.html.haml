@@ -1,14 +1,16 @@
 .row
 	.col-md-12
-		.page-header
-			= link_to type_vehicles_path, class: 'btn btn-default' do
-				%span.glyphicon.glyphicon-list-alt
-				Volver
-			= link_to edit_type_vehicle_path(@type_vehicle), class: 'btn btn-primary' do
-				%span.glyphicon.glyphicon-pencil
-				Editar
-			%h1 Ver tipo de vehículo
+		.panel
+			.panel-body
+				.page-header
+					= link_to type_vehicles_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_type_vehicle_path(@type_vehicle), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Ver tipo de vehículo
 
-		%dl.dl-horizontal
-			%dt Nombre:
-			%dd= @type_vehicle.name
+				%dl.dl-horizontal
+					%dt Nombre:
+					%dd= @type_vehicle.name

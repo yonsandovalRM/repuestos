@@ -1,50 +1,59 @@
 .row
   .col-md-12
-    .page-header
-      = link_to new_article_path, class: 'btn btn-success' do
-        %span.glyphicon.glyphicon-plus
-        Nuevo Article
-      %h1 Listado de articles
+    .panel
+      .panel-body
+        .page-header
+          = link_to new_article_path, class: 'btn btn-success' do
+            %span.glyphicon.glyphicon-plus
+            Nuevo Article
+          %h1 Listado de articles
 
-    .table-responsive
-      %table.table.table-striped.table-bordered.table-hover
-        %thead
-          %tr
-            %th Código
-            %th Descripción
-            %th Marca
-            %th P. Venta
-            %th %Desc.
-            %th Stock
-            %th St. Bodega
-            %th Artículo
-            %th Vehículo
-            %th Formato
-            %th Estado
-            %th
-            %th
-            %th
+        .table-responsive
+          %table.table.table-striped.table-bordered.table-hover
+            %thead
+              %tr
+                %th Código
+                %th Descripción
+                %th Marca
+                %th P. Venta
+                %th %Desc.
+                %th Stock
+                %th St. Bodega
+                %th Artículo
+                %th Vehículo
+                %th Formato
+                %th Estado
+                %th
+                %th
+                %th
 
-        %tbody
-          - @articles.each do |article|
-            %tr
-              %td= article.code
-              %td= article.description
-              %td= article.brand
-              %td= article.pou
-              %td= article.discount
-              %td= article.stock
-              %td= article.stock_store
-              %td= article.type_article
-              %td= article.type_vehicle
-              %td= article.type_format
-              %td= article.status
-              %td
-                = link_to article, :class=>"btn btn-info" do
-                  %i.fa.fa-eye
-              %td
-                = link_to edit_article_path(article), :class=>"btn btn-warning" do
-                  %i.fa.fa-pencil-square-o
-              %td
-                = link_to  article, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
-                  %i.fa.fa-trash-o
+            %tbody
+              - @articles.each do |article|
+                %tr
+                  %td= article.code
+                  %td= article.description
+                  %td= article.brand.name
+                  %td= conPuntos(article.pou)
+                  %td= article.discount
+                  %td= article.stock
+                  %td= article.stock_store
+                  %td= article.type_article.name
+                  %td= article.type_vehicle.name
+                  %td= article.type_format.name
+                  %td
+                    -if (article.status == true)
+                      %span.label.label-success
+                        Vigente
+                    -else
+                      %span.label.label-warning
+                        No Vigente
+
+                  %td
+                    = link_to article, :class=>"btn btn-info" do
+                      %i.fa.fa-eye
+                  %td
+                    = link_to edit_article_path(article), :class=>"btn btn-warning" do
+                      %i.fa.fa-pencil-square-o
+                  %td
+                    = link_to  article, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+                      %i.fa.fa-trash-o

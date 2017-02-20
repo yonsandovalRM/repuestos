@@ -1,14 +1,16 @@
 .row
 	.col-md-12
-		.page-header
-			= link_to payment_methods_path, class: 'btn btn-default' do
-				%span.glyphicon.glyphicon-list-alt
-				Volver
-			= link_to edit_payment_method_path(@payment_method), class: 'btn btn-primary' do
-				%span.glyphicon.glyphicon-pencil
-				Editar
-			%h1 Ver payment_method
+		.panel
+			.panel-body
+				.page-header
+					= link_to payment_methods_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_payment_method_path(@payment_method), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Ver payment_method
 
-		%dl.dl-horizontal
-			%dt Nombre:
-			%dd= @payment_method.name
+				%dl.dl-horizontal
+					%dt Nombre:
+					%dd= @payment_method.name

@@ -1,40 +1,63 @@
 .row
 	.col-md-12
-		.page-header
-			= link_to articles_path, class: 'btn btn-default' do
-				%span.glyphicon.glyphicon-list-alt
-				Volver
-			= link_to edit_article_path(@article), class: 'btn btn-primary' do
-				%span.glyphicon.glyphicon-pencil
-				Editar
-			%h1 Ver article
+		.panel
+			.panel-body
+				.page-header
+					= link_to articles_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_article_path(@article), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Ver article
+				.row
+					
+					.col-md-4
+						%img{:src => @article.photo.url(:medium), :alt => "", :class=>"img-responsive img-thumbnail"}
+					.col-md-8
+						%dl.dl-horizontal
+							%dt Código:
+							%dd= @article.code
+							%dt Descripción:
+							%dd= @article.description
+							%dt Marca:
+							%dd= @article.brand.name
+							%dt Familia de artículo:
+							%dd= @article.type_article.name
+							%dt Tipo de vehículo:
+							%dd= @article.type_vehicle.name
+							%dt Tipo de formato:
+							%dd= @article.type_format.name
+							%dt Estado:
+							
+							%dd
+								-if (@article.status == true)
+									%span.label.label-success
+										Vigente
+								-else
+									%span.label.label-warning
+										No Vigente
 
-		%dl.dl-horizontal
-			%dt Code:
-			%dd= @article.code
-			%dt Description:
-			%dd= @article.description
-			%dt Brand:
-			%dd= @article.brand
-			%dt Type article:
-			%dd= @article.type_article
-			%dt Type vehicle:
-			%dd= @article.type_vehicle
-			%dt Type format:
-			%dd= @article.type_format
-			%dt Status:
-			%dd= @article.status
-			%dt Applicant:
-			%dd= @article.applicant
-			%dt Pin:
-			%dd= @article.pin
-			%dt Pou:
-			%dd= @article.pou
-			%dt Discount:
-			%dd= @article.discount
-			%dt Stock:
-			%dd= @article.stock
-			%dt Stock store:
-			%dd= @article.stock_store
-			%dt Stock min:
-			%dd= @article.stock_min
+							%dt Uso/Aplicación:
+							%dd= @article.applicant
+							%dt Precio Compra:
+							%dd= conPuntos(@article.pin)
+							%dt Precio Venta:
+							%dd= conPuntos(@article.pou)
+							%dt Porcentaje de descuento:
+							%dd= @article.discount
+							%dt Stock Tienda:
+							%dd= @article.stock
+							%dt Stock Bodega:
+							%dd= @article.stock_store
+							%dt Stock Mínimo:
+							%dd= @article.stock_min
+						.div.pull-right.lighted
+							%span{:style => "display:block;"}
+								Última actualización:
+								hace  
+								= time_ago_in_words(@article.updated_at)
+							%span{:style => "display:block;"}
+								Creación del artículo: 
+								hace 
+								= time_ago_in_words(@article.created_at)
