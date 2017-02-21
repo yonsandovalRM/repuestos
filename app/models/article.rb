@@ -6,4 +6,7 @@ class Article < ApplicationRecord
   belongs_to :type_article
   belongs_to :type_vehicle
   belongs_to :type_format
+  def self.total_active
+	  	Article.where('status = true').count
+	end
 end

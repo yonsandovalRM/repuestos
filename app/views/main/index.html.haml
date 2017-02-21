@@ -10,17 +10,17 @@
 			.panel-heading
 				.row
 					.col-xs-6
-						%i.fa.fa-calculator.fa-5x
+						%i.fa.fa-user.fa-5x
 					.col-xs-6.text-right
 						%p.announcement-heading
-							&nbsp;
+							=@proveedores
 						%p.announcement-text
-							Math
-			%a{:href => "#"}
+							Proveedores
+			%a{:href => suppliers_path()}
 				.panel-footer.announcement-bottom
 					.row
 						.col-xs-6
-							View
+							Ir a
 						.col-xs-6.text-right
 							%i.fa.fa-arrow-circle-right
 	.col-md-3
@@ -28,17 +28,17 @@
 			.panel-heading
 				.row
 					.col-xs-6
-						%i.fa.fa-calculator.fa-5x
+						%i.fa.fa-barcode.fa-5x
 					.col-xs-6.text-right
 						%p.announcement-heading
-							&nbsp;
+							= @articulos
 						%p.announcement-text
-							Math
-			%a{:href => "#"}
+							Artículos
+			%a{:href => articles_path()}
 				.panel-footer.announcement-bottom
 					.row
 						.col-xs-6
-							View
+							Ir a
 						.col-xs-6.text-right
 							%i.fa.fa-arrow-circle-right
 	.col-md-3
@@ -46,17 +46,17 @@
 			.panel-heading
 				.row
 					.col-xs-6
-						%i.fa.fa-calculator.fa-5x
+						%i.fa.fa-search.fa-5x
 					.col-xs-6.text-right
 						%p.announcement-heading
-							&nbsp;
+							=@articulos
 						%p.announcement-text
-							Math
+							Buscador
 			%a{:href => "#"}
 				.panel-footer.announcement-bottom
 					.row
 						.col-xs-6
-							View
+							Ir a
 						.col-xs-6.text-right
 							%i.fa.fa-arrow-circle-right
 	.col-md-3

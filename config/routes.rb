@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :suppliers
   resources :brands
   resources :articles
   resources :payment_methods

@@ -1,0 +1,46 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_supplier_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Supplier
+					%h1 Listado de suppliers
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+								%th Rut
+								%th Bname
+								%th Address
+								%th Comunne
+								%th City
+								%th Activity
+								%th Phone
+								%th Status
+								%th
+								%th
+								%th
+
+						%tbody
+							- @suppliers.each do |supplier|
+								%tr
+									%td= supplier.rut
+									%td= supplier.bname
+									%td= supplier.address
+									%td= supplier.comunne
+									%td= supplier.city
+									%td= supplier.activity
+									%td= supplier.phone
+									%td= supplier.status
+									%td
+										= link_to supplier, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_supplier_path(supplier), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  supplier, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

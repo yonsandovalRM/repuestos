@@ -1,21 +1,35 @@
-%nav.navbar.navbar-inverse.navbar-fixed-top{role: "navigation"}
+%nav.navbar.navbar-ct-blue.navbar-blue{role: "navigation"}
   .container
     .navbar-header
-      %button.navbar-toggle.collapsed{type: "button", data: {toggle: "collapse", target: "#navbar"}, aria: {expanded: "false", controls: "navbar"} }
+      %button.navbar-toggle{type: "button", "data-toggle": "collapse", "data-target": "#navbar" }
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to "Inicio", root_path(), class: "navbar-brand"
+      %a{:href => root_path(), :class=>"navbar-brand navbar-brand-logo" }
+        .logo
+          %img{:src => asset_path('logo.png'), :class => "img-responsive"}
+        .brand
+          Repuestos Catalán
     #navbar.collapse.navbar-collapse
-      %ul.nav.navbar-nav
+      %ul.nav.navbar-nav.navbar-right
+
         %li
           %a{:href => articles_path()}
-            Artículos
+            %i.pe-7s-note2
+              %span.label
+                = @articulos
+            %p Artículos
+        %li
+          %a{:href => suppliers_path()}
+            %i.pe-7s-users
+              %span.label
+                = @proveedores
+            %p Proveedores
         %li.dropdown
           %a{:href => "#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown", :role=>"button", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
-            Otros 
-            %span.caret
+            %i.pe-7s-settings
+            %p Mantenedores
           %ul.dropdown-menu
             %li
               %a{:href => type_vehicles_path()}

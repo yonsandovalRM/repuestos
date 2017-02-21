@@ -1,0 +1,30 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to suppliers_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_supplier_path(@supplier), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Ver supplier
+
+				%dl.dl-horizontal
+					%dt Rut:
+					%dd= @supplier.rut
+					%dt Bname:
+					%dd= @supplier.bname
+					%dt Address:
+					%dd= @supplier.address
+					%dt Comunne:
+					%dd= @supplier.comunne
+					%dt City:
+					%dd= @supplier.city
+					%dt Activity:
+					%dd= @supplier.activity
+					%dt Phone:
+					%dd= @supplier.phone
+					%dt Status:
+					%dd= @supplier.status

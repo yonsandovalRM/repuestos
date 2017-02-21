@@ -1,0 +1,47 @@
+= form_for @supplier, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @supplier.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@supplier.errors.count, "error")} prohibited this supplier from being saved:"
+
+      %ul
+        - @supplier.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :rut, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :rut, class: 'form-control'
+  .form-group
+    = f.label :bname, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :bname, class: 'form-control'
+  .form-group
+    = f.label :address, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :address, class: 'form-control'
+  .form-group
+    = f.label :comunne, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :comunne, class: 'form-control'
+  .form-group
+    = f.label :city, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :city, class: 'form-control'
+  .form-group
+    = f.label :activity, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :activity, class: 'form-control'
+  .form-group
+    = f.label :phone, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :phone, class: 'form-control'
+  .form-group
+    = f.label :status, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.check_box :status, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'
