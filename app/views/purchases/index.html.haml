@@ -1,0 +1,42 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_purchase_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Purchase
+					%h1 Listado de purchases
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+								%th Proveedor
+								%th Rut
+								%th N. Documento
+								%th Tipo
+								%th Fecha
+								%th Estado
+								%th
+								%th
+								%th
+
+						%tbody
+							- @purchases.each do |purchase|
+								%tr
+									%td= purchase.supplier.bname
+									%td= purchase.supplier.rut
+									%td= purchase.number_doc
+									%td= purchase.type_document.name
+									%td= purchase.date_doc
+									%td= purchase.status
+									%td
+										= link_to purchase, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_purchase_path(purchase), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  purchase, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

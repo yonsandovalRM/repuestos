@@ -1,0 +1,11 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to purchases_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					%h1 Nuevo purchase
+
+				= render 'form'

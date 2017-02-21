@@ -7,5 +7,5 @@
 						%span.glyphicon.glyphicon-list-alt
 						Volver
 					%h1 Nuevo supplier
-
-				= render 'form'
+					= form_for @supplier, html: { class: "form-horizontal", role: "form" } do |f|
+						= render partial: 'suppliers/form', locals: { f: f }

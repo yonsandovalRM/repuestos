@@ -13,6 +13,6 @@ thead {
     font-size: .9em;
     opacity: .6;
 }
-
-
-
+td.highlight {
+    background: #e3f7ff;
+}

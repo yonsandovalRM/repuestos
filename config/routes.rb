@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :states
+  resources :purchases
+  resources :type_documents
   resources :suppliers
   resources :brands
   resources :articles

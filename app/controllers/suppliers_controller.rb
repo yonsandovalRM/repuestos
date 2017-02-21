@@ -15,6 +15,10 @@ class SuppliersController < ApplicationController
   # GET /suppliers/new
   def new
     @supplier = Supplier.new
+    respond_to do |format|
+      format.html { render :new }
+      format.js {  }
+    end
   end
 
   # GET /suppliers/1/edit
@@ -30,9 +34,11 @@ class SuppliersController < ApplicationController
       if @supplier.save
         format.html { redirect_to @supplier, notice: 'Supplier was successfully created.' }
         format.json { render :show, status: :created, location: @supplier }
+        format.js   { render "show.js.erb", location: @supplier }
       else
         format.html { render :new }
         format.json { render json: @supplier.errors, status: :unprocessable_entity }
+        format.js   { render :new}
       end
     end
   end

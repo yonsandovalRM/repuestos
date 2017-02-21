@@ -1,0 +1,16 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to type_documents_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_type_document_path(@type_document), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Ver type_document
+
+				%dl.dl-horizontal
+					%dt Name:
+					%dd= @type_document.name

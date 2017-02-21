@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   def contadores
 	  @proveedores = Supplier.total_active
 	  @articulos   = Article.total_active
+	  @compras     = Purchase.total_active
 	end
 end

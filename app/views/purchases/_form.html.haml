@@ -1,0 +1,81 @@
+= form_for @purchase, html: { class: "form-horizontal", role: "form" } do |f|
+	-if @purchase.errors.any?
+		.alert.alert-danger.alert-dismissable{role: "alert"}
+			%button.close{type: "button", data: {dismiss: "alert"} }
+				%span{aria: {hidden: "true"} } &times;
+				%span.sr-only Close
+			%h4= "#{pluralize(@purchase.errors.count, "error")} prohibited this purchase from being saved:"
+
+			%ul
+				- @purchase.errors.full_messages.each do |msg|
+					%li= msg
+	.form-group
+		= f.label :supplier_id, class: 'col-sm-2 control-label'
+		.col-sm-5
+			= f.collection_select :supplier_id, Supplier.all, :id, :bname,  {prompt: "Proveedor"}, {:id=>'selectSupplier',:class => 'form-control', :required => "true"}
+		.col-sm-5
+			= link_to new_supplier_path, remote: true, class: "btn btn-success" do
+				%i.fa.fa-plus
+	.form-group
+		= f.label :number_doc, class: 'col-sm-2 control-label'
+		.col-sm-5
+			= f.text_field :number_doc, class: 'form-control'
+	.form-group
+		= f.label :type_document_id, class: 'col-sm-2 control-label'
+		.col-sm-5
+			= f.collection_select :type_document_id, TypeDocument.all, :id, :name,  {prompt: "Tipo de documento"}, {:id=> 'selectTypeDocument', :class => 'form-control', :required => "true"}
+		.col-sm-5
+			= link_to new_type_document_path, remote: true, class: "btn btn-success" do
+				%i.fa.fa-plus
+	.form-group
+		= f.label :date_doc, class: 'col-sm-2 control-label'
+		.col-sm-10
+			= f.date_select :date_doc, class: 'form-control'
+	.form-group
+		= f.label :observation, class: 'col-sm-2 control-label'
+		.col-sm-5
+			= f.text_area :observation, class: 'form-control'
+	.form-group
+		= f.label :status, class: 'col-sm-2 control-label'
+		.col-sm-5
+			= f.collection_select :status, State.all, :name, :name,  {prompt: "Estado del documento"}, {:id=> 'selectState', :class => 'form-control', :required => "true"}
+		.col-sm-5
+			= link_to new_state_path, remote: true, class: "btn btn-success" do
+				%i.fa.fa-plus
+	.form-group
+		.col-sm-offset-2.col-sm-10
+			= f.submit class: 'btn btn-primary'
+
+
+.modal.fade#newSupplier
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
+					%span
+						&times;
+				%h4.modal-title
+					Nuevo proveedor
+			.modal-body
+
+.modal.fade#newTypeDocument
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
+					%span
+						&times;
+				%h4.modal-title
+					Nuevo tipo de documento
+			.modal-body
+
+.modal.fade#newState
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
+					%span
+						&times;
+				%h4.modal-title
+					Nuevo estado de documento
+			.modal-body

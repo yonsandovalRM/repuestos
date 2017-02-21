@@ -1,0 +1,26 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to purchases_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_purchase_path(@purchase), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Ver purchase
+
+				%dl.dl-horizontal
+					%dt Supplier:
+					%dd= @purchase.supplier
+					%dt Number doc:
+					%dd= @purchase.number_doc
+					%dt Type document:
+					%dd= @purchase.type_document
+					%dt Date doc:
+					%dd= @purchase.date_doc
+					%dt Observation:
+					%dd= @purchase.observation
+					%dt Status:
+					%dd= @purchase.status

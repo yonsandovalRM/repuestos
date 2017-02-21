@@ -13,7 +13,18 @@
           Repuestos Catalán
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-
+        %li
+          %a{:href => purchases_path()}
+            %i.pe-7s-cash
+              %span.label
+                = @compras
+            %p Ventas
+        %li
+          %a{:href => purchases_path()}
+            %i.pe-7s-cart
+              %span.label
+                = @compras
+            %p Compras
         %li
           %a{:href => articles_path()}
             %i.pe-7s-note2
@@ -28,18 +39,26 @@
             %p Proveedores
         %li.dropdown
           %a{:href => "#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown", :role=>"button", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
-            %i.pe-7s-settings
+            %i.pe-7s-config
             %p Mantenedores
           %ul.dropdown-menu
             %li
-              %a{:href => type_vehicles_path()}
-                Tipos de Vehículos
+              %a{:href => states_path()}
+                Estados de documentos
             %li
               %a{:href => type_articles_path()}
                 Familias de Artículos
             %li
+              %a{:href => payment_methods_path()}
+                Formas de Pago
+            %li
+              %a{:href => type_documents_path()}
+                Tipos de documentos
+            %li
               %a{:href => type_formats_path()}
                 Tipos de Formatos
             %li
-              %a{:href => payment_methods_path()}
-                Formas de Pago
+              %a{:href => type_vehicles_path()}
+                Tipos de Vehículos
+            
+            

@@ -1,0 +1,32 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_state_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo State
+					%h1 Listado de states
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+								%th Name
+								%th
+								%th
+								%th
+
+						%tbody
+							- @states.each do |state|
+								%tr
+									%td= state.name
+									%td
+										= link_to state, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_state_path(state), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  state, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

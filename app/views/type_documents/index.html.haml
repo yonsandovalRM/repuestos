@@ -1,0 +1,31 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_type_document_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Type document
+					%h1 Listado de type_documents
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+								%th Name
+								%th
+								%th
+								%th
+						%tbody
+							- @type_documents.each do |type_document|
+								%tr
+									%td= type_document.name
+									%td
+										= link_to type_document, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_type_document_path(type_document), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  type_document, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

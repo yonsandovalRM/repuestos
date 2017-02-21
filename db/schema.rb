@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170220191541) do
+ActiveRecord::Schema.define(version: 20170221203509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,25 @@ ActiveRecord::Schema.define(version: 20170220191541) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "supplier_id"
+    t.string   "number_doc"
+    t.integer  "type_document_id"
+    t.datetime "date_doc"
+    t.string   "observation"
+    t.string   "status"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["supplier_id"], name: "index_purchases_on_supplier_id", using: :btree
+    t.index ["type_document_id"], name: "index_purchases_on_type_document_id", using: :btree
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "suppliers", force: :cascade do |t|
     t.string   "rut"
     t.string   "bname"
@@ -68,6 +87,12 @@ ActiveRecord::Schema.define(version: 20170220191541) do
   end
 
   create_table "type_articles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "type_documents", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -89,4 +114,6 @@ ActiveRecord::Schema.define(version: 20170220191541) do
   add_foreign_key "articles", "type_articles"
   add_foreign_key "articles", "type_formats"
   add_foreign_key "articles", "type_vehicles"
+  add_foreign_key "purchases", "suppliers"
+  add_foreign_key "purchases", "type_documents"
 end

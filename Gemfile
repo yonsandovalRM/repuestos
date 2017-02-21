@@ -46,6 +46,8 @@ gem 'font-awesome-sass'
 #paperclip for upload images
 gem "paperclip", "~> 5.0.0"
 
+gem 'rut_validation'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
