@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170221203509) do
+ActiveRecord::Schema.define(version: 20170222004119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20170221203509) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "purchase_details", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "stock"
+    t.integer  "stock_store"
+    t.integer  "pin"
+    t.integer  "purchase_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["article_id"], name: "index_purchase_details_on_article_id", using: :btree
+    t.index ["purchase_id"], name: "index_purchase_details_on_purchase_id", using: :btree
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -114,6 +126,8 @@ ActiveRecord::Schema.define(version: 20170221203509) do
   add_foreign_key "articles", "type_articles"
   add_foreign_key "articles", "type_formats"
   add_foreign_key "articles", "type_vehicles"
+  add_foreign_key "purchase_details", "articles"
+  add_foreign_key "purchase_details", "purchases"
   add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "type_documents"
 end

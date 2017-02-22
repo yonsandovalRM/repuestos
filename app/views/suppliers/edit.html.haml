@@ -9,6 +9,7 @@
 					= link_to @supplier, class: 'btn btn-primary' do
 						%span.glyphicon.glyphicon-info-sign
 						Ver
-					%h1 Editando supplier
+					%h1 Editando proveedor
 
-				= render 'form'
+				= form_for @supplier, html: { class: "form-horizontal", role: "form"} do |f|
+					= render partial: 'suppliers/form', locals: { f: f }

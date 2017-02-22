@@ -15,6 +15,10 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    respond_to do |format|
+      format.html { render :new }
+      format.js {  }
+    end
   end
 
   # GET /articles/1/edit
@@ -30,9 +34,11 @@ class ArticlesController < ApplicationController
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
+        format.js   { render "show.js.erb", location: @article }
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.js   { render :render }
       end
     end
   end

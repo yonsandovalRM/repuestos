@@ -10,6 +10,9 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   # GET /purchases/1.json
   def show
+    
+    @purchase_detail = PurchaseDetail.new
+    @purchase_details = PurchaseDetail.where(purchase_id: @purchase.id )
   end
 
   # GET /purchases/new

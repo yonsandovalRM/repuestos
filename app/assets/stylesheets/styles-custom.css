@@ -16,3 +16,16 @@ thead {
 td.highlight {
     background: #e3f7ff;
 }
+#addDetail {
+    margin-top: 25px;
+}
+.purchase_detail {
+    border: 1px solid #c5cee0;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0px;
+
+}
+hr {
+    border-top: 1px solid #c5cee0;
+}

@@ -47,6 +47,7 @@ gem 'font-awesome-sass'
 gem "paperclip", "~> 5.0.0"
 
 gem 'rut_validation'
+gem 'remotipart'
 
 
 group :development, :test do

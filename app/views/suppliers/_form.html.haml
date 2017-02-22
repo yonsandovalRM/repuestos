@@ -11,35 +11,35 @@
         %li= msg
 
 .form-group
-  = f.label :rut, class: 'col-sm-2 control-label'
+  = f.label "RUT Proveedor", :for => :rut, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :rut, class: 'form-control'
 .form-group
-  = f.label :bname, class: 'col-sm-2 control-label'
+  = f.label "Razón social", :for => :bname, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :bname, class: 'form-control'
 .form-group
-  = f.label :address, class: 'col-sm-2 control-label'
+  = f.label "Dirección", :for => :address, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :address, class: 'form-control'
 .form-group
-  = f.label :comunne, class: 'col-sm-2 control-label'
+  = f.label "Comuna", :for => :comunne, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :comunne, class: 'form-control'
 .form-group
-  = f.label :city, class: 'col-sm-2 control-label'
+  = f.label "Ciudad", :for => :city, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :city, class: 'form-control'
 .form-group
-  = f.label :activity, class: 'col-sm-2 control-label'
+  = f.label "Giro / Actividad", :for => :activity, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :activity, class: 'form-control'
 .form-group
-  = f.label :phone, class: 'col-sm-2 control-label'
+  = f.label "Teléfono", :for => :phone, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :phone, class: 'form-control'
 .form-group
-  = f.label :status, class: 'col-sm-2 control-label'
+  = f.label "Habilitado?", :for => :status, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.check_box :status, class: 'form-control'
 .form-group

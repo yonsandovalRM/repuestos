@@ -9,18 +9,96 @@
 					= link_to edit_purchase_path(@purchase), class: 'btn btn-primary' do
 						%span.glyphicon.glyphicon-pencil
 						Editar
-					%h1 Ver purchase
+					%h1 Viendo compra
 
 				%dl.dl-horizontal
-					%dt Supplier:
-					%dd= @purchase.supplier
-					%dt Number doc:
+					%dt Proveedor:
+					%dd= @purchase.supplier.bname
+					%dt Número de documento:
 					%dd= @purchase.number_doc
-					%dt Type document:
-					%dd= @purchase.type_document
-					%dt Date doc:
+					%dt Tipo de documento:
+					%dd= @purchase.type_document.name
+					%dt Fecha del documento:
 					%dd= @purchase.date_doc
-					%dt Observation:
+					%dt Observaciones:
 					%dd= @purchase.observation
-					%dt Status:
+					%dt Estado:
 					%dd= @purchase.status
+				
+					= form_for @purchase_detail, html: { role: "form" } do |f|
+						-if @purchase_detail.errors.any?
+							.alert.alert-danger.alert-dismissable{role: "alert"}
+								%button.close{type: "button", data: {dismiss: "alert"} }
+									%span{aria: {hidden: "true"} } &times;
+									%span.sr-only Close
+								%h4= "#{pluralize(@purchase_detail.errors.count, "error")} prohibited this purchase_detail from being saved:"
+
+								%ul
+									- @purchase_detail.errors.full_messages.each do |msg|
+										%li= msg
+
+						.purchase_detail
+							.row
+								.col-md-4
+									= f.hidden_field :purchase_id, :value => @purchase.id
+									.form-group
+										= f.label "Artículo", :for => :article_id
+										= f.collection_select :article_id, Article.all, :id, :description,  {prompt: "Artículo"}, {:id=>'selectArticle',:class => 'form-control', :required => "true"}
+										%br
+										= link_to new_article_path, remote: true, class: "btn btn-success" do
+											%i.fa.fa-plus
+
+								.col-md-2
+									.form-group
+										= f.label "Stock Tienda", :for => :stock
+										= f.number_field :stock, class: 'form-control'
+
+								.col-md-2
+									.form-group
+										= f.label "Stock Bodega", :for => :stock_store
+										= f.number_field :stock_store, class: 'form-control'
+
+								.col-md-2
+									.form-group
+										= f.label "Precio Compra", :for => :pin
+										= f.number_field :pin, class: 'form-control'
+
+								.col-md-2
+									.form-group
+										= f.submit class: 'btn btn-primary', :id => "addDetail", :value =>"Agregar"
+					.table-responsive
+						%table.table.table-striped.table-bordered.table-hover
+							%thead
+								%tr
+									%th Artículo
+									%th Stock Tienda
+									%th Stock Bodega
+									%th Precio Compra
+									%th
+									%th
+
+							%tbody
+								- @purchase_details.each do |purchase_detail|
+									%tr
+										%td= purchase_detail.article.code
+										%td= purchase_detail.stock
+										%td= purchase_detail.stock_store
+										%td= purchase_detail.pin
+										%td
+											= link_to edit_purchase_detail_path(purchase_detail), :class=>"btn btn-warning" do
+												%i.fa.fa-pencil-square-o
+										%td
+											= link_to  purchase_detail, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+												%i.fa.fa-trash-o
+
+.modal.fade#newArticle
+	.modal-dialog
+		.modal-content
+			.modal-header
+				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
+					%span
+						&times;
+				%h4.modal-title
+					Nuevo artículo
+			.modal-body
+			

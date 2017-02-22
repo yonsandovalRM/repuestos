@@ -9,7 +9,7 @@
 					= link_to edit_article_path(@article), class: 'btn btn-primary' do
 						%span.glyphicon.glyphicon-pencil
 						Editar
-					%h1 Ver article
+					%h1 Viendo artículo
 				.row
 					
 					.col-md-4
@@ -38,7 +38,7 @@
 									%span.label.label-warning
 										No Vigente
 
-							%dt Uso/Aplicación:
+							%dt Uso / Aplicación:
 							%dd= @article.applicant
 							%dt Precio Compra:
 							%dd= conPuntos(@article.pin)

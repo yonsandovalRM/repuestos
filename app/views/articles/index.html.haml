@@ -5,7 +5,7 @@
         .page-header
           = link_to new_article_path, class: 'btn btn-success' do
             %span.glyphicon.glyphicon-plus
-            Nuevo Article
+            Nuevo Artículo
           %h1 Listado de artículos
 
         .table-responsive
@@ -41,10 +41,10 @@
                   %td
                     -if (article.status == true)
                       %span.label.label-success
-                        Vigente
+                        Habilitado
                     -else
                       %span.label.label-warning
-                        No Vigente
+                        No Habilitado
 
                   %td
                     = link_to article, :class=>"btn btn-info" do
@@ -53,5 +53,5 @@
                     = link_to edit_article_path(article), :class=>"btn btn-warning" do
                       %i.fa.fa-pencil-square-o
                   %td
-                    = link_to  article, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+                    = link_to  article, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
                       %i.fa.fa-trash-o

@@ -10,33 +10,33 @@
 				- @purchase.errors.full_messages.each do |msg|
 					%li= msg
 	.form-group
-		= f.label :supplier_id, class: 'col-sm-2 control-label'
+		= f.label "Proveedor", :for => :supplier_id, class: 'col-sm-2 control-label'
 		.col-sm-5
 			= f.collection_select :supplier_id, Supplier.all, :id, :bname,  {prompt: "Proveedor"}, {:id=>'selectSupplier',:class => 'form-control', :required => "true"}
 		.col-sm-5
 			= link_to new_supplier_path, remote: true, class: "btn btn-success" do
 				%i.fa.fa-plus
 	.form-group
-		= f.label :number_doc, class: 'col-sm-2 control-label'
+		= f.label "Número de documento", :for => :number_doc, class: 'col-sm-2 control-label'
 		.col-sm-5
 			= f.text_field :number_doc, class: 'form-control'
 	.form-group
-		= f.label :type_document_id, class: 'col-sm-2 control-label'
+		= f.label "Tipo de documento", :for => :type_document_id, class: 'col-sm-2 control-label'
 		.col-sm-5
 			= f.collection_select :type_document_id, TypeDocument.all, :id, :name,  {prompt: "Tipo de documento"}, {:id=> 'selectTypeDocument', :class => 'form-control', :required => "true"}
 		.col-sm-5
 			= link_to new_type_document_path, remote: true, class: "btn btn-success" do
 				%i.fa.fa-plus
 	.form-group
-		= f.label :date_doc, class: 'col-sm-2 control-label'
+		= f.label "Fecha de documento", :for => :date_doc, class: 'col-sm-2 control-label'
 		.col-sm-10
 			= f.date_select :date_doc, class: 'form-control'
 	.form-group
-		= f.label :observation, class: 'col-sm-2 control-label'
+		= f.label "Observaciones", :for => :observation, class: 'col-sm-2 control-label'
 		.col-sm-5
 			= f.text_area :observation, class: 'form-control'
 	.form-group
-		= f.label :status, class: 'col-sm-2 control-label'
+		= f.label "Estado", :for => :status, class: 'col-sm-2 control-label'
 		.col-sm-5
 			= f.collection_select :status, State.all, :name, :name,  {prompt: "Estado del documento"}, {:id=> 'selectState', :class => 'form-control', :required => "true"}
 		.col-sm-5

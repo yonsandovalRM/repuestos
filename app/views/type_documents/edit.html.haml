@@ -9,6 +9,7 @@
 					= link_to @type_document, class: 'btn btn-primary' do
 						%span.glyphicon.glyphicon-info-sign
 						Ver
-					%h1 Editando type_document
+					%h1 Editando tipo de docuemento
 
-				= render 'form'
+				= form_for @type_document, html: { class: "form-horizontal", role: "form" } do |f|
+					= render partial: 'type_documents/form', locals: { f: f }

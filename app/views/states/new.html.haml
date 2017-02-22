@@ -6,6 +6,6 @@
 					= link_to states_path, class: 'btn btn-default' do
 						%span.glyphicon.glyphicon-list-alt
 						Volver
-					%h1 Nuevo state
+					%h1 Nuevo estado
 				= form_for @state, html: { class: "form-horizontal", role: "form" } do |f|
 					= render partial: 'states/form', locals: { f: f }

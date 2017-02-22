@@ -6,6 +6,6 @@
 					= link_to suppliers_path, class: 'btn btn-default' do
 						%span.glyphicon.glyphicon-list-alt
 						Volver
-					%h1 Nuevo supplier
+					%h1 Nuevo proveedor
 					= form_for @supplier, html: { class: "form-horizontal", role: "form" } do |f|
 						= render partial: 'suppliers/form', locals: { f: f }

@@ -6,6 +6,6 @@
 					= link_to type_documents_path, class: 'btn btn-default' do
 						%span.glyphicon.glyphicon-list-alt
 						Volver
-					%h1 Nuevo type_document
+					%h1 Nuevo tipo de documento
 				= form_for @type_document, html: { class: "form-horizontal", role: "form" } do |f|
 					= render partial: 'type_documents/form', locals: { f: f }

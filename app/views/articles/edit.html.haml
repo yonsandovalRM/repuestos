@@ -11,4 +11,5 @@
 						Ver
 					%h1 Editando artículo
 
-				= render 'form'
+				= form_for @article, html: { class: "form-horizontal", role: "form" } do |f|
+					= render partial: 'articles/form', locals: { f: f }

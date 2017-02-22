@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :purchase_details
   resources :states
   resources :purchases
   resources :type_documents
