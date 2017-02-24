@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222004119) do
+ActiveRecord::Schema.define(version: 20170222020805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,7 +36,9 @@ ActiveRecord::Schema.define(version: 20170222004119) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.datetime "deleted_at"
     t.index ["brand_id"], name: "index_articles_on_brand_id", using: :btree
+    t.index ["deleted_at"], name: "index_articles_on_deleted_at", using: :btree
     t.index ["type_article_id"], name: "index_articles_on_type_article_id", using: :btree
     t.index ["type_format_id"], name: "index_articles_on_type_format_id", using: :btree
     t.index ["type_vehicle_id"], name: "index_articles_on_type_vehicle_id", using: :btree

@@ -19,7 +19,7 @@
 					%dt Tipo de documento:
 					%dd= @purchase.type_document.name
 					%dt Fecha del documento:
-					%dd= @purchase.date_doc
+					%dd= @purchase.date_doc.strftime('%d-%m-%Y')
 					%dt Observaciones:
 					%dd= @purchase.observation
 					%dt Estado:
@@ -43,7 +43,7 @@
 									= f.hidden_field :purchase_id, :value => @purchase.id
 									.form-group
 										= f.label "Artículo", :for => :article_id
-										= f.collection_select :article_id, Article.all, :id, :description,  {prompt: "Artículo"}, {:id=>'selectArticle',:class => 'form-control', :required => "true"}
+										= f.collection_select :article_id, Article.all, :id, :description,  {prompt: "Seleccione un artículo"}, {:id=>'selectArticle',:class => 'form-control', :required => "true"}
 										%br
 										= link_to new_article_path, remote: true, class: "btn btn-success" do
 											%i.fa.fa-plus
@@ -52,16 +52,22 @@
 									.form-group
 										= f.label "Stock Tienda", :for => :stock
 										= f.number_field :stock, class: 'form-control'
+										%small#emailHelp.form-text.text-muted
+											Ingrese un valor numérico mayor o igual a 0
 
 								.col-md-2
 									.form-group
 										= f.label "Stock Bodega", :for => :stock_store
 										= f.number_field :stock_store, class: 'form-control'
+										%small#emailHelp.form-text.text-muted
+											Ingrese un valor numérico mayor o igual a 0
 
 								.col-md-2
 									.form-group
 										= f.label "Precio Compra", :for => :pin
 										= f.number_field :pin, class: 'form-control'
+										%small#emailHelp.form-text.text-muted
+											Ingrese el precio sin puntos ni símbolos
 
 								.col-md-2
 									.form-group

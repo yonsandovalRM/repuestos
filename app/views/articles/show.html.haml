@@ -41,9 +41,9 @@
 							%dt Uso / Aplicación:
 							%dd= @article.applicant
 							%dt Precio Compra:
-							%dd= conPuntos(@article.pin)
+							%dd= number_to_currency(@article.pin)
 							%dt Precio Venta:
-							%dd= conPuntos(@article.pou)
+							%dd= number_to_currency(@article.pou)
 							%dt Porcentaje de descuento:
 							%dd= @article.discount
 							%dt Stock Tienda:

@@ -47,8 +47,10 @@ gem 'font-awesome-sass'
 gem "paperclip", "~> 5.0.0"
 
 gem 'rut_validation'
+#send image with remote:true and enctype form
 gem 'remotipart'
-
+#softdelete
+gem 'paranoia', '~> 2.2', '>= 2.2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

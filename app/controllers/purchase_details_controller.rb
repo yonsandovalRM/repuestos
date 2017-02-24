@@ -15,6 +15,7 @@ class PurchaseDetailsController < ApplicationController
   # GET /purchase_details/new
   def new
     @purchase_detail = PurchaseDetail.new
+    
   end
 
   # GET /purchase_details/1/edit
@@ -25,6 +26,9 @@ class PurchaseDetailsController < ApplicationController
   # POST /purchase_details.json
   def create
     @purchase_detail = PurchaseDetail.new(purchase_detail_params)
+    #raise @purchase_detail.to_yaml
+    article = Article.find(@purchase_detail.article_id)
+    updateStock(article, @purchase_detail.stock, @purchase_detail.stock_store)
 
     respond_to do |format|
       if @purchase_detail.save
@@ -40,8 +44,13 @@ class PurchaseDetailsController < ApplicationController
   # PATCH/PUT /purchase_details/1
   # PATCH/PUT /purchase_details/1.json
   def update
+
+    article = Article.find(@purchase_detail.article_id)
+    deleteStock(article, @purchase_detail.stock, @purchase_detail.stock_store)
+
     respond_to do |format|
       if @purchase_detail.update(purchase_detail_params)
+        updateStock(article, @purchase_detail.stock, @purchase_detail.stock_store)
         format.html { redirect_to :back, location: @purchase_detail, notice: 'Purchase detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @purchase_detail }
       else
@@ -54,11 +63,26 @@ class PurchaseDetailsController < ApplicationController
   # DELETE /purchase_details/1
   # DELETE /purchase_details/1.json
   def destroy
+    article = Article.find(@purchase_detail.article_id)
+    deleteStock(article, @purchase_detail.stock, @purchase_detail.stock_store)
+
     @purchase_detail.destroy
     respond_to do |format|
       format.html { redirect_to :back, notice: 'Purchase detail was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def updateStock(article, stock, stock_store)
+    updated_stock       = article.stock + stock.to_i 
+    updated_stock_store  = article.stock_store + stock_store.to_i 
+    article.update_attributes(:stock => updated_stock, :stock_store => updated_stock_store)
+  end
+
+  def deleteStock(article, stock, stock_store)
+    updated_stock       = article.stock - stock.to_i 
+    updated_stock_store  = article.stock_store - stock_store.to_i 
+    article.update_attributes(:stock => updated_stock, :stock_store => updated_stock_store)
   end
 
   private

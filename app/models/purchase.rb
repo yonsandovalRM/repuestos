@@ -5,4 +5,6 @@ class Purchase < ApplicationRecord
   	def self.total_active
 	  	Purchase.all.count
 	end
+
+	
 end
