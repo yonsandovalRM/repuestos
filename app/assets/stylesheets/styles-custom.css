@@ -5,9 +5,8 @@
 thead {
     font-size: .8em;
 }
-.form-control{
-	background-color: #f5f7fb;
-    border: 1px solid #c5cee0;
+.breadcrumb{
+    background: #fff;
 }
 .lighted {
     font-size: .9em;
@@ -19,7 +18,7 @@ td.highlight {
 #addDetail {
     margin-top: 25px;
 }
-.purchase_detail {
+.nested-fields {
     border: 1px solid #c5cee0;
     padding: 10px;
     border-radius: 5px;
@@ -29,4 +28,19 @@ td.highlight {
 }
 hr {
     border-top: 1px solid #c5cee0;
+}
+
+.form-control {
+  height: 33px !important;
+}
+
+.btn-default {
+    color: #798596;
+    background-color: #fff;
+    border-color: #c5cee0;
+}
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+    background-color: #f5f7fb;
+    opacity: 1;
+    color: #a8b2c5;
 }

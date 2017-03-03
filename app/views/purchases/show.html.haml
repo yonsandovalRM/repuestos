@@ -1,110 +1,175 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas viendo la compra Nº:
+		%strong
+			= @purchase.number_doc
 .row
-	.col-md-12
+	.col-md-8
 		.panel
 			.panel-body
-				.page-header
-					= link_to purchases_path, class: 'btn btn-default' do
-						%span.glyphicon.glyphicon-list-alt
-						Volver
-					= link_to edit_purchase_path(@purchase), class: 'btn btn-primary' do
-						%span.glyphicon.glyphicon-pencil
-						Editar
-					%h1 Viendo compra
-
-				%dl.dl-horizontal
-					%dt Proveedor:
-					%dd= @purchase.supplier.bname
-					%dt Número de documento:
-					%dd= @purchase.number_doc
-					%dt Tipo de documento:
-					%dd= @purchase.type_document.name
-					%dt Fecha del documento:
-					%dd= @purchase.date_doc.strftime('%d-%m-%Y')
-					%dt Observaciones:
-					%dd= @purchase.observation
-					%dt Estado:
-					%dd= @purchase.status
 				
-					= form_for @purchase_detail, html: { role: "form" } do |f|
-						-if @purchase_detail.errors.any?
-							.alert.alert-danger.alert-dismissable{role: "alert"}
-								%button.close{type: "button", data: {dismiss: "alert"} }
-									%span{aria: {hidden: "true"} } &times;
-									%span.sr-only Close
-								%h4= "#{pluralize(@purchase_detail.errors.count, "error")} prohibited this purchase_detail from being saved:"
+				= form_for @purchase_detail, html: { role: "form" } do |f|
+					-if @purchase.errors.any?
+						.alert.alert-danger.alert-dismissable{role: "alert"}
+							%button.close{type: "button", data: {dismiss: "alert"} }
+								%span{aria: {hidden: "true"} } &times;
+								%span.sr-only Close
+							%h4= "#{pluralize(@purchase.errors.count, "error")} prohibited this purchase from being saved:"
 
-								%ul
-									- @purchase_detail.errors.full_messages.each do |msg|
-										%li= msg
+							%ul
+								- @purchase.errors.full_messages.each do |msg|
+									%li= msg
+					.row
 
-						.purchase_detail
-							.row
-								.col-md-4
-									= f.hidden_field :purchase_id, :value => @purchase.id
-									.form-group
-										= f.label "Artículo", :for => :article_id
-										= f.collection_select :article_id, Article.all, :id, :description,  {prompt: "Seleccione un artículo"}, {:id=>'selectArticle',:class => 'form-control', :required => "true"}
-										%br
-										= link_to new_article_path, remote: true, class: "btn btn-success" do
-											%i.fa.fa-plus
+						.col-md-12
+							%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-primary btn-block"}
+								Seleccione un artículo
+							%p
+							= f.hidden_field :article_id, :id=> "id_search"
+							= f.hidden_field :purchase_id, :value => @purchase.id
+						.col-md-12
+							.form-group
+								= f.label "Artículo"
+								%input{:type => "text", :id => "description_search", :class => "form-control", :disabled => "true"}
+						.col-md-4
+							.form-group
+								= f.label "Código"
+								%input{:type => "text", :id => "code_search", :class => "form-control", :disabled => "true"}
+						.col-md-4
+							.form-group
+								= f.label "Stock actual en tienda"
+								%input{:type => "text", :id => "stock_search", :class => "form-control", :disabled => "true"}
+						.col-md-4
+							.form-group
+								= f.label "Stock actual en bodega"
+								%input{:type => "text", :id => "stock_store_search", :class => "form-control", :disabled => "true"}
 
-								.col-md-2
-									.form-group
-										= f.label "Stock Tienda", :for => :stock
-										= f.number_field :stock, class: 'form-control'
-										%small#emailHelp.form-text.text-muted
-											Ingrese un valor numérico mayor o igual a 0
+						.col-md-3
+							.form-group
+								= f.label "Stock Tienda", :for => :stock
+								= f.number_field :stock, class: 'form-control'
+								%small#emailHelp.form-text.text-muted
+									Ingrese un valor numérico mayor o igual a 0
 
-								.col-md-2
-									.form-group
-										= f.label "Stock Bodega", :for => :stock_store
-										= f.number_field :stock_store, class: 'form-control'
-										%small#emailHelp.form-text.text-muted
-											Ingrese un valor numérico mayor o igual a 0
+						.col-md-3
+							.form-group
+								= f.label "Stock Bodega", :for => :stock_store
+								= f.number_field :stock_store, class: 'form-control'
+								%small#emailHelp.form-text.text-muted
+									Ingrese un valor numérico mayor o igual a 0
+						.col-md-3
+							.form-group
+								= f.label "Precio Compra", :for => :pin
+								= f.number_field :pin, class: 'form-control', :id => "pin_search"
+								%small#emailHelp.form-text.text-muted
+									Ingrese el precio sin puntos ni símbolos
+						.col-md-3
+							%br
+							=f.submit "Agregar", :class=>"btn btn-success"
 
-								.col-md-2
-									.form-group
-										= f.label "Precio Compra", :for => :pin
-										= f.number_field :pin, class: 'form-control'
-										%small#emailHelp.form-text.text-muted
-											Ingrese el precio sin puntos ni símbolos
 
-								.col-md-2
-									.form-group
-										= f.submit class: 'btn btn-primary', :id => "addDetail", :value =>"Agregar"
-					.table-responsive
-						%table.table.table-striped.table-bordered.table-hover
-							%thead
+		
+		.panel
+			.panel-body
+				- if @purchase.purchase_details.count > 0
+					%h5
+						Artículos comprados
+					%hr
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+								%th Código
+								%th Descripción
+								%th Tienda
+								%th Bodega
+								%th P. Compra
+								%th Neto
+								%th
+						%tbody
+							- @purchase.purchase_details.each do |detail|
 								%tr
-									%th Artículo
-									%th Stock Tienda
-									%th Stock Bodega
-									%th Precio Compra
-									%th
-									%th
+									%td= link_to detail.article.code, detail.article
+									%td= detail.article.description
+									%td= detail.stock
+									%td= detail.stock_store
+									%td= number_to_currency(detail.pin)
+									- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i
+									%td= number_to_currency(neto)
+									%td
+										= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o
+				- else
+					.alert.alert-info
+						No se encontraron artículos registrados en esta compra
 
-							%tbody
-								- @purchase_details.each do |purchase_detail|
-									%tr
-										%td= purchase_detail.article.code
-										%td= purchase_detail.stock
-										%td= purchase_detail.stock_store
-										%td= purchase_detail.pin
-										%td
-											= link_to edit_purchase_detail_path(purchase_detail), :class=>"btn btn-warning" do
-												%i.fa.fa-pencil-square-o
-										%td
-											= link_to  purchase_detail, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
-												%i.fa.fa-trash-o
+	.col-md-4
+		.panel.panel-default
+			
+			.panel-body
+				%small.text-muted.pull-right
+					Nº Documento:
+					= @purchase.number_doc
+				%hr
+				%small.text-muted
+					Proveedor:
+				%h5
+					= @purchase.supplier.bname
+				%small.text-muted
+					Datos de la compra:
 
-.modal.fade#newArticle
-	.modal-dialog
+				%ul.lista
+				
+					%li
+						Tipo de documento: 
+						= @purchase.type_document.name
+					%li
+						Fecha del documento:
+						= @purchase.date_doc.strftime('%d-%m-%Y')
+					%li
+						Método de pago:
+						- if @purchase.payment_method.present? 
+							= @purchase.payment_method.name
+					%li
+						Observaciones
+						= @purchase.observation
+					%li
+						Estados:
+						%ul
+							%li 
+								Pago:
+								= @purchase.status_payment
+							%li 
+								Documento:
+								= @purchase.status
+				.panel.panel-info
+					.panel-body
+						%small.text-muted
+							Neto: 
+						%h5= number_to_currency(@tot_neto)
+						%small.text-muted
+							IVA: 
+						%h5= number_to_currency(@tot_iva)
+						%small.text-muted
+							Total: 
+						%h5= number_to_currency(@tot_total)
+			.panel-footer
+				= link_to purchases_path, class: 'btn btn-default' do
+					%span.glyphicon.glyphicon-list-alt
+					Volver
+				= link_to edit_purchase_path(@purchase), class: 'btn btn-primary' do
+					%span.glyphicon.glyphicon-pencil
+					Editar
+
+.modal.fade#searchArticle
+	.modal-dialog.modal-lg
 		.modal-content
 			.modal-header
 				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
 					%span
 						&times;
 				%h4.modal-title
-					Nuevo artículo
+					Buscando artículo
 			.modal-body
-			

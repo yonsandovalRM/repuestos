@@ -17,4 +17,10 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.remotipart
+//= require cocoon
+//= require moment
+//= require bootstrap-datetimepicker
+//= require moment/es
+//= require autocomplete-rails
+//= require jquery-ui
 //= require_tree .

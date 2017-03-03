@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas viendo el tipo de documento:
+		%strong
+			= @type_document.name
 .row
 	.col-md-12
 		.panel

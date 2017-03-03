@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas viendo: 
+		%strong
+			Compras
 .row
 	.col-md-12
 		.panel
@@ -15,12 +23,12 @@
 						Artículos comprados para bodega
 						= @stock_store
 				.table-responsive
-					%table.table.table-striped.table-bordered.table-hover
+					%table.table.table-striped.table-bordered.table-hover#listado
 						%thead
 							%tr
+								%th N. Documento
 								%th Proveedor
 								%th Rut
-								%th N. Documento
 								%th Tipo
 								%th Fecha
 								%th Estado
@@ -31,9 +39,9 @@
 						%tbody
 							- @purchases.each do |purchase|
 								%tr
+									%td= purchase.number_doc
 									%td= purchase.supplier.bname
 									%td= purchase.supplier.rut
-									%td= purchase.number_doc
 									%td= purchase.type_document.name
 									%td= purchase.date_doc.strftime('%d-%m-%Y')
 									%td= purchase.status

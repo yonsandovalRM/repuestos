@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  autocomplete :supplier, :bname
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
 
   # GET /purchases
@@ -12,8 +13,21 @@ class PurchasesController < ApplicationController
   # GET /purchases/1
   # GET /purchases/1.json
   def show
+
     @purchase_detail = PurchaseDetail.new
-    @purchase_details = PurchaseDetail.where(purchase_id: @purchase.id )
+    
+    if @purchase.purchase_details.count > 0
+      @purchase.purchase_details.each do |detail|
+        @tot_neto = @tot_neto.to_i + ((detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i)
+      end
+
+      @tot_iva = @tot_neto * 0.19
+      @tot_total = @tot_neto + @tot_iva
+    else
+      @tot_iva = 0
+      @tot_neto = 0
+      @tot_total = 0
+    end
   end
 
   # GET /purchases/new
@@ -24,6 +38,8 @@ class PurchasesController < ApplicationController
   # GET /purchases/1/edit
   def edit
   end
+
+  
 
   # POST /purchases
   # POST /purchases.json
@@ -59,12 +75,16 @@ class PurchasesController < ApplicationController
   # DELETE /purchases/1.json
   def destroy
     @purchase.destroy
+
+    #descontar stock al eliminar
+
     respond_to do |format|
       format.html { redirect_to purchases_url, notice: 'Purchase was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_purchase
@@ -73,6 +93,6 @@ class PurchasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_params
-      params.require(:purchase).permit(:supplier_id, :number_doc, :type_document_id, :date_doc, :observation, :status)
+      params.require(:purchase).permit(:supplier_id, :number_doc, :type_document_id, :date_doc, :observation, :status, :payment_method_id, :status_payment )
     end
 end

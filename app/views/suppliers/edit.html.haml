@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas editando el proveedor:
+		%strong
+			= @supplier.bname
 .row
 	.col-md-12
 		.panel

@@ -5,6 +5,10 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
+    respond_to do |format|
+      format.html { render :index }
+      format.js {  }
+    end
   end
 
   # GET /articles/1
@@ -21,6 +25,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def search_article
+    @article_search = Article.find(params[:article_id])
+    respond_to do |format|
+      format.js { render "search.js.erb", location: @article_search }
+    end
+  end
   # GET /articles/1/edit
   def edit
   end

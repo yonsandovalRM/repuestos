@@ -1,57 +1,73 @@
+.breadcrumb
+  %li
+    %a{:href => root_path}
+      %i.fa.fa-home
+  %li.active
+    Estas viendo: 
+    %strong
+      Artículos
+
 .row
-  .col-md-12
+  .col-md-8
     .panel
       .panel-body
-        .page-header
-          = link_to new_article_path, class: 'btn btn-success' do
-            %span.glyphicon.glyphicon-plus
-            Nuevo Artículo
-          %h1 Listado de artículos
+        %table.table.table-striped.table-bordered.table-hover.articlelist
+          %thead
+            %tr
+              %th Imagen
+              %th Código
+              %th Descripción
+              %th Marca
+              %th Stock
+              %th St. Bodega
+              %th Familia
+              %th Vehículo
+              %th Estado
+              %th
+              %th
+              %th
 
-        .table-responsive
-          %table.table.table-striped.table-bordered.table-hover
-            %thead
+          %tbody
+            - @articles.each do |article|
               %tr
-                %th Código
-                %th Descripción
-                %th Marca
-                %th P. Venta
-                %th %Desc.
-                %th Stock
-                %th St. Bodega
-                %th Familia
-                %th Vehículo
-                %th Estado
-                %th
-                %th
-                %th
+                %td= image_tag article.photo.url(:thumb)
+                %td= article.code
+                %td= article.description
+                %td= article.brand.name
+                %td= article.stock
+                %td= article.stock_store
+                %td= article.type_article.name
+                %td= article.type_vehicle.name
+                %td
+                  -if (article.status == true)
+                    %span.label.label-success
+                      Habilitado
+                  -else
+                    %span.label.label-warning
+                      No Habilitado
 
-            %tbody
-              - @articles.each do |article|
-                %tr
-                  %td= article.code
-                  %td= article.description
-                  %td= article.brand.name
-                  %td= number_to_currency(article.pou)
-                  %td= article.discount
-                  %td= article.stock
-                  %td= article.stock_store
-                  %td= article.type_article.name
-                  %td= article.type_vehicle.name
-                  %td
-                    -if (article.status == true)
-                      %span.label.label-success
-                        Habilitado
-                    -else
-                      %span.label.label-warning
-                        No Habilitado
-
-                  %td
-                    = link_to article, :class=>"btn btn-info" do
-                      %i.fa.fa-eye
-                  %td
-                    = link_to edit_article_path(article), :class=>"btn btn-warning" do
-                      %i.fa.fa-pencil-square-o
-                  %td
-                    = link_to  article, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
-                      %i.fa.fa-trash-o
+                %td
+                  = link_to article, :class=>"btn btn-info" do
+                    %i.fa.fa-eye
+                %td
+                  = link_to edit_article_path(article), :class=>"btn btn-warning" do
+                    %i.fa.fa-pencil-square-o
+                %td
+                  = link_to  article, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+                    %i.fa.fa-trash-o
+  .col-md-4
+    .panel.panel-info
+      .panel-body
+        %small.text-muted
+          Tipos de Artículos 
+        %h5= @articles.count
+        %small.text-muted
+          Artículos en tienda
+        %h5= @articles.sum('stock')
+        %small.text-muted
+          Artículos en bodega
+        %h5= @articles.sum('stock_store')
+      .panel-footer
+        = link_to new_article_path, class: 'btn btn-success' do
+          %span.glyphicon.glyphicon-plus
+          Nuevo Artículo

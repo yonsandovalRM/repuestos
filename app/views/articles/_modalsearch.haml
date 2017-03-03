@@ -1,0 +1,28 @@
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover.articlelistmodal
+    %thead
+      %tr
+        %th Imagen
+        %th Código
+        %th Descripción
+        %th Marca
+        %th Stock
+        %th St. Bodega
+        %th Familia
+        %th Vehículo
+        %th
+
+    %tbody
+      - @articles.each do |article|
+        %tr
+          %td= image_tag article.photo.url(:thumb)
+          %td= article.code
+          %td= article.description
+          %td= article.brand.name
+          %td= article.stock
+          %td= article.stock_store
+          %td= article.type_article.name
+          %td= article.type_vehicle.name
+          %td
+            = link_to article_search_article_path(article.id), :remote =>"true", :class=>"btn btn-info" do
+              %i.fa.fa-plus

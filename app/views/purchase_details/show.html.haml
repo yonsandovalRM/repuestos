@@ -1,0 +1,24 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to purchase_details_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_purchase_detail_path(@purchase_detail), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Viendo purchase_detail
+
+				%dl.dl-horizontal
+					%dt Article:
+					%dd= @purchase_detail.article
+					%dt Stock:
+					%dd= @purchase_detail.stock
+					%dt Stock store:
+					%dd= @purchase_detail.stock_store
+					%dt Pin:
+					%dd= @purchase_detail.pin
+					%dt Purchase:
+					%dd= @purchase_detail.purchase

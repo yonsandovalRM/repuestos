@@ -11,23 +11,25 @@
           %li= msg
 
   .form-group
-    = f.label "Artículo", :for => :article_id, class: 'col-sm-2 control-label'
+    = f.label :article, class: 'col-sm-2 control-label'
     .col-sm-10
-      = f.collection_select :article_id, Article.all, :id, :description,  {prompt: "Artículo"}, {:id=>'selectArticle',:class => 'form-control', :required => "true"}
-                  
+      = f.text_field :article, class: 'form-control'
   .form-group
-    = f.label "Stock tienda", :for => :stock, class: 'col-sm-2 control-label'
+    = f.label :stock, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.number_field :stock, class: 'form-control'
   .form-group
-    = f.label "Stock bodega", :for => :stock_store, class: 'col-sm-2 control-label'
+    = f.label :stock_store, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.number_field :stock_store, class: 'form-control'
   .form-group
-    = f.label "Precio compra", :for => :pin, class: 'col-sm-2 control-label'
+    = f.label :pin, class: 'col-sm-2 control-label'
     .col-sm-10
       = f.number_field :pin, class: 'form-control'
- 
+  .form-group
+    = f.label :purchase, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :purchase, class: 'form-control'
   .form-group
     .col-sm-offset-2.col-sm-10
       = f.submit class: 'btn btn-primary'

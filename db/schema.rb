@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222020805) do
+ActiveRecord::Schema.define(version: 20170303013750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,8 @@ ActiveRecord::Schema.define(version: 20170222020805) do
     t.integer  "stock"
     t.integer  "stock_store"
     t.integer  "stock_min"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "photo_file_name"
-    t.string   "photo_content_type"
-    t.integer  "photo_file_size"
-    t.datetime "photo_updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.datetime "deleted_at"
     t.index ["brand_id"], name: "index_articles_on_brand_id", using: :btree
     t.index ["deleted_at"], name: "index_articles_on_deleted_at", using: :btree
@@ -54,6 +50,15 @@ ActiveRecord::Schema.define(version: 20170222020805) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "article_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["article_id"], name: "index_pictures_on_article_id", using: :btree
   end
 
   create_table "purchase_details", force: :cascade do |t|
@@ -75,8 +80,11 @@ ActiveRecord::Schema.define(version: 20170222020805) do
     t.datetime "date_doc"
     t.string   "observation"
     t.string   "status"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "payment_method_id"
+    t.string   "status_payment"
+    t.index ["payment_method_id"], name: "index_purchases_on_payment_method_id", using: :btree
     t.index ["supplier_id"], name: "index_purchases_on_supplier_id", using: :btree
     t.index ["type_document_id"], name: "index_purchases_on_type_document_id", using: :btree
   end
@@ -128,8 +136,10 @@ ActiveRecord::Schema.define(version: 20170222020805) do
   add_foreign_key "articles", "type_articles"
   add_foreign_key "articles", "type_formats"
   add_foreign_key "articles", "type_vehicles"
+  add_foreign_key "pictures", "articles"
   add_foreign_key "purchase_details", "articles"
   add_foreign_key "purchase_details", "purchases"
+  add_foreign_key "purchases", "payment_methods"
   add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "type_documents"
 end

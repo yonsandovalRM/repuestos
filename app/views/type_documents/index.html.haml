@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas viendo:
+		%strong
+			Tipos de documentos
 .row
 	.col-md-12
 		.panel
@@ -9,7 +17,7 @@
 					%h1 Listado de tipos de docuementos
 
 				.table-responsive
-					%table.table.table-striped.table-bordered.table-hover
+					%table.table.table-striped.table-bordered.table-hover#listado
 						%thead
 							%tr
 								%th Nombre

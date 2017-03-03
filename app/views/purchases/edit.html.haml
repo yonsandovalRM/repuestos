@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas editando: 
+		%strong
+			= @purchase.number_doc
 .row
 	.col-md-12
 		.panel
@@ -9,6 +17,7 @@
 					= link_to @purchase, class: 'btn btn-primary' do
 						%span.glyphicon.glyphicon-info-sign
 						Ver
-					%h1 Editando compra
+					%h5 Editando compra
+					%hr
 
 				= render 'form'

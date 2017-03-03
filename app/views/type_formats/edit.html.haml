@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas editando el tipo de formato:
+		%strong
+			= @type_format.name
 .row
 	.col-md-12
 		.panel

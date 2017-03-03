@@ -26,6 +26,16 @@
                 = @compras
             %p Compras
         %li
+          %a{:href => purchases_path()}
+            %i.pe-7s-drawer
+              %span.label
+                = @compras
+            %p Cotizaciones
+        %li
+          %a{:href => purchases_path()}
+            %i.pe-7s-graph1
+            %p Reportes
+        %li
           %a{:href => articles_path()}
             %i.pe-7s-note2
               %span.label

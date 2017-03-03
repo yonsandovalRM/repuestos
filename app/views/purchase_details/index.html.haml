@@ -1,0 +1,40 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_purchase_detail_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Purchase detail
+					%h1 Listado de purchase_details
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover#listado
+						%thead
+							%tr
+											%th Article
+											%th Stock
+											%th Stock store
+											%th Pin
+											%th Purchase
+													%th
+								%th
+								%th
+
+						%tbody
+							- @purchase_details.each do |purchase_detail|
+								%tr
+											%td= purchase_detail.article
+											%td= purchase_detail.stock
+											%td= purchase_detail.stock_store
+											%td= purchase_detail.pin
+											%td= purchase_detail.purchase
+														%td
+										= link_to purchase_detail, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_purchase_detail_path(purchase_detail), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  purchase_detail, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o
