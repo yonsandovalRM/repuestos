@@ -30,7 +30,11 @@
           %tbody
             - @articles.each do |article|
               %tr
-                %td= image_tag article.photo.url(:thumb)
+                -if article.pictures.present?
+                  %td= image_tag article.pictures.first.image.url(:thumb)
+                -else
+                  %td
+                    No Image
                 %td= article.code
                 %td= article.description
                 %td= article.brand.name

@@ -42,6 +42,12 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        if params[:images]
+          #===== The magic is here ;)
+          params[:images].each { |image|
+            @article.pictures.create(image: image)
+          }
+        end
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
         format.js   { render "show.js.erb", location: @article }
@@ -58,6 +64,18 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
+
+        if params[:images]
+          # The magic is here ;)
+          pictures = Picture.where(article_id: @article.id)
+          pictures.each do |pic|
+            pic.destroy
+          end
+
+          params[:images].each { |image|
+            @article.pictures.create(image: image)
+          }
+        end
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else

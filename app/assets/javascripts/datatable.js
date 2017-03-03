@@ -75,6 +75,38 @@ $(document).on('turbolinks:load', function() {
 	$("#dpmax").on("dp.change", function(e) {
 	   table.draw(); 
 	});
+	// $.fn.dataTableExt.afnFiltering.push(
+	//     function( oSettings, aData, iDataIndex ) {
+	//         var inicioDate = document.getElementById('min').value;
+	//         var finDate = document.getElementById('max').value;
+	//         var date = 1;
+	        
+	 
+	//         inicioDate=inicioDate.substring(6,10) + inicioDate.substring(3,5)+ inicioDate.substring(0,2);
+	//         finDate=finDate.substring(6,10) + finDate.substring(3,5)+ finDate.substring(0,2);
+	 
+	//         var dataDate=aData[date].substring(6,10) + aData[date].substring(3,5)+ aData[date].substring(0,2);
+	        
+	 
+	//         if ( inicioDate === "" && finDate === "" )
+	//         {
+	//             return true;
+	//         }
+	//         else if ( inicioDate <= dataDate && finDate === "")
+	//         {
+	//             return true;
+	//         }
+	//         else if ( finDate >= dataDate && inicioDate === "")
+	//         {
+	//             return true;
+	//         }
+	//         else if (inicioDate <= dataDate && finDate >= dataDate)
+	//         {
+	//             return true;
+	//         }
+	//         return false;
+	//     }
+	// );
 	$('.articlelistmodal').DataTable({
 		destroy: true,
 		language: {
@@ -98,38 +130,7 @@ $(document).on('turbolinks:load', function() {
 			}
 		}
 	});
-    $.fn.dataTableExt.afnFiltering.push(
-	    function( oSettings, aData, iDataIndex ) {
-	        var inicioDate = document.getElementById('min').value;
-	        var finDate = document.getElementById('max').value;
-	        var date = 1;
-	        
-	 
-	        inicioDate=inicioDate.substring(6,10) + inicioDate.substring(3,5)+ inicioDate.substring(0,2);
-	        finDate=finDate.substring(6,10) + finDate.substring(3,5)+ finDate.substring(0,2);
-	 
-	        var dataDate=aData[date].substring(6,10) + aData[date].substring(3,5)+ aData[date].substring(0,2);
-	        
-	 
-	        if ( inicioDate === "" && finDate === "" )
-	        {
-	            return true;
-	        }
-	        else if ( inicioDate <= dataDate && finDate === "")
-	        {
-	            return true;
-	        }
-	        else if ( finDate >= dataDate && inicioDate === "")
-	        {
-	            return true;
-	        }
-	        else if (inicioDate <= dataDate && finDate >= dataDate)
-	        {
-	            return true;
-	        }
-	        return false;
-	    }
-	);
+    
  
 	
 });

@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require owl.carousel
+//= require carousel
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require turbolinks
@@ -23,4 +25,5 @@
 //= require moment/es
 //= require autocomplete-rails
 //= require jquery-ui
+//= require lightbox
 //= require_tree .

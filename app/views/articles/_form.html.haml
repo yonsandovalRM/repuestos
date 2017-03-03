@@ -28,9 +28,9 @@
   .col-sm-10
     = f.text_area :applicant, class: 'form-control'
 .form-group
-  = f.label "Foto", :for => :photo, class: 'col-sm-2 control-label'
+  = f.label "Fotos", :for => :pictures, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.file_field :photo, class: 'form-control'
+    = file_field_tag "images[]", type: :file, multiple: true 
 
 
 .form-group

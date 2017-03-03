@@ -26,7 +26,12 @@
 						.tab-pane.active#informacion
 							%p
 								%small.text-muted
-									Producto
+									Código
+								%br
+								= @article.code
+							%p
+								%small.text-muted
+									Artículo
 								%br
 								= @article.description
 							%p
@@ -164,4 +169,8 @@
 	.col-md-4
 		.panel
 			.panel-body
-				%img{:src => @article.photo.url(:medium), :alt => "", :class=>"img-responsive img-thumbnail"}
+				.owl-carousel.owl-theme
+					-@article.pictures.each do |pic|
+						%a{:href => pic.image.url(:original) , "data-lightbox"=>"roadtrip"}
+							%img{:src => pic.image.url(:medium), :alt => "", :class=>"img-responsive"}
+	
