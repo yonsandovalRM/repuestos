@@ -1,0 +1,32 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_status_payment_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Status payment
+					%h1 Listado de status_payments
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+								%th Name
+								%th
+								%th
+								%th
+
+						%tbody
+							- @status_payments.each do |status_payment|
+								%tr
+									%td= status_payment.name
+									%td
+										= link_to status_payment, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_status_payment_path(status_payment), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  status_payment, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

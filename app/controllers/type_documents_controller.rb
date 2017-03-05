@@ -1,4 +1,5 @@
 class TypeDocumentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_type_document, only: [:show, :edit, :update, :destroy]
 
   # GET /type_documents

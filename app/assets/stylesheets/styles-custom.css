@@ -26,14 +26,34 @@ td.highlight {
     background: #f5f5f5;
 
 }
+.navbar {
+    border-radius: 0px !important;
+}
+li.logout {
+    background: #2a3654;
+}
+li.logout a {
+    color: #7b8ab1 !important;
+}
 hr {
     border-top: 1px solid #c5cee0;
 }
-
+.session-nav span {
+    margin-right: 20px;
+}
 .form-control {
   height: 33px !important;
 }
-
+.navbar {
+  margin-bottom: 0px !important; 
+}
+.session-nav {
+    background: #2a3654;
+    color: #94a2c3;
+    padding: 10px 0;
+    font-size: .8em;
+    margin-bottom: 20px;
+}
 .btn-default {
     color: #798596;
     background-color: #fff;

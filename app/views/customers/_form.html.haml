@@ -1,0 +1,83 @@
+= form_for @customer, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @customer.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@customer.errors.count, "error")} prohibited this customer from being saved:"
+
+      %ul
+        - @customer.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :observation, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :observation, class: 'form-control'
+  .form-group
+    = f.label :run, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :run, class: 'form-control'
+  .form-group
+    = f.label :name, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :name, class: 'form-control'
+  .form-group
+    = f.label :address, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :address, class: 'form-control'
+  .form-group
+    = f.label :commune, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :commune, class: 'form-control'
+  .form-group
+    = f.label :city, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :city, class: 'form-control'
+  .form-group
+    = f.label :phone, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :phone, class: 'form-control'
+  .form-group
+    = f.label :phone2, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :phone2, class: 'form-control'
+  .form-group
+    = f.label :email, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label :status, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :status, class: 'form-control'
+  .form-group
+    = f.label :b_rut, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :b_rut, class: 'form-control'
+  .form-group
+    = f.label :b_name, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :b_name, class: 'form-control'
+  .form-group
+    = f.label :b_address, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :b_address, class: 'form-control'
+  .form-group
+    = f.label :b_commune, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :b_commune, class: 'form-control'
+  .form-group
+    = f.label :b_activity, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :b_activity, class: 'form-control'
+  .form-group
+    = f.label :b_phone, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :b_phone, class: 'form-control'
+  .form-group
+    = f.label :b_email, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :b_email, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

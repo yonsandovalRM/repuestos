@@ -26,4 +26,5 @@
 //= require autocomplete-rails
 //= require jquery-ui
 //= require lightbox
+//= require bootstrap-tagsinput
 //= require_tree .

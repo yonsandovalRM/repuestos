@@ -1,0 +1,16 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to status_payments_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_status_payment_path(@status_payment), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Viendo status_payment
+
+				%dl.dl-horizontal
+					%dt Name:
+					%dd= @status_payment.name

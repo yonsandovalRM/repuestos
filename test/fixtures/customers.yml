@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  observation: MyString
+  run: MyString
+  name: MyString
+  address: MyString
+  commune: MyString
+  city: MyString
+  phone: MyString
+  phone2: MyString
+  email: MyString
+  status: MyString
+  b_rut: MyString
+  b_name: MyString
+  b_address: MyString
+  b_commune: MyString
+  b_activity: MyString
+  b_phone: MyString
+  b_email: MyString
+
+two:
+  observation: MyString
+  run: MyString
+  name: MyString
+  address: MyString
+  commune: MyString
+  city: MyString
+  phone: MyString
+  phone2: MyString
+  email: MyString
+  status: MyString
+  b_rut: MyString
+  b_name: MyString
+  b_address: MyString
+  b_commune: MyString
+  b_activity: MyString
+  b_phone: MyString
+  b_email: MyString

@@ -29,6 +29,8 @@
 									Código
 								%br
 								= @article.code
+							
+
 							%p
 								%small.text-muted
 									Artículo
@@ -64,6 +66,14 @@
 								Precio de venta:
 								%span.label.label-success
 									= number_to_currency(@article.pou.to_i)
+							%p
+								%small.text-muted
+									Tags
+								%br
+								= raw @article.tag_list.map {|t| link_to t, tag_path(t)}.join(', ')
+
+							
+
 						.tab-pane#detalle
 							%p
 								%dl.dl-horizontal

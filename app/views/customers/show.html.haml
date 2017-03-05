@@ -1,0 +1,48 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to customers_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_customer_path(@customer), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Viendo customer
+
+				%dl.dl-horizontal
+					%dt Observation:
+					%dd= @customer.observation
+					%dt Run:
+					%dd= @customer.run
+					%dt Name:
+					%dd= @customer.name
+					%dt Address:
+					%dd= @customer.address
+					%dt Commune:
+					%dd= @customer.commune
+					%dt City:
+					%dd= @customer.city
+					%dt Phone:
+					%dd= @customer.phone
+					%dt Phone2:
+					%dd= @customer.phone2
+					%dt Email:
+					%dd= @customer.email
+					%dt Status:
+					%dd= @customer.status
+					%dt B rut:
+					%dd= @customer.b_rut
+					%dt B name:
+					%dd= @customer.b_name
+					%dt B address:
+					%dd= @customer.b_address
+					%dt B commune:
+					%dd= @customer.b_commune
+					%dt B activity:
+					%dd= @customer.b_activity
+					%dt B phone:
+					%dd= @customer.b_phone
+					%dt B email:
+					%dd= @customer.b_email

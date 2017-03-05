@@ -1,4 +1,5 @@
 class TypeVehiclesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_type_vehicle, only: [:show, :edit, :update, :destroy]
 
   # GET /type_vehicles

@@ -78,7 +78,7 @@
 					%h5
 						Artículos comprados
 					%hr
-					%table.table.table-striped.table-bordered.table-hover
+					%table.table.table-striped.table-bordered.table-hover.homelist
 						%thead
 							%tr
 								%th Código
@@ -136,13 +136,13 @@
 						Observaciones
 						= @purchase.observation
 					%li
-						Estados:
+						Estado:
 						%ul
 							%li 
-								Pago:
-								= @purchase.status_payment
+								De pago:
+								= @purchase.status_payment.name
 							%li 
-								Documento:
+								Del documento:
 								= @purchase.status
 				.panel.panel-info
 					.panel-body

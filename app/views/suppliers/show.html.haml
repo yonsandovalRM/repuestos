@@ -10,29 +10,108 @@
 	.col-md-12
 		.panel
 			.panel-body
-				.page-header
-					= link_to suppliers_path, class: 'btn btn-default' do
-						%span.glyphicon.glyphicon-list-alt
-						Volver
-					= link_to edit_supplier_path(@supplier), class: 'btn btn-primary' do
-						%span.glyphicon.glyphicon-pencil
-						Editar
-					%h1 Viendo proveedor
+				%div
+					%ul.nav.nav-tabs{:role => "tablist"}
+						%li.active{:role => "presentation"}
+							%a{:href => "#informacion", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
+								Información
+						%li{:role => "presentation"}
+							%a{:href => "#details", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
+								Detalle
+						%li{:role => "presentation"}
+							%a{:href => "#historial", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
+								Historial de compras
 
-				%dl.dl-horizontal
-					%dt Rut:
-					%dd= @supplier.rut
-					%dt Razón Social:
-					%dd= @supplier.bname
-					%dt Dirección:
-					%dd= @supplier.address
-					%dt Comuna:
-					%dd= @supplier.comunne
-					%dt Ciudad:
-					%dd= @supplier.city
-					%dt Actividad:
-					%dd= @supplier.activity
-					%dt Teléfono:
-					%dd= @supplier.phone
-					%dt Estado:
-					%dd= @supplier.status
+					.tab-content
+						.tab-pane.active#informacion
+							%p
+								%small.text-muted
+									RUT
+								%br
+								= @supplier.rut
+							
+
+							%p
+								%small.text-muted
+									Razón Social
+								%br
+								= @supplier.bname
+							%p
+								%small.text-muted
+									Dirección
+								%br
+								= @supplier.address
+							%p 
+								%small.text-muted
+									Teléfono
+								%br
+								= @supplier.phone
+						.tab-pane#details
+							%p
+								%dl.dl-horizontal
+									%dt Rut:
+									%dd= @supplier.rut
+									%dt Razón Social:
+									%dd= @supplier.bname
+									%dt Dirección:
+									%dd= @supplier.address
+									%dt Comuna:
+									%dd= @supplier.comunne
+									%dt Ciudad:
+									%dd= @supplier.city
+									%dt Actividad:
+									%dd= @supplier.activity
+									%dt Teléfono:
+									%dd= @supplier.phone
+									%dt Estado:
+									%dd= @supplier.status
+						.tab-pane#historial
+							%p
+								%small.text-muted
+									Historial de compras
+							.row
+								.col-md-6
+									.form-group
+										%label{:for => "min"}
+											Fecha desde
+										.input-group.date#dpmin
+											%input{:type => "text", :id=>"min", :name=>"min", :class=>"form-control"}
+											%span.input-group-addon
+												%i.fa.fa-calendar
+								.col-md-6
+									.form-group
+										%label{:for => "max"}
+											Fecha hasta
+										.input-group.date#dpmax
+											%input{:type => "text", :id=>"max", :name=>"min", :class=>"form-control"}
+											%span.input-group-addon
+												%i.fa.fa-calendar
+								
+							%table.table.table-striped.table-bordered.table-hover.historylist{:width=> "100%"}
+								%thead
+									%tr
+										%th Nº Documento
+										%th Fecha
+										%th Método de pago
+										%th Tipo de documento
+										%th
+								%tbody
+									- @supplier.purchases.each do |detail|
+										%tr
+											%td= detail.number_doc
+											%td= detail.date_doc.strftime('%d-%m-%Y')
+											%td= detail.payment_method.name
+											%td= detail.type_document.name
+											%td
+												= link_to detail, :class=>"btn btn-info" do
+													%i.fa.fa-eye
+
+											
+			.panel-footer
+				= link_to suppliers_path, class: 'btn btn-default' do
+					%span.glyphicon.glyphicon-list-alt
+					Volver
+				= link_to edit_supplier_path(@supplier), class: 'btn btn-primary' do
+					%span.glyphicon.glyphicon-pencil
+					Editar
+				

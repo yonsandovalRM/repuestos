@@ -1,4 +1,5 @@
 class PurchasesController < ApplicationController
+  before_action :authenticate_user!
   autocomplete :supplier, :bname
   before_action :set_purchase, only: [:show, :edit, :update, :destroy]
 
@@ -93,6 +94,6 @@ class PurchasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_params
-      params.require(:purchase).permit(:supplier_id, :number_doc, :type_document_id, :date_doc, :observation, :status, :payment_method_id, :status_payment )
+      params.require(:purchase).permit(:supplier_id, :number_doc, :type_document_id, :date_doc, :observation, :status, :payment_method_id, :status_payment_id )
     end
 end

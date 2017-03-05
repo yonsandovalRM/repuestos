@@ -16,6 +16,10 @@
   .col-sm-10
     = f.text_field :code, class: 'form-control'
 .form-group
+  = f.label "Tags", :for => :tag_list, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :tag_list, class: 'form-control', "data-role"=>"tagsinput"
+.form-group
   = f.label "Descripción", :for => :description, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_area :description, class: 'form-control'

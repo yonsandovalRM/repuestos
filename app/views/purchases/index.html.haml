@@ -7,23 +7,12 @@
 		%strong
 			Compras
 .row
-	.col-md-12
+	.col-md-8
 		.panel
 			.panel-body
-				.page-header
-					= link_to new_purchase_path, class: 'btn btn-success' do
-						%span.glyphicon.glyphicon-plus
-						Nueva compra
-					%h1 Listado de compras
-					%span 
-						Artículos comprados para tienda
-						= @stock
-					%br
-					%span 
-						Artículos comprados para bodega
-						= @stock_store
+				
 				.table-responsive
-					%table.table.table-striped.table-bordered.table-hover#listado
+					%table.table.table-striped.table-bordered.table-hover.homelist
 						%thead
 							%tr
 								%th N. Documento
@@ -32,6 +21,7 @@
 								%th Tipo
 								%th Fecha
 								%th Estado
+								%th Pago
 								%th
 								%th
 								%th
@@ -45,6 +35,7 @@
 									%td= purchase.type_document.name
 									%td= purchase.date_doc.strftime('%d-%m-%Y')
 									%td= purchase.status
+									%td= purchase.status_payment.name
 									%td
 										= link_to purchase, :class=>"btn btn-info" do
 											%i.fa.fa-eye
@@ -54,4 +45,19 @@
 									%td
 										= link_to  purchase, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
 											%i.fa.fa-trash-o
+	.col-md-4
+		.panel.panel-info
+			.panel-body
+				= link_to new_purchase_path, class: 'btn btn-success btn-block' do
+					%span.glyphicon.glyphicon-plus
+					Nueva compra
+				%hr
+				%small.text-muted
+					Listado de compras
+				%h5 
+					Artículos comprados para tienda:
+					= @stock
+				%h5
+					Artículos comprados para bodega:
+					= @stock_store
 

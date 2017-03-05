@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   acts_as_paranoid
+  acts_as_taggable # Alias for acts_as_taggable_on :tags
+  acts_as_taggable_on :tags
  
   validates  :description, :code, :brand, :pin, :pou, presence: true
   belongs_to :brand

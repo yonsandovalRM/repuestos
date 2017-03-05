@@ -1,10 +1,16 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    if params[:tag]
+      @articles = Article.tagged_with(params[:tag])
+    else
+      @articles = Article.all
+    end
+    
     respond_to do |format|
       format.html { render :index }
       format.js {  }
@@ -14,6 +20,10 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @tags = Article.tag_counts_on(:tags)
+  end
+  def tags
+    @tags = Article.tag_counts_on(:tags)
   end
 
   # GET /articles/new
@@ -39,7 +49,7 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
-
+    @article.set_tag_list_on(:tags, article_params[:tag_list])
     respond_to do |format|
       if @article.save
         if params[:images]
@@ -58,13 +68,13 @@ class ArticlesController < ApplicationController
       end
     end
   end
-
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
     respond_to do |format|
       if @article.update(article_params)
-
+        @article.set_tag_list_on(:tags, article_params[:tag_list])
+        @article.save
         if params[:images]
           # The magic is here ;)
           pictures = Picture.where(article_id: @article.id)
@@ -105,6 +115,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:code, :description, :brand_id, :type_article_id, :type_vehicle_id, :type_format_id, :status, :applicant, :pin, :pou, :discount, :stock, :stock_store, :stock_min, :photo)
+      params.require(:article).permit(:code,:tag_list, :description, :brand_id, :type_article_id, :type_vehicle_id, :type_format_id, :status, :applicant, :pin, :pou, :discount, :stock, :stock_store, :stock_min, :photo)
     end
 end
