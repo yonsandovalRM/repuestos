@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas editando: 
+		%strong
+			= @customer.name
 .row
 	.col-md-12
 		.panel

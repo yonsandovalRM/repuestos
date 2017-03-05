@@ -17,7 +17,7 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create customer" do
     assert_difference('Customer.count') do
-      post customers_url, params: { customer: { address: @customer.address, b_activity: @customer.b_activity, b_address: @customer.b_address, b_commune: @customer.b_commune, b_email: @customer.b_email, b_name: @customer.b_name, b_phone: @customer.b_phone, b_rut: @customer.b_rut, city: @customer.city, commune: @customer.commune, email: @customer.email, name: @customer.name, observation: @customer.observation, phone2: @customer.phone2, phone: @customer.phone, run: @customer.run, status: @customer.status } }
+      post customers_url, params: { customer: { address: @customer.address, b_activity: @customer.b_activity, b_address: @customer.b_address, b_commune: @customer.b_commune, b_email: @customer.b_email, b_name: @customer.b_name, b_phone: @customer.b_phone, b_rut: @customer.b_rut, city: @customer.city, commune: @customer.commune, email: @customer.email, name: @customer.name, phone2: @customer.phone2, phone: @customer.phone, run: @customer.run, status: @customer.status } }
     end
 
     assert_redirected_to customer_url(Customer.last)
@@ -34,7 +34,7 @@ class CustomersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update customer" do
-    patch customer_url(@customer), params: { customer: { address: @customer.address, b_activity: @customer.b_activity, b_address: @customer.b_address, b_commune: @customer.b_commune, b_email: @customer.b_email, b_name: @customer.b_name, b_phone: @customer.b_phone, b_rut: @customer.b_rut, city: @customer.city, commune: @customer.commune, email: @customer.email, name: @customer.name, observation: @customer.observation, phone2: @customer.phone2, phone: @customer.phone, run: @customer.run, status: @customer.status } }
+    patch customer_url(@customer), params: { customer: { address: @customer.address, b_activity: @customer.b_activity, b_address: @customer.b_address, b_commune: @customer.b_commune, b_email: @customer.b_email, b_name: @customer.b_name, b_phone: @customer.b_phone, b_rut: @customer.b_rut, city: @customer.city, commune: @customer.commune, email: @customer.email, name: @customer.name, phone2: @customer.phone2, phone: @customer.phone, run: @customer.run, status: @customer.status } }
     assert_redirected_to customer_url(@customer)
   end
 

@@ -1,48 +1,127 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas viendo el cliente:
+		%strong
+			= @customer.name
 .row
 	.col-md-12
 		.panel
 			.panel-body
-				.page-header
-					= link_to customers_path, class: 'btn btn-default' do
-						%span.glyphicon.glyphicon-list-alt
-						Volver
-					= link_to edit_customer_path(@customer), class: 'btn btn-primary' do
-						%span.glyphicon.glyphicon-pencil
-						Editar
-					%h1 Viendo customer
+				%div
+					%ul.nav.nav-tabs{:role => "tablist"}
+						%li.active{:role => "presentation"}
+							%a{:href => "#informacion", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
+								Información
+						%li{:role => "presentation"}
+							%a{:href => "#details", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
+								Detalle
+						%li{:role => "presentation"}
+							%a{:href => "#historial", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
+								Historial de compras
 
-				%dl.dl-horizontal
-					%dt Observation:
-					%dd= @customer.observation
-					%dt Run:
-					%dd= @customer.run
-					%dt Name:
-					%dd= @customer.name
-					%dt Address:
-					%dd= @customer.address
-					%dt Commune:
-					%dd= @customer.commune
-					%dt City:
-					%dd= @customer.city
-					%dt Phone:
-					%dd= @customer.phone
-					%dt Phone2:
-					%dd= @customer.phone2
-					%dt Email:
-					%dd= @customer.email
-					%dt Status:
-					%dd= @customer.status
-					%dt B rut:
-					%dd= @customer.b_rut
-					%dt B name:
-					%dd= @customer.b_name
-					%dt B address:
-					%dd= @customer.b_address
-					%dt B commune:
-					%dd= @customer.b_commune
-					%dt B activity:
-					%dd= @customer.b_activity
-					%dt B phone:
-					%dd= @customer.b_phone
-					%dt B email:
-					%dd= @customer.b_email
+					.tab-content
+						.tab-pane.active#informacion
+							%p
+								%small.text-muted
+									RUT
+								%br
+								= @customer.run
+							
+
+							%p
+								%small.text-muted
+									Nombre
+								%br
+								= @customer.name
+							%p
+								%small.text-muted
+									Dirección
+								%br
+								= @customer.address
+							%p 
+								%small.text-muted
+									Teléfonos
+								%br
+								= @customer.phone
+								%br
+								= @customer.phone2
+						.tab-pane#details
+							%p
+								%dl.dl-horizontal
+									%dt Run:
+									%dd= @customer.run
+									%dt Name:
+									%dd= @customer.name
+									%dt Address:
+									%dd= @customer.address
+									%dt Commune:
+									%dd= @customer.commune
+									%dt City:
+									%dd= @customer.city
+									%dt Phone:
+									%dd= @customer.phone
+									%dt Phone2:
+									%dd= @customer.phone2
+									%dt Email:
+									%dd= @customer.email
+									%dt Status:
+									%dd= @customer.status
+									%dt B rut:
+									%dd= @customer.b_rut
+									%dt B name:
+									%dd= @customer.b_name
+									%dt B address:
+									%dd= @customer.b_address
+									%dt B commune:
+									%dd= @customer.b_commune
+									%dt B activity:
+									%dd= @customer.b_activity
+									%dt B phone:
+									%dd= @customer.b_phone
+									%dt B email:
+									%dd= @customer.b_email
+						.tab-pane#historial
+							%p
+								%small.text-muted
+									Historial de compras
+							.row
+								.col-md-6
+									.form-group
+										%label{:for => "min"}
+											Fecha desde
+										.input-group.date#dpmin
+											%input{:type => "text", :id=>"min", :name=>"min", :class=>"form-control"}
+											%span.input-group-addon
+												%i.fa.fa-calendar
+								.col-md-6
+									.form-group
+										%label{:for => "max"}
+											Fecha hasta
+										.input-group.date#dpmax
+											%input{:type => "text", :id=>"max", :name=>"min", :class=>"form-control"}
+											%span.input-group-addon
+												%i.fa.fa-calendar
+								
+							%table.table.table-striped.table-bordered.table-hover.historylist{:width=> "100%"}
+								%thead
+									%tr
+										%th Nº Documento
+										%th Fecha
+										%th Método de pago
+										%th Tipo de documento
+										%th
+								%tbody
+									
+
+											
+			.panel-footer
+				= link_to customers_path, class: 'btn btn-default' do
+					%span.glyphicon.glyphicon-list-alt
+					Volver
+				= link_to edit_customer_path(@customer), class: 'btn btn-primary' do
+					%span.glyphicon.glyphicon-pencil
+					Editar
+				

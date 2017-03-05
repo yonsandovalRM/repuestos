@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  observation: MyString
   run: MyString
   name: MyString
   address: MyString
@@ -20,7 +19,6 @@ one:
   b_email: MyString
 
 two:
-  observation: MyString
   run: MyString
   name: MyString
   address: MyString

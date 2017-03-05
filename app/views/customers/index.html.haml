@@ -1,3 +1,11 @@
+.breadcrumb
+	%li
+		%a{:href => root_path}
+			%i.fa.fa-home
+	%li.active
+		Estas viendo: 
+		%strong
+			Clientes
 .row
 	.col-md-12
 		.panel
@@ -5,30 +13,17 @@
 				.page-header
 					= link_to new_customer_path, class: 'btn btn-success' do
 						%span.glyphicon.glyphicon-plus
-						Nuevo Customer
-					%h1 Listado de customers
+						Nuevo Cliente
+					%h1 Listado de clientes
 
 				.table-responsive
-					%table.table.table-striped.table-bordered.table-hover
+					%table.table.table-striped.table-bordered.table-hover.homelist
 						%thead
 							%tr
-	%th Observation
-	%th Run
-	%th Name
-	%th Address
-	%th Commune
-	%th City
-	%th Phone
-	%th Phone2
-	%th Email
-	%th Status
-	%th B rut
-	%th B name
-	%th B address
-	%th B commune
-	%th B activity
-	%th B phone
-	%th B email
+								%th Run
+								%th Nombre
+								%th Teléfono
+								%th Comuna
 								%th
 								%th
 								%th
@@ -36,23 +31,10 @@
 						%tbody
 							- @customers.each do |customer|
 								%tr
-	%td= customer.observation
-	%td= customer.run
-	%td= customer.name
-	%td= customer.address
-	%td= customer.commune
-	%td= customer.city
-	%td= customer.phone
-	%td= customer.phone2
-	%td= customer.email
-	%td= customer.status
-	%td= customer.b_rut
-	%td= customer.b_name
-	%td= customer.b_address
-	%td= customer.b_commune
-	%td= customer.b_activity
-	%td= customer.b_phone
-	%td= customer.b_email
+									%td= customer.run
+									%td= customer.name
+									%td= customer.phone
+									%td= customer.commune
 									%td
 										= link_to customer, :class=>"btn btn-info" do
 											%i.fa.fa-eye
