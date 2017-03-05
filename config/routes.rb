@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :customers
+  resources :sales
+  resources :customers do
+    get :search_customer
+    
+  end
   devise_for :users
   resources :status_payments
   resources :purchase_details

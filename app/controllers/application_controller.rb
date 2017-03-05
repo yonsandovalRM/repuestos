@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
 	  @proveedores = Supplier.total_active
 	  @articulos   = Article.total_active
 	  @compras     = Purchase.total_active
+    @ventas      = Sale.total_active
 	  @clientes    = Customer.total_active
+
 	end
 
 

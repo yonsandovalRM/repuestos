@@ -5,8 +5,18 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
+    respond_to do |format|
+      format.html { render :index }
+      format.js {  }
+    end
   end
 
+  def search_customer
+    @customer_search = Customer.find(params[:customer_id])
+    respond_to do |format|
+      format.js { render "search.js.erb", location: @customer_search }
+    end
+  end
   # GET /customers/1
   # GET /customers/1.json
   def show

@@ -1,0 +1,16 @@
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover.customerlistmodal
+    %thead
+      %tr
+        %th Run
+        %th Nombre
+        %th
+
+    %tbody
+      - @customers.each do |customer|
+        %tr
+          %td= customer.run
+          %td= customer.name
+          %td
+            = link_to customer_search_customer_path(customer.id), :remote =>"true", :class=>"btn btn-info" do
+              %i.fa.fa-plus

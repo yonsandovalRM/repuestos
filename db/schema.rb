@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305015856) do
+ActiveRecord::Schema.define(version: 20170305033633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,23 @@ ActiveRecord::Schema.define(version: 20170305015856) do
     t.index ["status_payment_id"], name: "index_purchases_on_status_payment_id", using: :btree
     t.index ["supplier_id"], name: "index_purchases_on_supplier_id", using: :btree
     t.index ["type_document_id"], name: "index_purchases_on_type_document_id", using: :btree
+  end
+
+  create_table "sales", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "payment_method_id"
+    t.string   "number_doc"
+    t.integer  "type_document_id"
+    t.integer  "status_payment_id"
+    t.string   "observation"
+    t.integer  "customer_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["customer_id"], name: "index_sales_on_customer_id", using: :btree
+    t.index ["payment_method_id"], name: "index_sales_on_payment_method_id", using: :btree
+    t.index ["status_payment_id"], name: "index_sales_on_status_payment_id", using: :btree
+    t.index ["type_document_id"], name: "index_sales_on_type_document_id", using: :btree
+    t.index ["user_id"], name: "index_sales_on_user_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
@@ -216,4 +233,9 @@ ActiveRecord::Schema.define(version: 20170305015856) do
   add_foreign_key "purchases", "status_payments"
   add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "type_documents"
+  add_foreign_key "sales", "customers"
+  add_foreign_key "sales", "payment_methods"
+  add_foreign_key "sales", "status_payments"
+  add_foreign_key "sales", "type_documents"
+  add_foreign_key "sales", "users"
 end

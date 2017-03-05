@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  payment_method: one
+  number_doc: MyString
+  type_document: one
+  status_payment: one
+  observation: MyString
+  customer: one
+
+two:
+  user: two
+  payment_method: two
+  number_doc: MyString
+  type_document: two
+  status_payment: two
+  observation: MyString
+  customer: two
