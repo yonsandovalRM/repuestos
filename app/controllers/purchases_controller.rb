@@ -9,6 +9,7 @@ class PurchasesController < ApplicationController
     @purchases = Purchase.all
     @stock = PurchaseDetail.sum('stock')
     @stock_store = PurchaseDetail.sum('stock_store')
+
   end
 
   # GET /purchases/1
@@ -28,6 +29,11 @@ class PurchasesController < ApplicationController
       @tot_iva = 0
       @tot_neto = 0
       @tot_total = 0
+    end
+
+    respond_to do |format|
+      format.html
+      format.pdf { render template: 'purchases/voucher', pdf: 'comprobante', layout: 'pdf.haml',:page_height => '15cm', :page_width => '7.5cm', margin:  {   top: '2mm', bottom: '2mm', left: '2mm', right: '2mm' }}
     end
   end
 

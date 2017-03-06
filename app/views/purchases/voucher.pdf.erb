@@ -1,0 +1,28 @@
+
+<small class="text-muted text-right" style="display: block;">Ingreso de la compra: <%= @purchase.created_at.strftime('%d-%m-%Y') %></small>
+<small class="text-muted text-right" style="display: block;">Compra Nº <strong><%= @purchase.id %></strong></small>
+<hr>
+<small>Proveedor: <strong><%= @purchase.supplier.bname %></strong></small><br>
+<small>RUT: <strong><%= @purchase.supplier.rut %></strong></small><br>
+<small>Tipo: <strong><%= @purchase.type_document.name %></strong></small><br>
+<small>Nº Documento: <strong><%= @purchase.number_doc %></strong></small><br>
+<small>Fecha del documento: <strong><%= @purchase.date_doc.strftime('%d-%m-%Y') %></strong></small><br>
+<small>Estado de pago: <strong><%= @purchase.status_payment.name %></strong></small>
+<small class="text-muted print-title" style="display: block;">Detalle de compra</small>
+<table class="table-print">
+	
+	<tbody>
+		<% @purchase.purchase_details.each do |detail| %>
+			<tr>
+				<td><%= detail.article.code %></td>
+				<td><%= detail.article.description %></td>
+				<td><%= detail.stock %></td>
+				<td><%= detail.stock_store %></td>
+				<td><%= number_to_currency(detail.pin) %></td>
+				<% neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i %>
+				<td><%= number_to_currency(neto) %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+

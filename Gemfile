@@ -65,6 +65,11 @@ gem 'lightbox2-rails'
 #tags
 gem 'acts-as-taggable-on', '~> 4.0'
 
+#pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
+
 gem 'devise'
 group :development, :test do
 

@@ -1,0 +1,9 @@
+!!!
+%html{:lang => 'es'}
+	%head
+		%meta{charset: "utf-8"}
+		= wicked_pdf_stylesheet_link_tag 'pdf'
+		%link{:rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"}
+		= wicked_pdf_stylesheet_link_tag "print-style"
+	%body
+		= yield
