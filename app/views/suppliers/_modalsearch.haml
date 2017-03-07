@@ -1,0 +1,16 @@
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover.supplierlistmodal
+    %thead
+      %tr
+        %th Rut
+        %th Nombre
+        %th
+
+    %tbody
+      - @suppliers.each do |supplier|
+        %tr
+          %td= supplier.rut
+          %td= supplier.bname
+          %td
+            = link_to supplier_search_supplier_path(supplier.id), :remote =>"true", :class=>"btn btn-info" do
+              %i.fa.fa-plus

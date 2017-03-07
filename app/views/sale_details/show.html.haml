@@ -1,0 +1,26 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to sale_details_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_sale_detail_path(@sale_detail), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Viendo sale_detail
+
+				%dl.dl-horizontal
+					%dt Article:
+					%dd= @sale_detail.article
+					%dt Stock:
+					%dd= @sale_detail.stock
+					%dt Stock store:
+					%dd= @sale_detail.stock_store
+					%dt Pou:
+					%dd= @sale_detail.pou
+					%dt Discount:
+					%dd= @sale_detail.discount
+					%dt Sale:
+					%dd= @sale_detail.sale

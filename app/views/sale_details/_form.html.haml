@@ -1,0 +1,39 @@
+= form_for @sale_detail, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @sale_detail.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@sale_detail.errors.count, "error")} prohibited this sale_detail from being saved:"
+
+      %ul
+        - @sale_detail.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :article, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :article, class: 'form-control'
+  .form-group
+    = f.label :stock, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :stock, class: 'form-control'
+  .form-group
+    = f.label :stock_store, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :stock_store, class: 'form-control'
+  .form-group
+    = f.label :pou, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :pou, class: 'form-control'
+  .form-group
+    = f.label :discount, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.number_field :discount, class: 'form-control'
+  .form-group
+    = f.label :sale, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :sale, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

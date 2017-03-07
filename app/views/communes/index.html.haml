@@ -1,0 +1,32 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_commune_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Commune
+					%h1 Listado de communes
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+													%th Name
+														%th
+								%th
+								%th
+
+						%tbody
+							- @communes.each do |commune|
+								%tr
+													%td= commune.name
+															%td
+										= link_to commune, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_commune_path(commune), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  commune, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

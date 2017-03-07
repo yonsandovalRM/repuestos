@@ -22,6 +22,9 @@
 						%li{:role => "presentation"}
 							%a{:href => "#historial", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
 								Historial de compras
+						%li{:role => "presentation"}
+							%a{:href => "#ventashistorial", "aria-controls" => "home", :role => "tab", "data-toggle" => "tab"}
+								Historial de ventas
 					.tab-content
 						.tab-pane.active#informacion
 							%p
@@ -164,8 +167,48 @@
 											%td
 												= link_to detail.purchase, :class=>"btn btn-info" do
 													%i.fa.fa-eye
-
-
+						.tab-pane#ventashistorial
+							%p
+								%small.text-muted
+									Historial de ventas
+							.row
+								.col-md-6
+									.form-group
+										%label{:for => "minS"}
+											Fecha desde
+										.input-group.date#dpmin
+											%input{:type => "text", :id=>"minS", :name=>"min", :class=>"form-control"}
+											%span.input-group-addon
+												%i.fa.fa-calendar
+								.col-md-6
+									.form-group
+										%label{:for => "maxS"}
+											Fecha hasta
+										.input-group.date#dpmax
+											%input{:type => "text", :id=>"maxS", :name=>"min", :class=>"form-control"}
+											%span.input-group-addon
+												%i.fa.fa-calendar
+								
+							%table.table.table-striped.table-bordered.table-hover.historylist{:width=> "100%"}
+								%thead
+									%tr
+										%th Nº Documento
+										%th Fecha
+										%th Tienda
+										%th Bodega
+										%th Precio venta
+										%th
+								%tbody
+									- @article.sale_details.each do |detail|
+										%tr
+											%td= detail.sale.number_doc
+											%td= detail.sale.created_at.strftime('%d-%m-%Y')
+											%td= detail.stock
+											%td= detail.stock_store
+											%td= number_to_currency(detail.pou)
+											%td
+												= link_to detail.sale, :class=>"btn btn-info" do
+													%i.fa.fa-eye
 
 
 

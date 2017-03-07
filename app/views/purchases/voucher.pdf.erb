@@ -25,4 +25,9 @@
 		<% end %>
 	</tbody>
 </table>
+<div class="text-right">
+	<small>Neto: <strong><%= number_to_currency(@tot_neto) %></strong></small><br>
+	<small>IVA: <strong><%= number_to_currency(@tot_iva) %></strong></small><br>
+	<small>Total: <strong><%= number_to_currency(@tot_total) %></strong></small><br>
+</div>
 

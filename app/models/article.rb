@@ -8,6 +8,7 @@ class Article < ApplicationRecord
   belongs_to :type_article
   belongs_to :type_vehicle
   has_many   :purchase_details
+  has_many   :sale_details
   belongs_to :type_format
   has_many   :pictures, :dependent => :destroy
 

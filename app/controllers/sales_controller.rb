@@ -10,6 +10,24 @@ class SalesController < ApplicationController
   # GET /sales/1
   # GET /sales/1.json
   def show
+    @sale_detail = SaleDetail.new
+    
+    if @sale.sale_details.count > 0
+      @sale.sale_details.each do |detail|
+        @tot_neto = @tot_neto.to_i + ((detail.stock.to_i + detail.stock_store.to_i) * detail.pou.to_i)
+      end
+
+      @tot_iva = @tot_neto * 0.19
+      @tot_total = @tot_neto + @tot_iva
+    else
+      @tot_iva = 0
+      @tot_neto = 0
+      @tot_total = 0
+    end
+    respond_to do |format|
+      format.html
+      format.pdf { render template: 'sales/voucher', pdf: 'comprobante', layout: 'pdf.haml',:page_height => '20cm', :page_width => '8cm', margin:  {   top: '2mm', bottom: '2mm', left: '2mm', right: '2mm' }}
+    end
   end
 
   # GET /sales/new

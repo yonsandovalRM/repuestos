@@ -23,9 +23,9 @@
   .col-sm-10
     = f.text_field :address, class: 'form-control'
 .form-group
-  = f.label "Comuna", :for => :comunne, class: 'col-sm-2 control-label'
+  = f.label "Comuna", :for => :commune, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.text_field :comunne, class: 'form-control'
+    = f.collection_select :commune, Commune.all, :name, :name,  {prompt: "Seleccione comuna"}, {:id=> 'selectcommune', :class => 'form-control', :required => "true"}
 .form-group
   = f.label "Ciudad", :for => :city, class: 'col-sm-2 control-label'
   .col-sm-10
@@ -38,6 +38,10 @@
   = f.label "Teléfono", :for => :phone, class: 'col-sm-2 control-label'
   .col-sm-10
     = f.text_field :phone, class: 'form-control'
+.form-group
+  = f.label "Email", :for => :email, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.email_field :email, class: 'form-control'
 .form-group
   = f.label "Habilitado?", :for => :status, class: 'col-sm-2 control-label'
   .col-sm-10

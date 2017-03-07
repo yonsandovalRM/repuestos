@@ -10,7 +10,97 @@
 	.col-md-8
 		.panel
 			.panel-body
-				
+				= form_for @sale_detail, html: { role: "form" } do |f|
+					-if @sale.errors.any?
+						.alert.alert-danger.alert-dismissable{role: "alert"}
+							%button.close{type: "button", data: {dismiss: "alert"} }
+								%span{aria: {hidden: "true"} } &times;
+								%span.sr-only Close
+							%h4= "#{pluralize(@sale.errors.count, "error")} prohibited this sale from being saved:"
+
+							%ul
+								- @sale.errors.full_messages.each do |msg|
+									%li= msg
+					.row
+
+						.col-md-12
+							%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-primary btn-block"}
+								Seleccione un artículo
+							%p
+							= f.hidden_field :article_id, :id=> "id_search"
+							= f.hidden_field :sale_id, :value => @sale.id
+						.col-md-12
+							.form-group
+								= f.label "Artículo"
+								%input{:type => "text", :id => "description_search", :class => "form-control", :disabled => "true"}
+						.col-md-4
+							.form-group
+								= f.label "Código"
+								%input{:type => "text", :id => "code_search", :class => "form-control", :disabled => "true"}
+						.col-md-4
+							.form-group
+								= f.label "Stock actual en tienda"
+								%input{:type => "text", :id => "stock_search", :class => "form-control", :disabled => "true"}
+						.col-md-4
+							.form-group
+								= f.label "Stock actual en bodega"
+								%input{:type => "text", :id => "stock_store_search", :class => "form-control", :disabled => "true"}
+
+						.col-md-3
+							.form-group
+								= f.label "Stock Tienda", :for => :stock
+								= f.number_field :stock, class: 'form-control'
+								%small#emailHelp.form-text.text-muted
+									Ingrese un valor numérico mayor o igual a 0
+
+						.col-md-3
+							.form-group
+								= f.label "Stock Bodega", :for => :stock_store
+								= f.number_field :stock_store, class: 'form-control'
+								%small#emailHelp.form-text.text-muted
+									Ingrese un valor numérico mayor o igual a 0
+						.col-md-3
+							.form-group
+								= f.label "Precio Venta", :for => :pou
+								= f.number_field :pou, class: 'form-control', :id => "pou_search"
+								%small#emailHelp.form-text.text-muted
+									Ingrese el precio sin puntos ni símbolos
+						.col-md-3
+							%br
+							=f.submit "Agregar", :class=>"btn btn-success"
+		.panel
+			.panel-body
+				- if @sale.sale_details.count > 0
+					%h5
+						Artículos vendidos
+					%hr
+					%table.table.table-striped.table-bordered.table-hover.homelist
+						%thead
+							%tr
+								%th Código
+								%th Descripción
+								%th Tienda
+								%th Bodega
+								%th P. Venta
+								%th Neto
+								%th
+						%tbody
+							- @sale.sale_details.each do |detail|
+								%tr
+									%td= link_to detail.article.code, detail.article
+									%td= detail.article.description
+									%td= detail.stock
+									%td= detail.stock_store
+									%td= number_to_currency(detail.pou)
+									- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pou.to_i
+									%td= number_to_currency(neto)
+									%td
+										= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o
+				- else
+					.alert.alert-info
+						No se encontraron artículos registrados en esta compra
+
 	.col-md-4
 		.panel.panel-default
 			
@@ -31,6 +121,9 @@
 					%li
 						Tipo de documento: 
 						= @sale.type_document.name
+					%li
+						Nº de documento: 
+						= @sale.number_doc
 					%li
 						Creación de la venta:
 						%ul
@@ -57,15 +150,15 @@
 								= @sale.status_payment.name
 				.panel.panel-info
 					.panel-body
-						-# %small.text-muted
-						-# 	Neto: 
-						-# %h5= number_to_currency(@tot_neto)
-						-# %small.text-muted
-						-# 	IVA: 
-						-# %h5= number_to_currency(@tot_iva)
-						-# %small.text-muted
-						-# 	Total: 
-						-# %h5= number_to_currency(@tot_total)
+						%small.text-muted
+							Neto: 
+						%h5= number_to_currency(@tot_neto)
+						%small.text-muted
+							IVA: 
+						%h5= number_to_currency(@tot_iva)
+						%small.text-muted
+							Total: 
+						%h5= number_to_currency(@tot_total)
 			.panel-footer
 				= link_to sales_path, class: 'btn btn-default' do
 					%span.glyphicon.glyphicon-list-alt
@@ -73,6 +166,10 @@
 				= link_to edit_sale_path(@sale), class: 'btn btn-primary' do
 					%span.glyphicon.glyphicon-pencil
 					Editar
+				= link_to sale_path(@sale.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-info" do
+					%i.fa.fa-print
+					Comprobante
+
 
 .modal.fade#searchArticle
 	.modal-dialog.modal-lg

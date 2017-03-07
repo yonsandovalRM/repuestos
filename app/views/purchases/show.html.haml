@@ -127,7 +127,11 @@
 						= @purchase.type_document.name
 					%li
 						Fecha del documento:
-						= @purchase.date_doc.strftime('%d-%m-%Y')
+						- if @purchase.date_doc.present?
+							= @purchase.date_doc.strftime('%d-%m-%Y')
+						- else
+							Aún no se registra
+
 					%li
 						Método de pago:
 						- if @purchase.payment_method.present? 
@@ -165,6 +169,7 @@
 				= link_to purchase_path(@purchase.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-info" do
 					%i.fa.fa-print
 					Comprobante
+				
 
 .modal.fade#searchArticle
 	.modal-dialog.modal-lg

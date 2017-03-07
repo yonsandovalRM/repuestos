@@ -1,0 +1,42 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_sale_detail_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Sale detail
+					%h1 Listado de sale_details
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+													%th Article
+													%th Stock
+													%th Stock store
+													%th Pou
+													%th Discount
+													%th Sale
+														%th
+								%th
+								%th
+
+						%tbody
+							- @sale_details.each do |sale_detail|
+								%tr
+													%td= sale_detail.article
+													%td= sale_detail.stock
+													%td= sale_detail.stock_store
+													%td= sale_detail.pou
+													%td= sale_detail.discount
+													%td= sale_detail.sale
+															%td
+										= link_to sale_detail, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_sale_detail_path(sale_detail), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  sale_detail, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

@@ -6,13 +6,22 @@ class SuppliersController < ApplicationController
   # GET /suppliers.json
   def index
     @suppliers = Supplier.all
+    respond_to do |format|
+      format.html { render :index }
+      format.js {  }
+    end
   end
 
   # GET /suppliers/1
   # GET /suppliers/1.json
   def show
   end
-
+  def search_supplier
+    @supplier_search = Supplier.find(params[:supplier_id])
+    respond_to do |format|
+      format.js { render "search.js.erb", location: @supplier_search }
+    end
+  end
   # GET /suppliers/new
   def new
     @supplier = Supplier.new
@@ -76,6 +85,6 @@ class SuppliersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def supplier_params
-      params.require(:supplier).permit(:rut, :bname, :address, :comunne, :city, :activity, :phone, :status)
+      params.require(:supplier).permit(:rut, :bname, :address, :commune, :city, :activity, :phone, :status, :email)
     end
 end

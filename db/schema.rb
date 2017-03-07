@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305033633) do
+ActiveRecord::Schema.define(version: 20170306173417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,12 @@ ActiveRecord::Schema.define(version: 20170305033633) do
   end
 
   create_table "brands", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "communes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -112,6 +118,19 @@ ActiveRecord::Schema.define(version: 20170305033633) do
     t.index ["type_document_id"], name: "index_purchases_on_type_document_id", using: :btree
   end
 
+  create_table "sale_details", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "stock"
+    t.integer  "stock_store"
+    t.integer  "pou"
+    t.integer  "discount"
+    t.integer  "sale_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["article_id"], name: "index_sale_details_on_article_id", using: :btree
+    t.index ["sale_id"], name: "index_sale_details_on_sale_id", using: :btree
+  end
+
   create_table "sales", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "payment_method_id"
@@ -145,13 +164,14 @@ ActiveRecord::Schema.define(version: 20170305033633) do
     t.string   "rut"
     t.string   "bname"
     t.string   "address"
-    t.string   "comunne"
+    t.string   "commune"
     t.string   "city"
     t.string   "activity"
     t.string   "phone"
     t.boolean  "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "email"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -233,6 +253,8 @@ ActiveRecord::Schema.define(version: 20170305033633) do
   add_foreign_key "purchases", "status_payments"
   add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "type_documents"
+  add_foreign_key "sale_details", "articles"
+  add_foreign_key "sale_details", "sales"
   add_foreign_key "sales", "customers"
   add_foreign_key "sales", "payment_methods"
   add_foreign_key "sales", "status_payments"

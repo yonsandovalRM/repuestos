@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :communes
+  resources :sale_details
   resources :sales
   resources :customers do
     get :search_customer
@@ -8,11 +10,11 @@ Rails.application.routes.draw do
   resources :status_payments
   resources :purchase_details
   resources :states
-  resources :purchases do
-    get :autocomplete_supplier_bname, :on => :collection
-  end
+  resources :purchases
   resources :type_documents
-  resources :suppliers
+  resources :suppliers do
+     get :search_supplier
+  end
   resources :brands
   resources :articles do
     get :search_article

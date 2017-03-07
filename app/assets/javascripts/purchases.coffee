@@ -1,6 +1,6 @@
 $(document).on 'turbolinks:load', ()->
 	$('#datetimepicker').datetimepicker({
-		format: 'DD/MM/YYYY',
+		format: 'YYYY/MM/DD',
 		locale: 'es',
 	})
 

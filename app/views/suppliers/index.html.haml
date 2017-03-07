@@ -27,6 +27,7 @@
 								%th Ciudad
 								%th Giro
 								%th Teléfono
+								%th Email
 								%th Estado
 								%th
 								%th
@@ -38,10 +39,11 @@
 									%td= supplier.rut
 									%td= supplier.bname
 									%td= supplier.address
-									%td= supplier.comunne
+									%td= supplier.commune
 									%td= supplier.city
 									%td= supplier.activity
 									%td= supplier.phone
+									%td= supplier.email
 									%td= supplier.status
 									%td
 										= link_to supplier, :class=>"btn btn-info" do

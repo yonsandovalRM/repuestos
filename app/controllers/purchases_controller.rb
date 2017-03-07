@@ -33,7 +33,7 @@ class PurchasesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.pdf { render template: 'purchases/voucher', pdf: 'comprobante', layout: 'pdf.haml',:page_height => '15cm', :page_width => '7.5cm', margin:  {   top: '2mm', bottom: '2mm', left: '2mm', right: '2mm' }}
+      format.pdf { render template: 'purchases/voucher', pdf: 'comprobante', layout: 'pdf.haml',:page_height => '20cm', :page_width => '8cm', margin:  {   top: '2mm', bottom: '2mm', left: '2mm', right: '2mm' }}
     end
   end
 
@@ -52,7 +52,6 @@ class PurchasesController < ApplicationController
   # POST /purchases.json
   def create
     @purchase = Purchase.new(purchase_params)
-
     respond_to do |format|
       if @purchase.save
         format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
@@ -82,9 +81,6 @@ class PurchasesController < ApplicationController
   # DELETE /purchases/1.json
   def destroy
     @purchase.destroy
-
-    #descontar stock al eliminar
-
     respond_to do |format|
       format.html { redirect_to purchases_url, notice: 'Purchase was successfully destroyed.' }
       format.json { head :no_content }

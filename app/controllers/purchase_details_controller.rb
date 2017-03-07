@@ -25,11 +25,11 @@ class PurchaseDetailsController < ApplicationController
   def setStocks(action, article, purchase)
 
     if action == 'suma'
-      stock       = article.stock + purchase.stock
-      stock_store = article.stock_store + purchase.stock_store
+      stock       = article.stock.to_i + purchase.stock.to_i
+      stock_store = article.stock_store.to_i + purchase.stock_store.to_i
     elsif action == 'resta'
-      stock       = article.stock - purchase.stock
-      stock_store = article.stock_store - purchase.stock_store
+      stock       = article.stock.to_i - purchase.stock.to_i
+      stock_store = article.stock_store.to_i - purchase.stock_store.to_i
     end
 
     article.update_attributes(:stock => stock, :stock_store => stock_store)
@@ -39,12 +39,15 @@ class PurchaseDetailsController < ApplicationController
   # POST /purchase_details.json
   def create
     @purchase_detail = PurchaseDetail.new(purchase_detail_params)
-    
+    unless @purchase_detail.stock.present?
+      @purchase_detail.stock = 0
+    end
+    unless @purchase_detail.stock_store.present?
+      @purchase_detail.stock_store = 0
+    end
     article = Article.find(@purchase_detail.article_id)
     setStocks('suma', article, @purchase_detail)
-    
-
-    @purchase_detail.stock
+    # @purchase_detail.stock
     respond_to do |format|
       if @purchase_detail.save
         format.html { redirect_to :back, location: @purchase_detail, notice: 'Purchase detail was successfully created.' }
@@ -58,17 +61,17 @@ class PurchaseDetailsController < ApplicationController
 
   # PATCH/PUT /purchase_details/1
   # PATCH/PUT /purchase_details/1.json
-  def update
-    respond_to do |format|
-      if @purchase_detail.update(purchase_detail_params)
-        format.html { redirect_to @purchase_detail, notice: 'Purchase detail was successfully updated.' }
-        format.json { render :show, status: :ok, location: @purchase_detail }
-      else
-        format.html { render :edit }
-        format.json { render json: @purchase_detail.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @purchase_detail.update(purchase_detail_params)
+  #       format.html { redirect_to @purchase_detail, notice: 'Purchase detail was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @purchase_detail }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @purchase_detail.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /purchase_details/1
   # DELETE /purchase_details/1.json

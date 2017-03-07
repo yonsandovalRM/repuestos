@@ -1,12 +1,7 @@
 .row
-	.col-md-12
+	.col-md-8
 		.panel
 			.panel-body
-				.page-header
-					= link_to new_sale_path, class: 'btn btn-success' do
-						%span.glyphicon.glyphicon-plus
-						Nuevo Sale
-					%h1 Listado de sales
 
 				.table-responsive
 					%table.table.table-striped.table-bordered.table-hover.homelist
@@ -40,3 +35,9 @@
 									%td
 										= link_to  sale, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
 											%i.fa.fa-trash-o
+	.col-md-4
+		.panel
+			.panel-body
+				= link_to new_sale_path, class: 'btn btn-success btn-block' do
+					%span.glyphicon.glyphicon-plus
+					Nueva venta

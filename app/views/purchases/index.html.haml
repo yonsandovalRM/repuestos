@@ -33,7 +33,10 @@
 									%td= purchase.supplier.bname
 									%td= purchase.supplier.rut
 									%td= purchase.type_document.name
-									%td= purchase.date_doc.strftime('%d-%m-%Y')
+									- if purchase.date_doc.present?
+										%td= purchase.date_doc.strftime('%d-%m-%Y')
+									- else
+										%td
 									%td= purchase.status
 									%td= purchase.status_payment.name
 									%td

@@ -22,7 +22,7 @@
       .form-group
         = f.label "Nombre", :for => :customer_id
         %input{:type => "text", :id => "customerName", :class => "form-control", :disabled => "true"}
-    
+        = f.hidden_field :customer_id, :id=>"customerID"
 
        
       
@@ -36,7 +36,7 @@
       .form-group
         = f.label "Número de documento", :for => :number_doc
         = f.text_field :number_doc, class: 'form-control', :required => "true"
-        = f.hidden_field :customer_id, :id=>"customerID"
+        
         %small.text-muted
           Para tipo boleta, el número sería ej: 213 
       
@@ -54,7 +54,7 @@
 
     .col-md-12
       .form-group
-        = f.submit class: 'btn btn-success', :value => "Crear venta"
+        = f.submit class: 'btn btn-success', :value => "Guardar"
 
 
     
