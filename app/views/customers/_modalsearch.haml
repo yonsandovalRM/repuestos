@@ -14,3 +14,5 @@
           %td
             = link_to customer_search_customer_path(customer.id), :remote =>"true", :class=>"btn btn-info" do
               %i.fa.fa-plus
+            = link_to edit_customer_path(customer.id), :remote =>"true", :class=>"btn btn-warning" do
+              %i.fa.fa-edit

@@ -12,8 +12,19 @@ thead {
     font-size: .9em;
     opacity: .6;
 }
+.modal { overflow: auto !important; }
 td.highlight {
     background: #e3f7ff;
+}
+.articulo-seleccionado {
+    padding: 10px 10px;
+    background: #fbfbfb;
+    margin: 10px 0;
+    border: 1px solid #e2e2e8;
+}
+.articulo-seleccionado span {
+    display: block;
+    font-size: .8em;
 }
 #addDetail {
     margin-top: 25px;

@@ -27,4 +27,5 @@
 //= require jquery-ui
 //= require lightbox
 //= require bootstrap-tagsinput
+//= require sales
 //= require_tree .

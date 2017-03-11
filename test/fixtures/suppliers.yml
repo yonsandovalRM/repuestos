@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: suppliers
+#
+#  id         :integer          not null, primary key
+#  rut        :string
+#  bname      :string
+#  address    :string
+#  commune    :string
+#  city       :string
+#  activity   :string
+#  phone      :string
+#  status     :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  email      :string
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

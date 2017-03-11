@@ -1,4 +1,9 @@
+$("#alert-rut").html('<div class="text-success">OK, registra como cliente!</div>');
 $('#customerID').val("<%= @customer_search.id %>");
-$('#customerName').val("<%= @customer_search.name %>");
-$('#customerRun').val("<%= @customer_search.run %>");
-$("#searchCustomer").modal('hide');
+$('#cName').val("<%= @customer_search.name %>");
+$('#cRun').val("<%= @customer_search.run %>");
+
+if ($('#searchCustomer').hasClass('in')){
+	$("#searchCustomer .modal-body").html('');
+	$("#searchCustomer").modal('toggle');
+}

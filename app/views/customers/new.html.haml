@@ -16,4 +16,5 @@
 						Volver
 					%h1 Nuevo cliente
 
-				= render 'form'
+				= form_for @customer, html: { class: "form-horizontal", role: "form" } do |f|
+					= render partial: 'customers/form', locals: { f: f }

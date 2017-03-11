@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
+
   resources :communes
   resources :sale_details
   resources :sales
   resources :customers do
     get :search_customer
-    
+    collection do 
+      post 'find_customer'
+    end 
   end
+  
   devise_for :users
   resources :status_payments
   resources :purchase_details

@@ -7,6 +7,8 @@ class SalesController < ApplicationController
     @sales = Sale.all
   end
 
+  
+
   # GET /sales/1
   # GET /sales/1.json
   def show
@@ -46,7 +48,7 @@ class SalesController < ApplicationController
     @sale.user_id = current_user.id
     respond_to do |format|
       if @sale.save
-        format.html { redirect_to @sale, notice: 'Sale was successfully created.' }
+        format.html { redirect_to @sale }
         format.json { render :show, status: :created, location: @sale }
       else
         format.html { render :new }
@@ -60,7 +62,7 @@ class SalesController < ApplicationController
   def update
     respond_to do |format|
       if @sale.update(sale_params)
-        format.html { redirect_to @sale, notice: 'Sale was successfully updated.' }
+        format.html { redirect_to @sale, notice: 'Venta actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @sale }
       else
         format.html { render :edit }
@@ -74,7 +76,7 @@ class SalesController < ApplicationController
   def destroy
     @sale.destroy
     respond_to do |format|
-      format.html { redirect_to sales_url, notice: 'Sale was successfully destroyed.' }
+      format.html { redirect_to sales_url, notice: 'Venta eliminada correctamente.' }
       format.json { head :no_content }
     end
   end

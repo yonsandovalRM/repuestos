@@ -1,0 +1,4 @@
+$("#alert-rut").html('<div class="text-info">Rut correcto!, pero aún no es cliente.</div>');
+$("#createCustomer").modal();
+$("#createCustomer .modal-body").html('<%= j render "customers/modalcreate" %>');
+$("#customer_run").val($('#search_run').val());

@@ -11,12 +11,43 @@ class CustomersController < ApplicationController
     end
   end
 
+  def find_customer
+    
+    if params[:search_run].rut_valid?
+      @customer_search = Customer.where(run: params[:search_run]).first
+      respond_to do |format|
+        if @customer_search.present?
+          format.js { render "search.js.erb", location: @customer_search }
+        else
+          @customer = Customer.new
+          format.js { render "create_customer.js.erb", location: @customer }
+        end
+      end
+    else
+      respond_to do |format|
+        format.js { render "rut_invalid.js.erb" }
+      end
+    end
+    # if @customer_search.present?
+    #   format.js { render "search.js.erb", location: @customer_search }
+    # else
+    #   format.js { render "create_customer.js.erb", location: @customer_search }
+    # end
+  end
+
   def search_customer
     @customer_search = Customer.find(params[:customer_id])
+
     respond_to do |format|
       format.js { render "search.js.erb", location: @customer_search }
     end
   end
+  def search_customer_edit
+    respond_to do |format|
+      format.js { render "edit.js.erb"}
+    end
+  end
+  
   # GET /customers/1
   # GET /customers/1.json
   def show
@@ -25,6 +56,7 @@ class CustomersController < ApplicationController
   # GET /customers/new
   def new
     @customer = Customer.new
+
   end
 
   # GET /customers/1/edit
@@ -35,11 +67,12 @@ class CustomersController < ApplicationController
   # POST /customers.json
   def create
     @customer = Customer.new(customer_params)
-
+    # raise @customer.to_yaml
     respond_to do |format|
       if @customer.save
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render :show, status: :created, location: @customer }
+        format.js { render "new.js.erb", location: @customer }
       else
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
@@ -79,6 +112,6 @@ class CustomersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:run, :name, :address, :commune, :city, :phone, :phone2, :email, :status, :b_rut, :b_name, :b_address, :b_commune, :b_activity, :b_phone, :b_email)
+      params.require(:customer).permit(:search_run, :run, :name, :address, :commune, :city, :phone, :phone2, :email, :status, :b_rut, :b_name, :b_address, :b_commune, :b_activity, :b_phone, :b_email)
     end
 end

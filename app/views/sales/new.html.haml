@@ -7,13 +7,86 @@
 		%strong
 			Venta
 .row
-	.col-md-12
-		.panel
+	.col-md-4.col-md-offset-4
+		.panel.panel-primary
+			.panel-heading
+				Creando nueva venta
 			.panel-body
-				.page-header
-					= link_to sales_path, class: 'btn btn-default' do
-						%span.glyphicon.glyphicon-list-alt
-						Volver
-					%h1 Nuevo sale
+				= form_tag(find_customer_customers_path, :method => :post, :remote=>:true) do
+					.input-group
+						= text_field_tag :search_run, nil, {:class=>"form-control", :autofocus => :true}
+						%span.input-group-btn
+							%button.btn.btn-success{:type=>"submit"}
+								%i.fa.fa-search
+					%small
+						Ingrese el run del cliente sin puntos. Ej: 12345678-9
+					%small#alert-rut
+					%p 
+					.form-group
+						%a{:href => customers_path, "data-remote"=> "true" , :class=>"btn btn-success btn-block"}
+							%i.fa.fa-search
+							Seleccione un cliente
+					%em Si no desea registrar cliente para esta venta deje los campos vacíos y de click en continuar.
+					.form-group
+						%label{:for => "cRun"}
+							Run
+						%input{:type => "text", :id => "cRun", :class => "form-control", :disabled => "true"}
+					.form-group
+						%label{:for => "cName"}
+							Nombre
+						%input{:type => "text", :id => "cName", :class => "form-control", :disabled => "true"}
+				%hr
+				= form_for @sale, html: {  role: "form" } do |f|
+					-if @sale.errors.any?
+						.alert.alert-danger.alert-dismissable{role: "alert"}
+							%button.close{type: "button", data: {dismiss: "alert"} }
+								%span{aria: {hidden: "true"} } &times;
+								%span.sr-only Close
+							%h4= "#{pluralize(@sale.errors.count, "error")} Prohibió la venta de esta venta:"
 
-				= render 'form'
+							%ul
+								- @sale.errors.full_messages.each do |msg|
+									%li= msg
+
+					= f.hidden_field :customer_id, :id=>"customerID"
+						  
+					.form-group
+						= f.submit class: 'btn btn-success', :value => "Continuar"
+	
+
+								
+
+.modal.fade#searchEditCustomer
+	.modal-dialog.modal-lg
+		.modal-content
+			.modal-header
+				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
+					%span
+						&times;
+				%h4.modal-title
+					Editando cliente
+			.modal-body
+				
+
+
+.modal.fade#createCustomer
+	.modal-dialog.modal-lg
+		.modal-content
+			.modal-header
+				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
+					%span
+						&times;
+				%h4.modal-title
+					Creando cliente
+			.modal-body
+
+.modal.fade#searchCustomer
+	.modal-dialog.modal-lg
+		.modal-content
+			.modal-header
+				%button{:type => "button", :class => "close", "data-dismiss"=> "modal"}
+					%span
+						&times;
+				%h4.modal-title
+					Buscando cliente
+			.modal-body

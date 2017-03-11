@@ -1,0 +1,2 @@
+module SearchCustomerHelper
+end

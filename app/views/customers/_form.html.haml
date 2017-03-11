@@ -1,98 +1,98 @@
-= form_for @customer, html: { class: "form-horizontal", role: "form" } do |f|
-  -if @customer.errors.any?
-    .alert.alert-danger.alert-dismissable{role: "alert"}
-      %button.close{type: "button", data: {dismiss: "alert"} }
-        %span{aria: {hidden: "true"} } &times;
-        %span.sr-only Close
-      %h4= "#{pluralize(@customer.errors.count, "error")} prohibited this customer from being saved:"
 
-      %ul
-        - @customer.errors.full_messages.each do |msg|
-          %li= msg
-  %small.text-muted
-    Datos persona natural (Boleta)
-  %hr
-  .form-group
-    = f.label "* RUN",:for => :run, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :run, class: 'form-control', :required => :true
-      %small.text-muted
-        Sin puntos, Ej: 12345678-9
-  .form-group
-    = f.label "* Nombre",:for => :name, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :name, class: 'form-control', :required => :true
-      %small.text-muted
-        Nombre y apellido del cliente
-  .form-group
-    = f.label "Dirección",:for => :address, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :address, class: 'form-control'
-      %small.text-muted
-        Dirección personal
-  .form-group
-    = f.label "* Comuna",:for => :commune, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.collection_select :commune, Commune.all, :name, :name,  {prompt: "Seleccione comuna"}, {:id=> 'selectcommune', :class => 'form-control', :required => "true"}
-  .form-group
-    = f.label "Ciudad",:for => :city, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :city, class: 'form-control'
-  .form-group
-    = f.label "Teléfono",:for => :phone, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :phone, class: 'form-control'
-  .form-group
-    = f.label "Teléfono 2",:for => :phone2, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :phone2, class: 'form-control'
-  .form-group
-    = f.label "Email",:for => :email, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.email_field :email, class: 'form-control'
-  .form-group
-    = f.label "Estado",:for => :status, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :status, class: 'form-control'
-      %small.text-muted
-        Estado alternativo, ej: Cliente moroso
-  %small.text-muted
-    Datos persona jurídica (Factura)
-  %hr
-  .form-group
-    = f.label "RUT",:for => :b_rut, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :b_rut, class: 'form-control'
-      %small.text-muted
-        Rut de facturación, ej: 87654321-0
-  .form-group
-    = f.label "Razón social",:for => :b_name, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :b_name, class: 'form-control'
-      %small.text-muted
-        Nombre de la empresa
-  .form-group
-    = f.label "Dirección",:for => :b_address, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :b_address, class: 'form-control'
-  .form-group
-    = f.label "Comuna",:for => :b_commune, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.collection_select :b_commune, Commune.all, :name, :name,  {prompt: "Seleccione comuna"}, {:id=> 'selectbcommune', :class => 'form-control', :required => "true"}
-  .form-group
-    = f.label "Giro",:for => :b_activity, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :b_activity, class: 'form-control'
-      %small.text-muted
-        Giro o actividad
-  .form-group
-    = f.label "Teléfono",:for => :b_phone, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :b_phone, class: 'form-control'
-  .form-group
-    = f.label "Email",:for => :b_email, class: 'col-sm-2 control-label'
-    .col-sm-10
-      = f.email_field :b_email, class: 'form-control'
-  .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit class: 'btn btn-primary'
+-if @customer.errors.any?
+  .alert.alert-danger.alert-dismissable{role: "alert"}
+    %button.close{type: "button", data: {dismiss: "alert"} }
+      %span{aria: {hidden: "true"} } &times;
+      %span.sr-only Close
+    %h4= "#{pluralize(@customer.errors.count, "error")} prohibited this customer from being saved:"
+
+    %ul
+      - @customer.errors.full_messages.each do |msg|
+        %li= msg
+%small.text-muted
+  Datos persona natural (Boleta)
+%hr
+.form-group
+  = f.label "* RUN",:for => :run, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :run, class: 'form-control', :required => :true
+    %small.text-muted
+      Sin puntos, Ej: 12345678-9
+.form-group
+  = f.label "* Nombre",:for => :name, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :name, class: 'form-control', :required => :true
+    %small.text-muted
+      Nombre y apellido del cliente
+.form-group
+  = f.label "Dirección",:for => :address, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :address, class: 'form-control'
+    %small.text-muted
+      Dirección personal
+.form-group
+  = f.label "* Comuna",:for => :commune, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.collection_select :commune, Commune.all, :name, :name,  {prompt: "Seleccione comuna"}, {:id=> 'selectcommune', :class => 'form-control'}
+.form-group
+  = f.label "Ciudad",:for => :city, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :city, class: 'form-control'
+.form-group
+  = f.label "Teléfono",:for => :phone, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :phone, class: 'form-control'
+.form-group
+  = f.label "Teléfono 2",:for => :phone2, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :phone2, class: 'form-control'
+.form-group
+  = f.label "Email",:for => :email, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.email_field :email, class: 'form-control'
+.form-group
+  = f.label "Estado",:for => :status, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :status, class: 'form-control'
+    %small.text-muted
+      Estado alternativo, ej: Cliente moroso
+%small.text-muted
+  Datos persona jurídica (Factura)
+%hr
+.form-group
+  = f.label "RUT",:for => :b_rut, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :b_rut, class: 'form-control'
+    %small.text-muted
+      Rut de facturación, ej: 87654321-0
+.form-group
+  = f.label "Razón social",:for => :b_name, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :b_name, class: 'form-control'
+    %small.text-muted
+      Nombre de la empresa
+.form-group
+  = f.label "Dirección",:for => :b_address, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :b_address, class: 'form-control'
+.form-group
+  = f.label "Comuna",:for => :b_commune, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.collection_select :b_commune, Commune.all, :name, :name,  {prompt: "Seleccione comuna"}, {:id=> 'selectbcommune', :class => 'form-control'}
+.form-group
+  = f.label "Giro",:for => :b_activity, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :b_activity, class: 'form-control'
+    %small.text-muted
+      Giro o actividad
+.form-group
+  = f.label "Teléfono",:for => :b_phone, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.text_field :b_phone, class: 'form-control'
+.form-group
+  = f.label "Email",:for => :b_email, class: 'col-sm-2 control-label'
+  .col-sm-10
+    = f.email_field :b_email, class: 'form-control'
+.form-group
+  .col-sm-offset-2.col-sm-10
+    = f.submit class: 'btn btn-primary'

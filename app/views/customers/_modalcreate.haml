@@ -1,0 +1,2 @@
+= form_for @customer, html: { class: "form-horizontal", role: "form" }, remote: true do |f|
+  = render partial: 'customers/form', locals: { f: f }

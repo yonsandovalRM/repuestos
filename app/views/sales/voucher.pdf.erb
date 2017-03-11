@@ -1,23 +1,24 @@
 
 <small class="text-muted text-right" style="display: block;">Fecha venta: <%= @sale.created_at.strftime('%d-%m-%Y') %></small>
 <small class="text-muted text-right" style="display: block;">Venta Nº <strong><%= @sale.id %></strong></small><br>
-<small>Cliente: <strong><%= @sale.customer.name %></strong></small><br>
-<small>RUN: <strong><%= @sale.customer.run %></strong></small><br>
-<small>Tipo: <strong><%= @sale.type_document.name %></strong></small><br>
-<small>Nº Documento: <strong><%= @sale.number_doc %></strong></small><br>
-<small>Método de pago: <strong><%= @sale.payment_method.name %></strong></small><br>
-<small>Estado de pago: <strong><%= @sale.status_payment.name %></strong></small>
-<% if (@sale.type_document.id == 3) %>
-	<small class="text-muted print-title" style="display: block;">Datos para factura</small>
-	<small>Razón Social: <strong><%= @sale.customer.b_name %></strong></small><br>
-	<small>RUT: <strong><%= @sale.customer.b_rut %></strong></small><br>
-	<small>Giro: <strong><%= @sale.customer.b_activity %></strong></small><br>
-	<small>Dirección: <strong><%= @sale.customer.b_address %></strong></small><br>
-	<small>Comuna: <strong><%= @sale.customer.b_commune %></strong></small><br>
-	<small>Teléfono: <strong><%= @sale.customer.b_phone %></strong></small><br>
-	<small>Email: <strong><%= @sale.customer.b_email %></strong></small><br>
+<% if @sale.customer.present? %>
+	<small>Cliente: <strong><%= @sale.customer.name %></strong></small><br>
+	<small>RUN: <strong><%= @sale.customer.run %></strong></small><br>
+	<small>Tipo: <strong><%= @sale.type_document.name %></strong></small><br>
+	<small>Nº Documento: <strong><%= @sale.number_doc %></strong></small><br>
+	<small>Método de pago: <strong><%= @sale.payment_method.name %></strong></small><br>
+	<small>Estado de pago: <strong><%= @sale.status_payment.name %></strong></small>
+	<% if (@sale.type_document.id == 3) %>
+		<small class="text-muted print-title" style="display: block;">Datos para factura</small>
+		<small>Razón Social: <strong><%= @sale.customer.b_name %></strong></small><br>
+		<small>RUT: <strong><%= @sale.customer.b_rut %></strong></small><br>
+		<small>Giro: <strong><%= @sale.customer.b_activity %></strong></small><br>
+		<small>Dirección: <strong><%= @sale.customer.b_address %></strong></small><br>
+		<small>Comuna: <strong><%= @sale.customer.b_commune %></strong></small><br>
+		<small>Teléfono: <strong><%= @sale.customer.b_phone %></strong></small><br>
+		<small>Email: <strong><%= @sale.customer.b_email %></strong></small><br>
+	<% end %>
 <% end %>
-
 <small class="text-muted print-title" style="display: block;">Detalle de venta</small>
 <table class="table-print">
 	

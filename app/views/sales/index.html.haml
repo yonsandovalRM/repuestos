@@ -21,11 +21,23 @@
 							- @sales.each do |sale|
 								%tr
 									%td= sale.user.username
-									%td= sale.payment_method.name
+									%td
+										-if sale.payment_method.present?
+											= sale.payment_method.name
+			
 									%td= sale.number_doc
-									%td= sale.type_document.name
-									%td= sale.status_payment.name
-									%td= sale.customer.name
+									%td
+										-if sale.type_document.present?
+											= sale.type_document.name
+			
+									%td
+										-if sale.status_payment.present?
+											= sale.status_payment.name
+			
+									%td
+										-if sale.customer.present?
+											= sale.customer.name
+			
 									%td
 										= link_to sale, :class=>"btn btn-info" do
 											%i.fa.fa-eye
