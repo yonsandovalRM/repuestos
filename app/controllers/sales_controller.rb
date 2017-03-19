@@ -5,9 +5,9 @@ class SalesController < ApplicationController
   # GET /sales.json
   def index
     @sales = Sale.all
+    @masvendidos = SaleDetail.select("sale_details.article_id, COUNT(article_id) AS t_count").group("sale_details.article_id").order("t_count DESC").limit(3)
+    
   end
-
-  
 
   # GET /sales/1
   # GET /sales/1.json

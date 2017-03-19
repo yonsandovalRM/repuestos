@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :quotation_details
+  resources :quotations do
+    get :convert_to_quotation
+  end
   resources :communes
   resources :sale_details
   resources :sales

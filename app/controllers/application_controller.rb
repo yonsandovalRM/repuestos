@@ -5,11 +5,12 @@ class ApplicationController < ActionController::Base
   include CanCan::ControllerAdditions
 
   def contadores
-	  @proveedores = Supplier.total_active
-	  @articulos   = Article.total_active
-	  @compras     = Purchase.total_active
-    @ventas      = Sale.total_active
-	  @clientes    = Customer.total_active
+	  @proveedores   = Supplier.total_active
+	  @articulos     = Article.total_active
+	  @compras       = Purchase.total_active
+    @ventas        = Sale.total_active
+	  @clientes      = Customer.total_active
+    @cotizaciones  = Quotation.total_active
 
 	end
 

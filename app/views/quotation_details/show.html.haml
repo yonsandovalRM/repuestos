@@ -1,0 +1,24 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to quotation_details_path, class: 'btn btn-default' do
+						%span.glyphicon.glyphicon-list-alt
+						Volver
+					= link_to edit_quotation_detail_path(@quotation_detail), class: 'btn btn-primary' do
+						%span.glyphicon.glyphicon-pencil
+						Editar
+					%h1 Viendo quotation_detail
+
+				%dl.dl-horizontal
+					%dt Article:
+					%dd= @quotation_detail.article
+					%dt Stock:
+					%dd= @quotation_detail.stock
+					%dt Pou:
+					%dd= @quotation_detail.pou
+					%dt Discount:
+					%dd= @quotation_detail.discount
+					%dt Quotation:
+					%dd= @quotation_detail.quotation

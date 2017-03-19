@@ -3,9 +3,9 @@
 		%a{:href => root_path}
 			%i.fa.fa-home
 	%li.active
-		Estas viendo la venta Nº:
+		Estas viendo la cotización Nº:
 		%strong
-			= @sale.id
+			= @quotation.id
 .row
 	.col-md-12
 		.panel
@@ -14,15 +14,15 @@
 					.col-md-3
 						.panel.panel-default
 							.panel-heading
-								Nº Venta
-								= @sale.id
+								Nº Cotización
+								= @quotation.id
 							.panel-body
 								
 								%small.text-muted
 									Cliente:
 								%h5
-									-if @sale.customer.present?
-										= @sale.customer.name
+									-if @quotation.customer.present?
+										= @quotation.customer.name
 									-else
 										No registrado
 									
@@ -31,36 +31,36 @@
 								.datos-compra
 									%span
 										Tipo de documento: 
-										- if @sale.type_document.present? 
-											= @sale.type_document.name
+										- if @quotation.type_document.present? 
+											= @quotation.type_document.name
 									%span
 										Nº de documento: 
-										= @sale.number_doc
+										= @quotation.number_doc
 									%span
 										Creación de la venta:
 										%ul
 											%li
 												Fecha:
 												%strong
-													= @sale.created_at.strftime('%d-%m-%Y')
+													= @quotation.created_at.strftime('%d-%m-%Y')
 											%li
 												Hora:
 												%strong
-													= @sale.created_at.strftime('%T')
+													= @quotation.created_at.strftime('%T')
 									%span
 										Método de pago:
-										- if @sale.payment_method.present? 
-											= @sale.payment_method.name
+										- if @quotation.payment_method.present? 
+											= @quotation.payment_method.name
 									%span
 										Observaciones
-										= @sale.observation
+										= @quotation.observation
 									%span
 										Estado:
 										%ul
 											%li 
 												De pago:
-												- if @sale.status_payment.present? 
-													= @sale.status_payment.name
+												- if @quotation.status_payment.present? 
+													= @quotation.status_payment.name
 						
 								
 								
@@ -86,34 +86,29 @@
 										%button.btn.btn-default{"data-toggle"=>"tooltip", "data-placement"=>"left", :id=>"ptope", :title=> ""}
 											%i.fa.fa-eye
 
-								= form_for @sale_detail, html: { role: "form" } do |f|
-									-if @sale.errors.any?
+								= form_for @quotation_detail, html: { role: "form" } do |f|
+									-if @quotation.errors.any?
 										.alert.alert-danger.alert-dismissable{role: "alert"}
 											%button.close{type: "button", data: {dismiss: "alert"} }
 												%span{aria: {hidden: "true"} } &times;
 												%span.sr-only Close
-											%h4= "#{pluralize(@sale.errors.count, "error")} Prohibió la venta de esta venta:"
+											%h4= "#{pluralize(@quotation.errors.count, "error")} Prohibió la venta de esta venta:"
 
 											%ul
-												- @sale.errors.full_messages.each do |msg|
+												- @quotation.errors.full_messages.each do |msg|
 													%li= msg
 									
 									= f.hidden_field :article_id, :id=> "id_search", :required => :true
-									= f.hidden_field :sale_id, :value => @sale.id
+									= f.hidden_field :quotation_id, :value => @quotation.id
 									.row
 										.col-md-3
 											.form-group
-												= f.label "Tienda", :for => :stock
+												= f.label "Cantidad", :for => :stock
 												= f.number_field :stock, class: 'form-control'
 												%small#emailHelp.form-text.text-muted
 													Ingrese un valor numérico mayor o igual a 0
 
-										.col-md-3
-											.form-group
-												= f.label "Bodega", :for => :stock_store
-												= f.number_field :stock_store, class: 'form-control'
-												%small#emailHelp.form-text.text-muted
-													Ingrese un valor numérico mayor o igual a 0
+										
 										.col-md-3
 											.form-group
 												= f.label "Precio Venta", :for => :pou
@@ -126,13 +121,13 @@
 							
 						
 					.col-md-3
-						= link_to sales_path, class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Ir a ventas" do
+						= link_to quotations_path, class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Ir a ventas" do
 							%span.glyphicon.glyphicon-list-alt
-						= link_to edit_sale_path(@sale), class: 'btn btn-primary',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Editar esta venta" do
+						= link_to edit_quotation_path(@quotation), class: 'btn btn-primary',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Editar esta venta" do
 							%span.glyphicon.glyphicon-pencil
-						= link_to sale_path(@sale.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-info","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Imprimir comprobante" do
+						= link_to quotation_path(@quotation.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-info","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Imprimir comprobante" do
 							%i.fa.fa-print
-						= link_to quotation_convert_to_quotation_path(@sale.id), :class=>"btn btn-warning","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Convertir a cotización" do
+						= link_to quotation_convert_to_quotation_path(@quotation.id), :class=>"btn btn-warning","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Convertir a cotización" do
 							%i.fa.fa-retweet
 						%hr
 						.panel.panel-primary
@@ -154,24 +149,22 @@
 							.panel-heading
 								Detalle de venta
 							.panel-body
-								- if @sale.sale_details.count > 0
+								- if @quotation.quotation_details.count > 0
 									%table.table.table-striped.table-bordered.table-hover.homelist
 										%thead
 											%tr
 												%th Código
 												%th Descripción
 												%th Tienda
-												%th Bodega
 												%th P. Venta
 												%th Neto
 												%th
 										%tbody
-											- @sale.sale_details.each do |detail|
+											- @quotation.quotation_details.each do |detail|
 												%tr
 													%td= link_to detail.article.code, detail.article
 													%td= detail.article.description
 													%td= detail.stock
-													%td= detail.stock_store
 													%td= number_to_currency(detail.pou)
 													- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pou.to_i
 													%td= number_to_currency(neto)

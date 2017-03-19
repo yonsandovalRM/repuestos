@@ -53,3 +53,19 @@
 				= link_to new_sale_path, class: 'btn btn-success btn-block' do
 					%span.glyphicon.glyphicon-plus
 					Nueva venta
+		.panel
+			.panel-body
+				%h5 Los 10 artículos más vendidos
+				%hr
+				%ol
+					- @masvendidos.each do |top|
+						- cantidad = SaleDetail.where(article_id: top.article_id).count
+						- articulo = Article.find(top.article_id)
+						
+						%li
+							= articulo.description
+							%small.text-muted
+								= cantidad
+					
+					
+					

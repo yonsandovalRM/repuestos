@@ -1,0 +1,43 @@
+= form_for @quotation, html: { class: "form-horizontal", role: "form" } do |f|
+  -if @quotation.errors.any?
+    .alert.alert-danger.alert-dismissable{role: "alert"}
+      %button.close{type: "button", data: {dismiss: "alert"} }
+        %span{aria: {hidden: "true"} } &times;
+        %span.sr-only Close
+      %h4= "#{pluralize(@quotation.errors.count, "error")} prohibited this quotation from being saved:"
+
+      %ul
+        - @quotation.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :user, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :user, class: 'form-control'
+  .form-group
+    = f.label :payment_method, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :payment_method, class: 'form-control'
+  .form-group
+    = f.label :number_doc, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :number_doc, class: 'form-control'
+  .form-group
+    = f.label :type_document, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :type_document, class: 'form-control'
+  .form-group
+    = f.label :status_payment, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :status_payment, class: 'form-control'
+  .form-group
+    = f.label :observation, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :observation, class: 'form-control'
+  .form-group
+    = f.label :customer, class: 'col-sm-2 control-label'
+    .col-sm-10
+      = f.text_field :customer, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-10
+      = f.submit class: 'btn btn-primary'

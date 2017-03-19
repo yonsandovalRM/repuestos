@@ -1,0 +1,55 @@
+.row
+	.col-md-8
+		.panel
+			.panel-body
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover.homelist
+						%thead
+							%tr
+								%th User
+								%th Payment method
+								%th Number doc
+								%th Type document
+								%th Status payment
+								%th Customer
+								%th
+								%th
+								%th
+
+						%tbody
+							- @quotations.each do |quotation|
+								%tr
+									%td
+										- if quotation.user.username.present?
+											= quotation.user.username
+										- else
+											No Asignada
+									%td
+										- if quotation.payment_method.present?
+											= quotation.payment_method.name
+									%td
+										- if quotation.number_doc.present?
+											= quotation.number_doc
+									%td
+										- if quotation.type_document.present?
+											= quotation.type_document.name
+									%td
+										- if quotation.status_payment.present?
+											= quotation.status_payment.name
+									%td
+										- if quotation.customer.present?
+											= quotation.customer.name
+									%td
+										= link_to quotation, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_quotation_path(quotation), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  quotation, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o
+	.col-md-4
+		.panel
+			.panel-body
+				%p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati, deleniti pariatur! Illo distinctio modi laborum nulla perferendis odio nihil pariatur maiores beatae temporibus, omnis culpa facere qui explicabo ut quaerat?

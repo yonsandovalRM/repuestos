@@ -1,0 +1,40 @@
+.row
+	.col-md-12
+		.panel
+			.panel-body
+				.page-header
+					= link_to new_quotation_detail_path, class: 'btn btn-success' do
+						%span.glyphicon.glyphicon-plus
+						Nuevo Quotation detail
+					%h1 Listado de quotation_details
+
+				.table-responsive
+					%table.table.table-striped.table-bordered.table-hover
+						%thead
+							%tr
+													%th Article
+													%th Stock
+													%th Pou
+													%th Discount
+													%th Quotation
+														%th
+								%th
+								%th
+
+						%tbody
+							- @quotation_details.each do |quotation_detail|
+								%tr
+													%td= quotation_detail.article
+													%td= quotation_detail.stock
+													%td= quotation_detail.pou
+													%td= quotation_detail.discount
+													%td= quotation_detail.quotation
+															%td
+										= link_to quotation_detail, :class=>"btn btn-info" do
+											%i.fa.fa-eye
+									%td
+										= link_to edit_quotation_detail_path(quotation_detail), :class=>"btn btn-warning" do
+											%i.fa.fa-pencil-square-o
+									%td
+										= link_to  quotation_detail, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o

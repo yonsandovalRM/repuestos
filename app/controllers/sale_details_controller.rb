@@ -38,6 +38,7 @@ class SaleDetailsController < ApplicationController
   # POST /sale_details.json
   def create
     @sale_detail = SaleDetail.new(sale_detail_params)
+
     unless  @sale_detail.stock.present?
        @sale_detail.stock = 0
     end
@@ -45,16 +46,24 @@ class SaleDetailsController < ApplicationController
        @sale_detail.stock_store = 0
     end
     article = Article.find(@sale_detail.article_id)
-    setStocks('vende', article, @sale_detail)
-    respond_to do |format|
-      if @sale_detail.save
-        format.html { redirect_to :back, location: @sale_detail }
-        format.json { render :show, status: :created, location: @sale_detail }
-      else
-        format.html { redirect_to :back, location: @sale_detail.errors}
-        format.json { render json: @sale_detail.errors, status: :unprocessable_entity }
+
+    if @sale_detail.stock.to_i > article.stock.to_i || @sale_detail.stock_store.to_i > article.stock_store.to_i
+      respond_to do |format|
+        format.html { redirect_to :back, location: @sale_detail, notice: "No se ha agregado éste artículo, la cantidad que solicita no está disponible." } 
+      end
+    else
+      setStocks('vende', article, @sale_detail)
+      respond_to do |format|
+        if @sale_detail.save
+          format.html { redirect_to :back, location: @sale_detail}
+          format.json { render :show, status: :created, location: @sale_detail }
+        else
+          format.html { redirect_to :back, location: @sale_detail.errors}
+          format.json { render json: @sale_detail.errors, status: :unprocessable_entity }
+        end
       end
     end
+   
   end
 
   # PATCH/PUT /sale_details/1

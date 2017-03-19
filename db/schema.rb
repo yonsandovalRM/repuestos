@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170306173417) do
+ActiveRecord::Schema.define(version: 20170314174303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,6 +116,35 @@ ActiveRecord::Schema.define(version: 20170306173417) do
     t.index ["status_payment_id"], name: "index_purchases_on_status_payment_id", using: :btree
     t.index ["supplier_id"], name: "index_purchases_on_supplier_id", using: :btree
     t.index ["type_document_id"], name: "index_purchases_on_type_document_id", using: :btree
+  end
+
+  create_table "quotation_details", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "stock"
+    t.integer  "pou"
+    t.integer  "discount"
+    t.integer  "quotation_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["article_id"], name: "index_quotation_details_on_article_id", using: :btree
+    t.index ["quotation_id"], name: "index_quotation_details_on_quotation_id", using: :btree
+  end
+
+  create_table "quotations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "payment_method_id"
+    t.string   "number_doc"
+    t.integer  "type_document_id"
+    t.integer  "status_payment_id"
+    t.string   "observation"
+    t.integer  "customer_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["customer_id"], name: "index_quotations_on_customer_id", using: :btree
+    t.index ["payment_method_id"], name: "index_quotations_on_payment_method_id", using: :btree
+    t.index ["status_payment_id"], name: "index_quotations_on_status_payment_id", using: :btree
+    t.index ["type_document_id"], name: "index_quotations_on_type_document_id", using: :btree
+    t.index ["user_id"], name: "index_quotations_on_user_id", using: :btree
   end
 
   create_table "sale_details", force: :cascade do |t|
@@ -253,6 +282,13 @@ ActiveRecord::Schema.define(version: 20170306173417) do
   add_foreign_key "purchases", "status_payments"
   add_foreign_key "purchases", "suppliers"
   add_foreign_key "purchases", "type_documents"
+  add_foreign_key "quotation_details", "articles"
+  add_foreign_key "quotation_details", "quotations"
+  add_foreign_key "quotations", "customers"
+  add_foreign_key "quotations", "payment_methods"
+  add_foreign_key "quotations", "status_payments"
+  add_foreign_key "quotations", "type_documents"
+  add_foreign_key "quotations", "users"
   add_foreign_key "sale_details", "articles"
   add_foreign_key "sale_details", "sales"
   add_foreign_key "sales", "customers"

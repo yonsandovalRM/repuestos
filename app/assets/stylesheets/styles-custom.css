@@ -2,6 +2,12 @@
     overflow-x: inherit;
     min-height: 0.01%;
 }
+.datos-compra span {
+    display: block;
+}
+.datos-compra {
+    margin: 15px 0;
+}
 thead {
     font-size: .8em;
 }

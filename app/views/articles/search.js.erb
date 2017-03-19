@@ -1,8 +1,17 @@
 $('#id_search').val("<%= @article_search.id %>");
 $('#description_search').html("<%= @article_search.description %>");
 $('#code_search').html("<%= @article_search.code %>");
-$('#stock_search').html("<%= @article_search.stock %>");
-$('#stock_store_search').html("<%= @article_search.stock_store %>");
+<% if @article_search.stock.to_i == 0 %>
+	$('#stock_search').html("<div class='text-danger'>Agotado</div>");
+<% else %>
+	$('#stock_search').html("<%= @article_search.stock %>");
+<% end %>
+<% if @article_search.stock_store.to_i == 0 %>
+	$('#stock_store_search').html("<div class='text-danger'>Agotado</div>");
+<% else %>
+	$('#stock_store_search').html("<%= @article_search.stock_store %>");
+<% end %>
+
 $('#pin_search').val("<%= @article_search.pin %>");
 $('#ptope').attr('title',"<%= number_to_currency(@article_search.pin) %>");
 $('#pou_search').val("<%= @article_search.pou %>");

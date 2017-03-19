@@ -7,104 +7,6 @@
 		%strong
 			= @purchase.number_doc
 .row
-	.col-md-8
-		.panel
-			.panel-body
-				
-				= form_for @purchase_detail, html: { role: "form" } do |f|
-					-if @purchase.errors.any?
-						.alert.alert-danger.alert-dismissable{role: "alert"}
-							%button.close{type: "button", data: {dismiss: "alert"} }
-								%span{aria: {hidden: "true"} } &times;
-								%span.sr-only Close
-							%h4= "#{pluralize(@purchase.errors.count, "error")} prohibited this purchase from being saved:"
-
-							%ul
-								- @purchase.errors.full_messages.each do |msg|
-									%li= msg
-					.row
-
-						.col-md-12
-							%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-primary btn-block"}
-								Seleccione un artículo
-							%p
-							= f.hidden_field :article_id, :id=> "id_search"
-							= f.hidden_field :purchase_id, :value => @purchase.id
-						.col-md-12
-							.form-group
-								= f.label "Artículo"
-								%input{:type => "text", :id => "description_search", :class => "form-control", :disabled => "true"}
-						.col-md-4
-							.form-group
-								= f.label "Código"
-								%input{:type => "text", :id => "code_search", :class => "form-control", :disabled => "true"}
-						.col-md-4
-							.form-group
-								= f.label "Stock actual en tienda"
-								%input{:type => "text", :id => "stock_search", :class => "form-control", :disabled => "true"}
-						.col-md-4
-							.form-group
-								= f.label "Stock actual en bodega"
-								%input{:type => "text", :id => "stock_store_search", :class => "form-control", :disabled => "true"}
-
-						.col-md-3
-							.form-group
-								= f.label "Stock Tienda", :for => :stock
-								= f.number_field :stock, class: 'form-control'
-								%small#emailHelp.form-text.text-muted
-									Ingrese un valor numérico mayor o igual a 0
-
-						.col-md-3
-							.form-group
-								= f.label "Stock Bodega", :for => :stock_store
-								= f.number_field :stock_store, class: 'form-control'
-								%small#emailHelp.form-text.text-muted
-									Ingrese un valor numérico mayor o igual a 0
-						.col-md-3
-							.form-group
-								= f.label "Precio Compra", :for => :pin
-								= f.number_field :pin, class: 'form-control', :id => "pin_search"
-								%small#emailHelp.form-text.text-muted
-									Ingrese el precio sin puntos ni símbolos
-						.col-md-3
-							%br
-							=f.submit "Agregar", :class=>"btn btn-success"
-
-
-		
-		.panel
-			.panel-body
-				- if @purchase.purchase_details.count > 0
-					%h5
-						Artículos comprados
-					%hr
-					%table.table.table-striped.table-bordered.table-hover.homelist
-						%thead
-							%tr
-								%th Código
-								%th Descripción
-								%th Tienda
-								%th Bodega
-								%th P. Compra
-								%th Neto
-								%th
-						%tbody
-							- @purchase.purchase_details.each do |detail|
-								%tr
-									%td= link_to detail.article.code, detail.article
-									%td= detail.article.description
-									%td= detail.stock
-									%td= detail.stock_store
-									%td= number_to_currency(detail.pin)
-									- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i
-									%td= number_to_currency(neto)
-									%td
-										= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger" do
-											%i.fa.fa-trash-o
-				- else
-					.alert.alert-info
-						No se encontraron artículos registrados en esta compra
-
 	.col-md-4
 		.panel.panel-default
 			
@@ -169,6 +71,103 @@
 				= link_to purchase_path(@purchase.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-info" do
 					%i.fa.fa-print
 					Comprobante
+	.col-md-8
+		.panel
+			.panel-body
+				.articulo-seleccionado
+					%h5
+						Artículo:
+						%strong#description_search
+
+					%span
+						Código:
+						%strong#code_search
+					%span
+						Cant. Tienda:
+						%strong#stock_search
+					%span
+						Cant. Bodega:
+						%strong#stock_store_search
+
+				= form_for @purchase_detail, html: { role: "form" } do |f|
+					-if @purchase.errors.any?
+						.alert.alert-danger.alert-dismissable{role: "alert"}
+							%button.close{type: "button", data: {dismiss: "alert"} }
+								%span{aria: {hidden: "true"} } &times;
+								%span.sr-only Close
+							%h4= "#{pluralize(@purchase.errors.count, "error")} prohibited this purchase from being saved:"
+
+							%ul
+								- @purchase.errors.full_messages.each do |msg|
+									%li= msg
+					.row
+
+						.col-md-12
+							%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-primary btn-block"}
+								Seleccione un artículo
+							%p
+							= f.hidden_field :article_id, :id=> "id_search"
+							= f.hidden_field :purchase_id, :value => @purchase.id
+						
+						.col-md-3
+							.form-group
+								= f.label "Stock Tienda", :for => :stock
+								= f.number_field :stock, class: 'form-control'
+								%small#emailHelp.form-text.text-muted
+									Ingrese un valor numérico mayor o igual a 0
+
+						.col-md-3
+							.form-group
+								= f.label "Stock Bodega", :for => :stock_store
+								= f.number_field :stock_store, class: 'form-control'
+								%small#emailHelp.form-text.text-muted
+									Ingrese un valor numérico mayor o igual a 0
+						.col-md-3
+							.form-group
+								= f.label "Precio Compra", :for => :pin
+								= f.number_field :pin, class: 'form-control', :id => "pin_search"
+								%small#emailHelp.form-text.text-muted
+									Ingrese el precio sin puntos ni símbolos
+						.col-md-3
+							%br
+							=f.submit "Agregar", :class=>"btn btn-success"
+
+
+	.col-md-12
+		.panel
+			.panel-body
+				- if @purchase.purchase_details.count > 0
+					%h5
+						Artículos comprados
+					%hr
+					%table.table.table-striped.table-bordered.table-hover.homelist
+						%thead
+							%tr
+								%th Código
+								%th Descripción
+								%th Tienda
+								%th Bodega
+								%th P. Compra
+								%th Neto
+								%th
+						%tbody
+							- @purchase.purchase_details.each do |detail|
+								%tr
+									%td= link_to detail.article.code, detail.article
+									%td= detail.article.description
+									%td= detail.stock
+									%td= detail.stock_store
+									%td= number_to_currency(detail.pin)
+									- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i
+									%td= number_to_currency(neto)
+									%td
+										= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+											%i.fa.fa-trash-o
+				- else
+					.alert.alert-info
+						No se encontraron artículos registrados en esta compra
+
+	
 				
 
 .modal.fade#searchArticle

@@ -68,12 +68,23 @@
 					%span.glyphicon.glyphicon-plus
 					Nueva compra
 				%hr
-				%small.text-muted
-					Listado de compras
 				%h5 
 					Artículos comprados para tienda:
 					= @stock
 				%h5
 					Artículos comprados para bodega:
 					= @stock_store
+		.panel
+			.panel-body
+				%h5 Los 10 artículos más comprados
+				%hr
+				%ol
+					- @mascomprados.each do |top|
+						- cantidad = PurchaseDetail.where(article_id: top.article_id).count
+						- articulo = Article.find(top.article_id)
+						
+						%li
+							= articulo.description
+							%small.text-muted
+								= cantidad
 
