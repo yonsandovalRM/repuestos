@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  root 'web#index'
+  get  'web/tienda'
+  get  'web/contacto'
+  get  'web/carro'
+
   resources :quotation_details
   resources :quotations do
     get :convert_to_quotation
@@ -34,7 +39,7 @@ Rails.application.routes.draw do
   resources :type_formats
   resources :type_articles
   resources :type_vehicles
-  root 'main#index'
+  get 'main/index'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

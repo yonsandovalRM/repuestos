@@ -1,0 +1,74 @@
+.space-min
+.container
+  .contact-form
+    .row
+      .col-sm-7
+        %form#ajax-contact{:action => "contact-form-mail.php", :method => "post", :role => "form"}
+          #form-messages.messages
+          .controls
+            .row
+              .col-md-6
+                .form-group
+                  %label{:for => "form_name"} Firstname *
+                  %input#form_name.form-control{"data-error" => "Firstname is required.", :name => "name", :placeholder => "Please enter your firstname *", :required => "required", :type => "text"}/
+                  .help-block.with-errors
+              .col-md-6
+                .form-group
+                  %label{:for => "form_lastname"} Lastname *
+                  %input#form_lastname.form-control{"data-error" => "Lastname is required.", :name => "surname", :placeholder => "Please enter your lastname *", :required => "required", :type => "text"}/
+                  .help-block.with-errors
+            .row
+              .col-md-6
+                .form-group
+                  %label{:for => "form_email"} Email *
+                  %input#form_email.form-control{"data-error" => "Valid email is required.", :name => "email", :placeholder => "Please enter your email *", :required => "required", :type => "email"}/
+                  .help-block.with-errors
+              .col-md-6
+                .form-group
+                  %label{:for => "form_phone"} Phone*
+                  %input#form_phone.form-control{:name => "phone", :onchange => "try{setCustomValidity('')}catch(e){}", :oninvalid => "setCustomValidity('Plz enter your correct phone number ')", :placeholder => "Please enter your phone*", :required => "", :type => "tel"}/
+            .row
+              .col-md-12
+                .form-group
+                  %label{:for => "form_message"} Message *
+                  %textarea#form_message.form-control{"data-error" => "Please,leave us a message.", :name => "message", :placeholder => "Message for me *", :required => "required", :rows => "4"}
+                  .help-block.with-errors
+              .col-md-12
+                %input.btn.btn-black{:type => "submit", :value => "Send message"}/
+            .row
+              .col-md-12
+                %br/
+                %small.text-muted
+                  %strong *
+                  These fields are required.
+      .col-sm-5
+        .row.col1
+          .col-xs-3
+            %i.fa.fa-map-marker{:style => "font-size:16px;"}
+              Address
+          .col-xs-9
+            One Gateway Center, Suite 25500+,
+            %br/
+            Newark 23, NJ 10235
+        .row.col1
+          .col-sm-3
+            %i.fa.fa-phone
+              Phone
+          .col-sm-9
+            +(91) 123 277 4239
+        .row.col1
+          .col-sm-3
+            %i.fa.fa-fax
+               Fax
+          .col-sm-9
+            123 123 4567
+        .row.col1
+          .col-sm-3
+            %i.fa.fa-envelope
+              Email
+          .col-sm-9
+            %a{:href => "mailto:info@yourdomain.com"} info@yourdomain.com
+            %br/
+            %a{:href => "mailto:support@yourdomain.com"} support@yourdomain.com
+        %br/
+        %iframe{:frameborder => "0", :height => "230", :marginheight => "0", :marginwidth => "0", :scrolling => "no", :src => "https://maps.google.co.in/maps?client=firefox-a&ie=UTF8&q=ethane+web+technologies&fb=1&gl=in&hq=ethane+web+technologies&cid=8183905562449910042&t=m&ll=28.639225,77.390442&spn=0.052731,0.154495&z=13&iwloc=A&output=embed", :style => "border-radius:0px;", :width => "100%"}

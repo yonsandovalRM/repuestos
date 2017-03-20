@@ -1,0 +1,46 @@
+/ Navigation
+.header-info-top
+  .container
+    .row
+      .col-xs-6.col-sm-3.col-md-3
+        %a{:href => "#"} 
+          %img{:src => asset_path("logo.jpg"), :alt => "Repuestos Catalán", :class => "img-responsive"}
+      .col-md-offset-5.col-md-4
+        .text-right
+          %strong{:style => "display:block;"}
+            + 56 9 981420980
+          %a{:href=>"mailto:ventas@rcatalan.cl", :style => "display:block;"}
+            ventas@rcatalan.cl
+          %span{:style => "display:block;"}
+            Av. Errázuriz 09428, Santa Cruz
+          .shop-cart
+            %a.btn.btn-primary{:href => web_carro_path}
+              %i.fa.fa-shopping-cart
+              Carro de cotización
+ 
+%nav.navbar.navbar-default{:role => "navigation"}
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{:href => root_path} Inicio
+        %li
+          %a{:href => web_tienda_path} Productos
+        %li
+          %a{:href => web_contacto_path} Contacto
+        
+        -if user_signed_in?
+          %li
+            %a{:href => main_index_path} Ir al Sistema
+          
+
+  / /.navbar-collapse
+/ /.container

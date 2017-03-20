@@ -11,6 +11,22 @@
   .col-md-8
     .panel
       .panel-body
+          
+
+        #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+          .panel.panel-default
+            #headingOne.panel-heading{:role => "tab"}
+              %h4.panel-title
+                %a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne", :role => "button"}
+                  Filtros avanzados
+                  %i.fa.fa-caret-down 
+            #collapseOne.panel-collapse.collapse{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+              .panel-body
+                %a{:href => "#", :class=>"btn btn-warning"}
+                  %i.fa.fa-exclamation-triangle
+                  Stock Mínimo
+                  
+         
         %table.table.table-striped.table-bordered.table-hover.articlelist
           %thead
             %tr
@@ -75,3 +91,4 @@
         = link_to new_article_path, class: 'btn btn-success' do
           %span.glyphicon.glyphicon-plus
           Nuevo Artículo
+

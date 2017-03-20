@@ -16,7 +16,7 @@ class SalesController < ApplicationController
     
     if @sale.sale_details.count > 0
       @sale.sale_details.each do |detail|
-        @tot_neto = @tot_neto.to_i + ((detail.stock.to_i + detail.stock_store.to_i) * detail.pou.to_i)
+        @tot_neto = @tot_neto.to_i + ((detail.stock.to_f + detail.stock_store.to_f) * detail.pou.to_i)
       end
 
       @tot_iva = @tot_neto * 0.19

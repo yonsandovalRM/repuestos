@@ -1,0 +1,122 @@
+
+#carousel-banner.carousel.slide{"data-ride" => "carousel"}
+  / Indicators
+  %ol.carousel-indicators
+    %li.active{"data-slide-to" => "0", "data-target" => "#carousel-banner"}
+    %li{"data-slide-to" => "1", "data-target" => "#carousel-banner"}
+  / Wrapper for slides
+  .carousel-inner{:role => "listbox"}
+    .item.active
+      %img{:src => asset_path("banner/1.jpg"), :alt => "..."}/
+      
+    .item
+      %img{:src => asset_path("banner/2.jpg"), :alt => "..."}/
+      
+  / Controls
+  %a.left.carousel-control{"data-slide" => "prev", :href => "#carousel-banner", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-left{"aria-hidden" => "true"}
+    %span.sr-only Previous
+  %a.right.carousel-control{"data-slide" => "next", :href => "#carousel-banner", :role => "button"}
+    %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
+    %span.sr-only Next
+
+%section.info-bar.info-bar-dark
+  .container
+    .row
+      .col-sm-4
+        %i.glyphicon.glyphicon-globe
+        %h3 FREE SHIPPING &amp; RETURN
+        %p Free shipping on all orders over $99.
+      .col-sm-4
+        %i.glyphicon.glyphicon-usd
+        %h3 MONEY BACK GUARANTEE
+        %p 100% money back guarantee.
+      .col-sm-4
+        %i.glyphicon.glyphicon-flag
+        %h3 ONLINE SUPPORT 24/7
+        %p Lorem ipsum dolor sit amet.
+
+
+
+.container
+ 
+  / Portfolio Section
+  .row
+    .col-lg-12
+      %h2.page-header Nuestros servicios
+    .col-md-4.col-sm-6
+      %a{:href => "portfolio-item.html"}
+        %img.img-responsive.img-portfolio.img-hover{:alt => "", :src => "http://placehold.it/700x450"}/
+    .col-md-4.col-sm-6
+      %a{:href => "portfolio-item.html"}
+        %img.img-responsive.img-portfolio.img-hover{:alt => "", :src => "http://placehold.it/700x450"}/
+    .col-md-4.col-sm-6
+      %a{:href => "portfolio-item.html"}
+        %img.img-responsive.img-portfolio.img-hover{:alt => "", :src => "http://placehold.it/700x450"}/
+    .col-md-4.col-sm-6
+      %a{:href => "portfolio-item.html"}
+        %img.img-responsive.img-portfolio.img-hover{:alt => "", :src => "http://placehold.it/700x450"}/
+    .col-md-4.col-sm-6
+      %a{:href => "portfolio-item.html"}
+        %img.img-responsive.img-portfolio.img-hover{:alt => "", :src => "http://placehold.it/700x450"}/
+    .col-md-4.col-sm-6
+      %a{:href => "portfolio-item.html"}
+        %img.img-responsive.img-portfolio.img-hover{:alt => "", :src => "http://placehold.it/700x450"}/
+  / /.row
+  / Features Section
+  .row
+    .col-lg-12
+      %h2.page-header Quiénes Somos
+    .col-md-6
+      %p The Modern Business template by Start Bootstrap includes:
+      %ul
+        %li
+          %strong Bootstrap v3.3.7
+        %li jQuery v1.11.1
+        %li Font Awesome v4.2.0
+        %li Working PHP contact form with validation
+        %li Unstyled page elements for easy customization
+        %li 17 HTML pages
+      %p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.
+    .col-md-6
+      %img.img-responsive{:alt => "", :src => "http://placehold.it/700x450"}/
+  / /.row
+  %hr/
+  .text-center.marcas
+    %p.lead 
+      MÁS DE 
+      %strong
+        14.000 
+      REPUESTOS Y ACCESORIOS DE TODAS LAS MARCAS
+  %hr/
+  #carousel-brands.carousel.slide{"data-ride" => "carousel"}
+    / Wrapper for slides
+    .carousel-inner
+      .item.active.container
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+      .item.container
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+      .item.container
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+        %img.col-md-2.col-sm-2.col-xs-2.logo.img-responsive{:alt => "...", :src => "http://placehold.it/200x100"}/
+    %div{:align => "center", :style => "margin-top:20px;"}
+      / Controls
+      %a.left{"data-slide" => "prev", :href => "#carousel-brands"}
+        %span.glyphicon.glyphicon-chevron-left
+      %a.right{"data-slide" => "next", :href => "#carousel-brands"}
+        %span.glyphicon.glyphicon-chevron-right
+/ /.container

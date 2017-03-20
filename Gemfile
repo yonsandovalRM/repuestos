@@ -76,6 +76,8 @@ gem 'cancancan', '~> 1.16'
 #for forms steps wizard
 gem 'wicked'
 gem 'annotate'
+gem 'toastr-rails'
+
 group :development, :test do
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

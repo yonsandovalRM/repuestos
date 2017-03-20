@@ -1,0 +1,48 @@
+.space-min
+.container
+  .row
+    .col-sm-3
+      %p.lead
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio tempora cumque soluta aperiam illum facilis totam ullam minus maiores nesciunt, nisi voluptatum officia reprehenderit praesentium natus dicta eveniet doloribus porro.
+        %a{:href => "#", :class=>"btn btn-primary"}
+          Continuar cotizando
+
+    .col-sm-9
+      .panel
+        .panel-heading
+          .panel-title
+            .row
+              .col-xs-6
+                %h5
+                  %span.glyphicon.glyphicon-shopping-cart
+                  Carro de cotización
+        .panel-body
+          .row
+            .col-xs-2
+              %img.img-responsive{:src => "http://placehold.it/100x70"}/
+            .col-xs-4
+              %h5.product-name
+                %strong Nombre
+              %h5
+                %small Descripción del producto
+            .col-xs-6
+              .col-xs-4
+                %input.form-control.input-sm{:type => "text", :value => "1"}/
+              .col-xs-2
+                %button.btn.btn-link.btn-xs{:type => "button"}
+                  %span.glyphicon.glyphicon-trash
+        
+          %hr
+          .row
+            .text-center
+              .col-xs-9
+                %h6.text-right Added items?
+              .col-xs-3
+                %button.btn.btn-default.btn-sm.btn-block{:type => "button"}
+                  Actualizar Carro
+        .panel-footer
+          .row.text-center
+            .col-xs-9
+            .col-xs-3
+              %button.btn.btn-success.btn-block{:type => "button"}
+                Cotizar

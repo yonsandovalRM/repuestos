@@ -22,7 +22,8 @@
 				= f.label "Nombre", :for => :supplier_id
 				%input{:type => "text", :id => "supplierName", :class => "form-control", :disabled => "true"}
 				= f.hidden_field :supplier_id, :id=>"supplierID"
-			
+				= link_to new_supplier_path, remote: true do
+					Nuevo proveedor
 		.col-md-4
 			.form-group
 				= f.label "Número de documento", :for => :number_doc

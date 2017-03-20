@@ -213,15 +213,19 @@
 
 
 
-			.panel-footer
+			
+	.col-md-4
+		.panel
+			.panel-body
 				= link_to articles_path, class: 'btn btn-default' do
 					%span.glyphicon.glyphicon-list-alt
 					Volver
 				= link_to edit_article_path(@article), class: 'btn btn-primary' do
 					%span.glyphicon.glyphicon-pencil
 					Editar
-	.col-md-4
-		.panel
+		.panel.panel-default
+			.panel-heading
+				Imágenes del producto
 			.panel-body
 				.owl-carousel.owl-theme
 					-@article.pictures.each do |pic|

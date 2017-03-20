@@ -20,11 +20,11 @@ class SaleDetailsController < ApplicationController
   def setStocks(action, article, sale)
 
     if action == 'vende'
-      stock       = article.stock.to_i - sale.stock.to_i
-      stock_store = article.stock_store.to_i - sale.stock_store.to_i
+      stock       = article.stock.to_f - sale.stock.to_f
+      stock_store = article.stock_store.to_f - sale.stock_store.to_f
     elsif action == 'elimina'
-      stock       = article.stock.to_i + sale.stock.to_i
-      stock_store = article.stock_store.to_i + sale.stock_store.to_i
+      stock       = article.stock.to_f + sale.stock.to_f
+      stock_store = article.stock_store.to_f + sale.stock_store.to_f
     end
 
     article.update_attributes(:stock => stock, :stock_store => stock_store)
@@ -47,7 +47,7 @@ class SaleDetailsController < ApplicationController
     end
     article = Article.find(@sale_detail.article_id)
 
-    if @sale_detail.stock.to_i > article.stock.to_i || @sale_detail.stock_store.to_i > article.stock_store.to_i
+    if @sale_detail.stock.to_f > article.stock.to_f || @sale_detail.stock_store.to_f > article.stock_store.to_f
       respond_to do |format|
         format.html { redirect_to :back, location: @sale_detail, notice: "No se ha agregado éste artículo, la cantidad que solicita no está disponible." } 
       end

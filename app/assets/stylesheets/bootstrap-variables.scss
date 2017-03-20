@@ -27,7 +27,7 @@ $brand-danger:          #da4453 !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #f1f1f6 !default;
+$body-bg:               #fff !default; //#f1f1f6
 //** Global text color on `<body>`.
 $text-color:            $gray-dark !default;
 
@@ -743,7 +743,7 @@ $panel-danger-heading-bg:     $state-danger-bg !default;
 //** Padding around the thumbnail image
 $thumbnail-padding:           4px !default;
 //** Thumbnail background color
-$thumbnail-bg:                $body-bg !default;
+$thumbnail-bg:                #fff !default;
 //** Thumbnail border color
 $thumbnail-border:            #ddd !default;
 //** Thumbnail border radius

@@ -25,7 +25,12 @@
 //= require moment/es
 //= require autocomplete-rails
 //= require jquery-ui
+//= require toastr
 //= require lightbox
 //= require bootstrap-tagsinput
 //= require sales
 //= require_tree .
+
+
+
+
