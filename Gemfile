@@ -68,7 +68,7 @@ gem 'acts-as-taggable-on', '~> 4.0'
 #pdf
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
-
+gem 'best_in_place', '~> 3.0.1'
 
 gem 'devise'
 

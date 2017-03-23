@@ -50,7 +50,7 @@ class PurchaseDetailsController < ApplicationController
     # @purchase_detail.stock
     respond_to do |format|
       if @purchase_detail.save
-        format.html { redirect_to :back, location: @purchase_detail, notice: 'Purchase detail was successfully created.' }
+        format.html { redirect_to :back, location: @purchase_detail, notice: 'Detalle añadido correctamente.' }
         format.json { render :show, status: :created, location: @purchase_detail }
       else
         format.html { render :new }
@@ -80,7 +80,7 @@ class PurchaseDetailsController < ApplicationController
     setStocks('resta', article, @purchase_detail)
     @purchase_detail.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Purchase detail was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Detalle eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

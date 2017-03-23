@@ -4,7 +4,7 @@
 #
 #  id           :integer          not null, primary key
 #  article_id   :integer
-#  stock        :integer
+#  stock        :float
 #  pou          :integer
 #  discount     :integer
 #  quotation_id :integer

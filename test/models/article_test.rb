@@ -14,9 +14,9 @@
 #  pin             :integer
 #  pou             :integer
 #  discount        :integer
-#  stock           :integer
-#  stock_store     :integer
-#  stock_min       :integer
+#  stock           :float
+#  stock_store     :float
+#  stock_min       :float
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  deleted_at      :datetime

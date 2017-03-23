@@ -28,7 +28,7 @@ class CommunesController < ApplicationController
 
     respond_to do |format|
       if @commune.save
-        format.html { redirect_to @commune, notice: 'Commune was successfully created.' }
+        format.html { redirect_to @commune, notice: 'Comuna creada correctamente.' }
         format.json { render :show, status: :created, location: @commune }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class CommunesController < ApplicationController
   def update
     respond_to do |format|
       if @commune.update(commune_params)
-        format.html { redirect_to @commune, notice: 'Commune was successfully updated.' }
+        format.html { redirect_to @commune, notice: 'Comuna actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @commune }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class CommunesController < ApplicationController
   def destroy
     @commune.destroy
     respond_to do |format|
-      format.html { redirect_to communes_url, notice: 'Commune was successfully destroyed.' }
+      format.html { redirect_to communes_url, notice: 'Comuna eliminada correctamente.' }
       format.json { head :no_content }
     end
   end

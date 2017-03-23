@@ -30,11 +30,11 @@
 								%tr
 									%td= type_vehicle.name
 									%td
-										= link_to type_vehicle, :class=>"btn btn-info" do
+										= link_to type_vehicle, :class=>"btn btn-info btn-xs" do
 											%i.fa.fa-eye
 									%td
-										= link_to edit_type_vehicle_path(type_vehicle), :class=>"btn btn-warning" do
+										= link_to edit_type_vehicle_path(type_vehicle), :class=>"btn btn-warning btn-xs" do
 											%i.fa.fa-pencil-square-o
 									%td
-										= link_to type_vehicle, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+										= link_to type_vehicle, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
 											%i.fa.fa-trash-o

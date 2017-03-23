@@ -52,14 +52,21 @@ class SaleDetailsController < ApplicationController
         format.html { redirect_to :back, location: @sale_detail, notice: "No se ha agregado éste artículo, la cantidad que solicita no está disponible." } 
       end
     else
-      setStocks('vende', article, @sale_detail)
-      respond_to do |format|
-        if @sale_detail.save
-          format.html { redirect_to :back, location: @sale_detail}
-          format.json { render :show, status: :created, location: @sale_detail }
-        else
-          format.html { redirect_to :back, location: @sale_detail.errors}
-          format.json { render json: @sale_detail.errors, status: :unprocessable_entity }
+      if @sale_detail.stock.to_f == 0 and @sale_detail.stock_store.to_f == 0
+        respond_to do |format|
+          format.html { redirect_to :back, location: @sale_detail, notice: "Debe ingresar un valor para poder vender." } 
+        end
+      else
+        setStocks('vende', article, @sale_detail)
+        respond_to do |format|
+          if @sale_detail.save
+            format.html { redirect_to :back, location: @sale_detail, notice: "Detalle añadido correctamente."}
+            format.json { render :show, status: :created, location: @sale_detail }
+          else
+
+            format.html { redirect_to :back, location: @sale_detail.errors}
+            format.json { render json: @sale_detail.errors, status: :unprocessable_entity }
+          end
         end
       end
     end

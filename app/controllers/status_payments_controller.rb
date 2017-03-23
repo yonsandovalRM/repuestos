@@ -29,7 +29,7 @@ class StatusPaymentsController < ApplicationController
 
     respond_to do |format|
       if @status_payment.save
-        format.html { redirect_to @status_payment, notice: 'Status payment was successfully created.' }
+        format.html { redirect_to @status_payment, notice: 'Estado de pago creado correctamente.' }
         format.json { render :show, status: :created, location: @status_payment }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class StatusPaymentsController < ApplicationController
   def update
     respond_to do |format|
       if @status_payment.update(status_payment_params)
-        format.html { redirect_to @status_payment, notice: 'Status payment was successfully updated.' }
+        format.html { redirect_to @status_payment, notice: 'Estado de pago actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @status_payment }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class StatusPaymentsController < ApplicationController
   def destroy
     @status_payment.destroy
     respond_to do |format|
-      format.html { redirect_to status_payments_url, notice: 'Status payment was successfully destroyed.' }
+      format.html { redirect_to status_payments_url, notice: 'Estado de pago eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

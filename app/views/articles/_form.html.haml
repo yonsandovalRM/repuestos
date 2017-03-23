@@ -65,15 +65,15 @@
 .form-group
   = f.label "Stock tienda", :for => :stock, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.number_field :stock, class: 'form-control'
+    = f.number_field :stock, class: 'form-control', :step=>"any"
 .form-group
   = f.label "Stock bodega", :for => :stock_store, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.number_field :stock_store, class: 'form-control'
+    = f.number_field :stock_store, class: 'form-control', :step=>"any"
 .form-group
   = f.label "Stock mínimo", :for => :stock_min, class: 'col-sm-2 control-label'
   .col-sm-10
-    = f.number_field :stock_min, class: 'form-control'
+    = f.number_field :stock_min, class: 'form-control', :step=>"any"
 .form-group
   = f.label "Habilitado?", :for => :status, class: 'col-sm-2 control-label'
   .col-sm-10

@@ -4,7 +4,7 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.all
+    @sales = Sale.order(created_at: :desc)
     @masvendidos = SaleDetail.select("sale_details.article_id, COUNT(article_id) AS t_count").group("sale_details.article_id").order("t_count DESC").limit(3)
     
   end
@@ -31,6 +31,46 @@ class SalesController < ApplicationController
       format.pdf { render template: 'sales/voucher', pdf: 'comprobante', layout: 'pdf.haml',:page_height => '20cm', :page_width => '8cm', margin:  {   top: '2mm', bottom: '2mm', left: '2mm', right: '2mm' }}
     end
   end
+
+  def convert_to_sale
+    #datos de cotizacion a venta
+    current_quotation = Quotation.find(params[:sale_id])
+    @sale = Sale.new
+    @sale.user_id           = current_quotation.user_id
+    @sale.payment_method_id = current_quotation.payment_method_id
+    @sale.number_doc        = current_quotation.number_doc
+    @sale.type_document_id  = current_quotation.type_document_id
+    @sale.status_payment_id = current_quotation.status_payment_id
+    @sale.observation       = current_quotation.observation
+    @sale.customer_id       = current_quotation.customer_id
+    @sale.save
+   
+    detalle = QuotationDetail.where(quotation_id: current_quotation.id)
+   
+
+    #suma el stock descontado en la venta y agrega el detalle a la cotizacion
+    detalle.each do |det|
+      article = Article.find(det.article_id)
+      article.stock = article.stock.to_f - det.stock.to_f 
+      article.save
+      sale_new_detail = SaleDetail.new
+      sale_new_detail.sale_id = @sale.id
+      sale_new_detail.article_id = det.article_id
+      sale_new_detail.stock = det.stock.to_f
+      sale_new_detail.pou = det.pou.to_i
+      sale_new_detail.save
+    end
+
+    #elimina cotización
+    # current_quotation.destroy
+
+    respond_to do |format|
+      format.html {redirect_to action: "show", id: @sale.id}
+    end
+    
+
+  end
+
 
   # GET /sales/new
   def new

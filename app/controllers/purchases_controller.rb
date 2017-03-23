@@ -22,7 +22,7 @@ class PurchasesController < ApplicationController
     
     if @purchase.purchase_details.count > 0
       @purchase.purchase_details.each do |detail|
-        @tot_neto = @tot_neto.to_i + ((detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i)
+        @tot_neto = @tot_neto.to_i + ((detail.stock.to_f + detail.stock_store.to_f) * detail.pin.to_i)
       end
 
       @tot_iva = @tot_neto * 0.19
@@ -56,7 +56,7 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     respond_to do |format|
       if @purchase.save
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully created.' }
+        format.html { redirect_to @purchase, notice: 'Compra registrada correctamente.' }
         format.json { render :show, status: :created, location: @purchase }
       else
         format.html { render :new }
@@ -70,7 +70,7 @@ class PurchasesController < ApplicationController
   def update
     respond_to do |format|
       if @purchase.update(purchase_params)
-        format.html { redirect_to @purchase, notice: 'Purchase was successfully updated.' }
+        format.html { redirect_to @purchase, notice: 'Compra actualizada correctamente.' }
         format.json { render :show, status: :ok, location: @purchase }
       else
         format.html { render :edit }
@@ -84,7 +84,7 @@ class PurchasesController < ApplicationController
   def destroy
     @purchase.destroy
     respond_to do |format|
-      format.html { redirect_to purchases_url, notice: 'Purchase was successfully destroyed.' }
+      format.html { redirect_to purchases_url, notice: 'Compra eliminada correctamente.' }
       format.json { head :no_content }
     end
   end

@@ -67,13 +67,13 @@
                       No Habilitado
 
                 %td
-                  = link_to article, :class=>"btn btn-info" do
+                  = link_to article, :class=>"btn btn-info btn-xs" do
                     %i.fa.fa-eye
                 %td
-                  = link_to edit_article_path(article), :class=>"btn btn-warning" do
+                  = link_to edit_article_path(article), :class=>"btn btn-warning btn-xs" do
                     %i.fa.fa-pencil-square-o
                 %td
-                  = link_to  article, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+                  = link_to  article, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
                     %i.fa.fa-trash-o
   .col-md-4
     .panel.panel-info

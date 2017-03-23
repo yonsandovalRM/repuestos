@@ -29,11 +29,11 @@
 								%tr
 									%td= type_document.name
 									%td
-										= link_to type_document, :class=>"btn btn-info" do
+										= link_to type_document, :class=>"btn btn-info btn-xs" do
 											%i.fa.fa-eye
 									%td
-										= link_to edit_type_document_path(type_document), :class=>"btn btn-warning" do
+										= link_to edit_type_document_path(type_document), :class=>"btn btn-warning btn-xs" do
 											%i.fa.fa-pencil-square-o
 									%td
-										= link_to  type_document, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger" do
+										= link_to  type_document, data: { confirm: 'Estas seguro?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
 											%i.fa.fa-trash-o

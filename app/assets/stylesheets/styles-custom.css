@@ -11,19 +11,25 @@ body{
     font-weight: bold;
 }
 .img-portfolio {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
+
 .navbar {
     border-radius: 0px !important;
     margin-bottom: 0px !important;
 }
-.navbar-default{
-    background: #fff !important;
-    border-bottom: 5px solid #e28746 !important;
+.navbar-default {
+    background: #f7bb26 !important;
+    border-bottom: 0px  !important; */
 }
 .header-info-top {
     padding: 20px 0px;
-    background: url(../pattern.png) repeat;
+    background: url(../header.svg) no-repeat right top;
+    background-size: cover;
+    background-color: #f7bb26;
+}
+.shop-cart {
+    margin-top: 10px;
 }
 /* Info Bar */
 .info-bar {
@@ -166,6 +172,21 @@ section.dark .info-bar.info-bar-color div.row>div {
 thead {
     font-size: .8em;
 }
+.no-margin-top{
+    margin-top: 0px !important;
+}
+.date-created {
+    background: #ffffff;
+    color: #949494;
+    padding: 9px;
+    font-size: 0.7em;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    text-transform: uppercase;
+}
 .breadcrumb{
     background: #fff;
 }
@@ -179,9 +200,10 @@ td.highlight {
 }
 .articulo-seleccionado {
     padding: 10px 10px;
-    background: #fbfbfb;
-    margin: 10px 0;
+    background: #f5f7f9;
+    margin-bottom: 10px;
     border: 1px solid #e2e2e8;
+    border-radius: 5px;
 }
 .articulo-seleccionado span {
     display: block;

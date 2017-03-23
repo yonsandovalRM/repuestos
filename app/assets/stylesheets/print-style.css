@@ -1,15 +1,4 @@
-table.table-print td {
-    padding: 0 10px;
-    font-size: .8em;
-    border-bottom: 1px dashed #ccc;
-}
 
-table.table-print th {
-    padding: 0 10px;
-    border-bottom: 1px solid #ccc;
-    font-size: .8em;
-	padding-bottom: 10px;
-}
 .print-title{
 	margin: 20px 0;
 }

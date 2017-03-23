@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   end
   resources :communes
   resources :sale_details
-  resources :sales
+  resources :sales do
+    get :convert_to_sale
+  end
   resources :customers do
     get :search_customer
     collection do 

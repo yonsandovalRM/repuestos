@@ -29,7 +29,7 @@ class PaymentMethodsController < ApplicationController
 
     respond_to do |format|
       if @payment_method.save
-        format.html { redirect_to @payment_method, notice: 'Payment method was successfully created.' }
+        format.html { redirect_to @payment_method, notice: 'Método de pago creado correctamente.' }
         format.json { render :show, status: :created, location: @payment_method }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class PaymentMethodsController < ApplicationController
   def update
     respond_to do |format|
       if @payment_method.update(payment_method_params)
-        format.html { redirect_to @payment_method, notice: 'Payment method was successfully updated.' }
+        format.html { redirect_to @payment_method, notice: 'Método de pago actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @payment_method }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class PaymentMethodsController < ApplicationController
   def destroy
     @payment_method.destroy
     respond_to do |format|
-      format.html { redirect_to payment_methods_url, notice: 'Payment method was successfully destroyed.' }
+      format.html { redirect_to payment_methods_url, notice: 'Método de pago eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

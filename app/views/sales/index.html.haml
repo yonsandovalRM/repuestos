@@ -7,6 +7,7 @@
 					%table.table.table-striped.table-bordered.table-hover.homelist
 						%thead
 							%tr
+								%th Fecha
 								%th Vendedor
 								%th Pago
 								%th Nº Doc.
@@ -20,6 +21,7 @@
 						%tbody
 							- @sales.each do |sale|
 								%tr
+									%td= sale.created_at.strftime('%d.%m.%Y')
 									%td= sale.user.username
 									%td
 										-if sale.payment_method.present?
@@ -39,13 +41,13 @@
 											= sale.customer.name
 			
 									%td
-										= link_to sale, :class=>"btn btn-info" do
+										= link_to sale, :class=>"btn btn-info btn-xs" do
 											%i.fa.fa-eye
 									%td
-										= link_to edit_sale_path(sale), :class=>"btn btn-warning" do
+										= link_to edit_sale_path(sale), :class=>"btn btn-warning btn-xs" do
 											%i.fa.fa-pencil-square-o
 									%td
-										= link_to  sale, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+										= link_to  sale, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
 											%i.fa.fa-trash-o
 	.col-md-4
 		.panel

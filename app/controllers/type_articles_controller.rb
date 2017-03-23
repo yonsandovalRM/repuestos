@@ -29,7 +29,7 @@ class TypeArticlesController < ApplicationController
 
     respond_to do |format|
       if @type_article.save
-        format.html { redirect_to @type_article, notice: 'Type article was successfully created.' }
+        format.html { redirect_to @type_article, notice: 'Tipo de artículo creado correctamente.' }
         format.json { render :show, status: :created, location: @type_article }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class TypeArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @type_article.update(type_article_params)
-        format.html { redirect_to @type_article, notice: 'Type article was successfully updated.' }
+        format.html { redirect_to @type_article, notice: 'Tipo de artículo actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @type_article }
       else
         format.html { render :edit }

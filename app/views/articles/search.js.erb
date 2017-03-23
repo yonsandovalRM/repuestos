@@ -1,13 +1,13 @@
 $('#id_search').val("<%= @article_search.id %>");
 $('#description_search').html("<%= @article_search.description %>");
 $('#code_search').html("<%= @article_search.code %>");
-<% if @article_search.stock.to_i == 0 %>
-	$('#stock_search').html("<div class='text-danger'>Agotado</div>");
+<% if @article_search.stock.to_f == 0 %>
+	$('#stock_search').html("Agotado");
 <% else %>
 	$('#stock_search').html("<%= @article_search.stock %>");
 <% end %>
-<% if @article_search.stock_store.to_i == 0 %>
-	$('#stock_store_search').html("<div class='text-danger'>Agotado</div>");
+<% if @article_search.stock_store.to_f == 0 %>
+	$('#stock_store_search').html("Agotado");
 <% else %>
 	$('#stock_store_search').html("<%= @article_search.stock_store %>");
 <% end %>

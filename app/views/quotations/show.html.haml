@@ -3,7 +3,7 @@
 		%a{:href => root_path}
 			%i.fa.fa-home
 	%li.active
-		Estas viendo la cotización Nº:
+		Estas viendo la Cotización Nº:
 		%strong
 			= @quotation.id
 .row
@@ -11,143 +11,140 @@
 		.panel
 			.panel-body
 				.row
-					.col-md-3
-						.panel.panel-default
+					.col-md-9
+						.panel.panel-info
 							.panel-heading
 								Nº Cotización
 								= @quotation.id
+								.date-created
+									Creada el
+									%strong
+										= @quotation.created_at.strftime('%d-%m-%Y')
+									a las
+									%strong
+										= @quotation.created_at.strftime('%T')
 							.panel-body
-								
-								%small.text-muted
-									Cliente:
-								%h5
-									-if @quotation.customer.present?
-										= @quotation.customer.name
-									-else
-										No registrado
-									
-								%small.text-muted
-									Datos de la venta:
-								.datos-compra
-									%span
-										Tipo de documento: 
-										- if @quotation.type_document.present? 
-											= @quotation.type_document.name
-									%span
-										Nº de documento: 
-										= @quotation.number_doc
-									%span
-										Creación de la venta:
-										%ul
-											%li
-												Fecha:
-												%strong
-													= @quotation.created_at.strftime('%d-%m-%Y')
-											%li
-												Hora:
-												%strong
-													= @quotation.created_at.strftime('%T')
-									%span
-										Método de pago:
-										- if @quotation.payment_method.present? 
-											= @quotation.payment_method.name
-									%span
-										Observaciones
-										= @quotation.observation
-									%span
-										Estado:
-										%ul
-											%li 
-												De pago:
-												- if @quotation.status_payment.present? 
-													= @quotation.status_payment.name
-						
-								
-								
-					.col-md-6
-						.row
-							.col-md-12
-								.articulo-seleccionado
-									%h5
-										Artículo:
-										%strong#description_search
+								.row
+									.col-md-6
+										%small.text-muted
+											Cliente:
+										%h5.no-margin-top
+											-if @quotation.customer.present?
+												= @quotation.customer.name
+											-else
+												%em Sin registrar
+											
+										%small.text-muted
+											Tipo de documento:
+										%h5.no-margin-top
+											
+											- if @quotation.type_document.present? 
+												= @quotation.type_document.name
+											- else
+												%em Sin registrar
+										%small.text-muted
+											Nº de documento:
+										%h5.no-margin-top
+											- if @quotation.number_doc.present?
+												= @quotation.number_doc
+											- else
+												%em Sin registrar
+									.col-md-6
 
-									%span
+										%small.text-muted
+											Método de pago:
+										%h5.no-margin-top 
+											- if @quotation.payment_method.present? 
+												= @quotation.payment_method.name
+											- else 
+												%em Sin registrar
+											
+										%small.text-muted
+											Observaciones
+										%h5.no-margin-top
+											- if @quotation.observation.present?
+												= @quotation.observation
+											- else
+												%em Sin observaciones 
+
+										%small.text-muted
+											Estado de pago
+										%h5.no-margin-top
+											- if @quotation.status_payment.present?
+												= @quotation.status_payment.name
+											- else
+												%em Sin registrar
+									
+					
+							
+						
+					.col-md-3
+						.panel.panel-info
+							.panel-heading
+								Acciones
+							.panel-body.text-center
+								= link_to quotations_path, class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Ir a cotizaciones" do
+									%span.glyphicon.glyphicon-list-alt
+								= link_to edit_quotation_path(@quotation), class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Editar esta cotización" do
+									%span.glyphicon.glyphicon-pencil
+								= link_to quotation_path(@quotation.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-default","data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Imprimir comprobante" do
+									%i.fa.fa-print
+								= link_to sale_convert_to_sale_path(@quotation.id), :class=>"btn btn-success","data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Convertir a Venta" do
+									%i.fa.fa-retweet
+
+					.col-md-12
+						.panel.panel-info
+							.panel-heading
+								Detalle de artículos
+							.panel-body
+								.articulo-seleccionado
+									%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-info "}
+										%i.fa.fa-search
+										Buscar artículo
+									%h5
 										Código:
-										%strong#code_search
-									%span
-										Cant. Tienda:
-										%strong#stock_search
-									%span
-										Cant. Bodega:
-										%strong#stock_store_search
+										%strong.text-info#code_search
+									%h5
+										Descripción: 
+										%strong.text-info#description_search
+										
+										
 
 									.text-right
 										%button.btn.btn-default{"data-toggle"=>"tooltip", "data-placement"=>"left", :id=>"ptope", :title=> ""}
 											%i.fa.fa-eye
 
-								= form_for @quotation_detail, html: { role: "form" } do |f|
-									-if @quotation.errors.any?
-										.alert.alert-danger.alert-dismissable{role: "alert"}
-											%button.close{type: "button", data: {dismiss: "alert"} }
-												%span{aria: {hidden: "true"} } &times;
-												%span.sr-only Close
-											%h4= "#{pluralize(@quotation.errors.count, "error")} Prohibió la venta de esta venta:"
+									= form_for @quotation_detail, html: { role: "form" } do |f|
+										-if @quotation.errors.any?
+											.alert.alert-danger.alert-dismissable{role: "alert"}
+												%button.close{type: "button", data: {dismiss: "alert"} }
+													%span{aria: {hidden: "true"} } &times;
+													%span.sr-only Close
+												%h4= "#{pluralize(@quotation.errors.count, "error")} Prohibió agregar para esta cotización:"
 
-											%ul
-												- @quotation.errors.full_messages.each do |msg|
-													%li= msg
-									
-									= f.hidden_field :article_id, :id=> "id_search", :required => :true
-									= f.hidden_field :quotation_id, :value => @quotation.id
-									.row
-										.col-md-3
-											.form-group
-												= f.label "Cantidad", :for => :stock
-												= f.number_field :stock, class: 'form-control'
-												%small#emailHelp.form-text.text-muted
-													Ingrese un valor numérico mayor o igual a 0
-
+												%ul
+													- @quotation.errors.full_messages.each do |msg|
+														%li= msg
 										
-										.col-md-3
-											.form-group
-												= f.label "Precio Venta", :for => :pou
-												= f.number_field :pou, class: 'form-control', :id => "pou_search"
-												%small#emailHelp.form-text.text-muted
-													Ingrese el precio sin puntos ni símbolos
-										.col-md-3
-											%br
-											=f.submit "Agregar", :class=>"btn btn-success btn-block"
-							
-						
-					.col-md-3
-						= link_to quotations_path, class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Ir a ventas" do
-							%span.glyphicon.glyphicon-list-alt
-						= link_to edit_quotation_path(@quotation), class: 'btn btn-primary',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Editar esta venta" do
-							%span.glyphicon.glyphicon-pencil
-						= link_to quotation_path(@quotation.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-info","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Imprimir comprobante" do
-							%i.fa.fa-print
-						= link_to quotation_convert_to_quotation_path(@quotation.id), :class=>"btn btn-warning","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Convertir a cotización" do
-							%i.fa.fa-retweet
-						%hr
-						.panel.panel-primary
-							.panel-heading
-								Seleccione artículos
-							.panel-body
-
-								%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-primary btn-block"}
-									%i.fa.fa-search
-									Seleccione un artículo
-						.panel.panel-primary
-							.panel-heading
-								Destacados
-							.panel-body
-								%p proximamente
-
-					.col-md-12
-						.panel.panel-default
-							.panel-heading
-								Detalle de venta
+										= f.hidden_field :article_id, :id=> "id_search", :required => :true
+										= f.hidden_field :quotation_id, :value => @quotation.id
+										.row
+											.col-md-4
+												.form-group
+													= f.label "Tienda", :for => :stock
+													%small.text-info#stock_search
+													= f.number_field :stock, class: 'form-control', :step=>"any"
+													%small#emailHelp.form-text.text-muted
+														Ingrese un valor numérico mayor o igual a 0
+											.col-md-4
+												.form-group
+													= f.label "Precio Venta", :for => :pou
+													= f.number_field :pou, class: 'form-control', :id => "pou_search"
+													%small#emailHelp.form-text.text-muted
+														Ingrese el precio sin puntos ni símbolos
+											.col-md-1
+												%br
+												=f.submit "Agregar", :class=>"btn btn-info btn-block"
 							.panel-body
 								- if @quotation.quotation_details.count > 0
 									%table.table.table-striped.table-bordered.table-hover.homelist
@@ -155,7 +152,7 @@
 											%tr
 												%th Código
 												%th Descripción
-												%th Tienda
+												%th Cantidad
 												%th P. Venta
 												%th Neto
 												%th
@@ -166,23 +163,23 @@
 													%td= detail.article.description
 													%td= detail.stock
 													%td= number_to_currency(detail.pou)
-													- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pou.to_i
+													- neto = detail.stock.to_f * detail.pou.to_i
 													%td= number_to_currency(neto)
 													%td
-														= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+														= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
 															%i.fa.fa-trash-o
 								
-								.panel.text-right
-									.panel-body
-										%small.text-muted
-											Neto: 
-										%h5= number_to_currency(@tot_neto)
-										%small.text-muted
-											IVA: 
-										%h5= number_to_currency(@tot_iva)
-										%small.text-muted
-											Total: 
-										%h5= number_to_currency(@tot_total)
+								.text-right
+									%small.text-muted
+										Neto: 
+									%h5= number_to_currency(@tot_neto)
+									%small.text-muted
+										IVA: 
+									%h5= number_to_currency(@tot_iva)
+									%small.text-muted
+										Total: 
+									%h5= number_to_currency(@tot_total)
+								
 .modal.fade#searchArticle
 	.modal-dialog.modal-lg
 		.modal-content
@@ -193,6 +190,13 @@
 				%h4.modal-title
 					Buscando artículo
 			.modal-body
+
+
+
+
+
+
+
 
 
 

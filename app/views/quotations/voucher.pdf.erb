@@ -1,0 +1,57 @@
+<small class="text-muted text-right" style="display: block;">Fecha cotización: <%= @quotation.created_at.strftime('%d-%m-%Y') %></small>
+<small class="text-muted text-right" style="display: block;">Cotización Nº <strong><%= @quotation.id %></strong></small><br>
+<% if @quotation.customer.present? %>
+	<small>Cliente: <strong><%= @quotation.customer.name %></strong></small><br>
+	<small>RUN: <strong><%= @quotation.customer.run %></strong></small><br>
+	<% if @quotation.type_document.present? %>
+		<small>Tipo: <strong><%= @quotation.type_document.name %></strong></small><br>
+	<% end %>
+	<% if @quotation.number_doc.present? %>
+		<small>Nº Documento: <strong><%= @quotation.number_doc %></strong></small><br>
+	<% end %>
+	<% if @quotation.payment_method.present? %>
+		<small>Método de pago: <strong><%= @quotation.payment_method.name %></strong></small><br>
+	<% end %>
+	<% if @quotation.status_payment.present? %>
+		<small>Estado de pago: <strong><%= @quotation.status_payment.name %></strong></small>
+	<% end %>
+	<% if @quotation.type_document.present? %>
+		<% if (@quotation.type_document.id == 3) %>
+			<small class="text-muted print-title" style="display: block;">Datos para factura</small>
+			<small>Razón Social: <strong><%= @quotation.customer.b_name %></strong></small><br>
+			<small>RUT: <strong><%= @quotation.customer.b_rut %></strong></small><br>
+			<small>Giro: <strong><%= @quotation.customer.b_activity %></strong></small><br>
+			<small>Dirección: <strong><%= @quotation.customer.b_address %></strong></small><br>
+			<small>Comuna: <strong><%= @quotation.customer.b_commune %></strong></small><br>
+			<small>Teléfono: <strong><%= @quotation.customer.b_phone %></strong></small><br>
+			<small>Email: <strong><%= @quotation.customer.b_email %></strong></small><br>
+		<% end %>
+	<% end %>
+
+<% end %>
+<small class="text-muted print-title" style="display: block;">Detalle de venta</small>
+<table class="table-print">
+	<tbody>
+		<% @quotation.quotation_details.each do |detail| %>
+			<tr>
+				<td>
+					<%= detail.article.description %>
+				</td>
+			</tr>
+			<tr>
+				<% cantidad = detail.stock.to_f %>
+				<td>
+				<% neto = detail.stock.to_f * detail.pou.to_i %>
+				<small class="text-muted">CODIGO:&nbsp;&nbsp; <%= detail.article.code %> &nbsp;&nbsp;&nbsp;<%= cantidad %> &nbsp;x &nbsp;&nbsp;&nbsp;<%= detail.pou %></small>	<span class="pull-right"><%= number_to_currency(neto) %></span> </td>
+			
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="text-right">
+	<small>Neto: <strong><%= number_to_currency(@tot_neto) %></strong></small><br>
+	<small>IVA: <strong><%= number_to_currency(@tot_iva) %></strong></small><br>
+	<small>Total: <strong><%= number_to_currency(@tot_total) %></strong></small><br>
+</div>
+

@@ -14,7 +14,7 @@ class QuotationsController < ApplicationController
     
     if @quotation.quotation_details.count > 0
       @quotation.quotation_details.each do |detail|
-        @tot_neto = @tot_neto.to_i + (detail.stock.to_i * detail.pou.to_i)
+        @tot_neto = @tot_neto.to_i + (detail.stock.to_f * detail.pou.to_i)
       end
 
       @tot_iva = @tot_neto * 0.19
@@ -26,7 +26,7 @@ class QuotationsController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.pdf { render template: 'sales/voucher', pdf: 'comprobante', layout: 'pdf.haml',:page_height => '20cm', :page_width => '8cm', margin:  {   top: '2mm', bottom: '2mm', left: '2mm', right: '2mm' }}
+      format.pdf { render template: 'quotations/voucher', pdf: 'comprobante', layout: 'pdf.haml',:page_height => '20cm', :page_width => '8cm', margin:  {   top: '2mm', bottom: '2mm', left: '2mm', right: '2mm' }}
     end
   end
 
@@ -41,10 +41,30 @@ class QuotationsController < ApplicationController
     @quotation.status_payment_id = current_sale.status_payment_id
     @quotation.observation       = current_sale.observation
     @quotation.customer_id       = current_sale.customer_id
-
     @quotation.save
+   
+    detalle = SaleDetail.where(sale_id: current_sale.id)
+   
+
+    #suma el stock descontado en la venta y agrega el detalle a la cotizacion
+    detalle.each do |det|
+      article = Article.find(det.article_id)
+      article.stock = article.stock.to_f + det.stock.to_f 
+      article.stock_store = article.stock_store.to_f + det.stock_store.to_f
+      article.save
+      quotation_new_detail = QuotationDetail.new
+      quotation_new_detail.quotation_id = @quotation.id
+      quotation_new_detail.article_id = det.article_id
+      quotation_new_detail.stock = det.stock.to_f + det.stock_store.to_f
+      quotation_new_detail.pou = det.pou.to_i
+      quotation_new_detail.save
+    end
+
+    #elimina venta
+    current_sale.destroy
+
     respond_to do |format|
-      format.html { render :show }
+      format.html {redirect_to action: "show", id: @quotation.id}
     end
     
 

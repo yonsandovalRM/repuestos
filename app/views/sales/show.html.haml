@@ -11,148 +11,148 @@
 		.panel
 			.panel-body
 				.row
-					.col-md-3
-						.panel.panel-default
+					.col-md-9
+						.panel.panel-success
 							.panel-heading
 								Nº Venta
 								= @sale.id
+								.date-created
+									Creada el
+									%strong
+										= @sale.created_at.strftime('%d-%m-%Y')
+									a las
+									%strong
+										= @sale.created_at.strftime('%T')
 							.panel-body
-								
-								%small.text-muted
-									Cliente:
-								%h5
-									-if @sale.customer.present?
-										= @sale.customer.name
-									-else
-										No registrado
-									
-								%small.text-muted
-									Datos de la venta:
-								.datos-compra
-									%span
-										Tipo de documento: 
-										- if @sale.type_document.present? 
-											= @sale.type_document.name
-									%span
-										Nº de documento: 
-										= @sale.number_doc
-									%span
-										Creación de la venta:
-										%ul
-											%li
-												Fecha:
-												%strong
-													= @sale.created_at.strftime('%d-%m-%Y')
-											%li
-												Hora:
-												%strong
-													= @sale.created_at.strftime('%T')
-									%span
-										Método de pago:
-										- if @sale.payment_method.present? 
-											= @sale.payment_method.name
-									%span
-										Observaciones
-										= @sale.observation
-									%span
-										Estado:
-										%ul
-											%li 
-												De pago:
-												- if @sale.status_payment.present? 
-													= @sale.status_payment.name
-						
-								
-								
-					.col-md-6
-						.row
-							.col-md-12
-								.articulo-seleccionado
-									%h5
-										Artículo:
-										%strong#description_search
+								.row
+									.col-md-6
+										%small.text-muted
+											Cliente:
+										%h5.no-margin-top
+											-if @sale.customer.present?
+												= @sale.customer.name
+											-else
+												%em Sin registrar
+											
+										%small.text-muted
+											Tipo de documento:
+										%h5.no-margin-top
+											
+											- if @sale.type_document.present? 
+												= @sale.type_document.name
+											- else
+												%em Sin registrar
+										%small.text-muted
+											Nº de documento:
+										%h5.no-margin-top
+											- if @sale.number_doc.present?
+												= @sale.number_doc
+											- else
+												%em Sin registrar
+									.col-md-6
 
-									%span
+										%small.text-muted
+											Método de pago:
+										%h5.no-margin-top 
+											- if @sale.payment_method.present? 
+												= @sale.payment_method.name
+											- else 
+												%em Sin registrar
+											
+										%small.text-muted
+											Observaciones
+										%h5.no-margin-top
+											- if @sale.observation.present?
+												= @sale.observation
+											- else
+												%em Sin observaciones 
+
+										%small.text-muted
+											Estado de pago
+										%h5.no-margin-top
+											- if @sale.status_payment.present?
+												= @sale.status_payment.name
+											- else
+												%em Sin registrar
+									
+					
+							
+						
+					.col-md-3
+						.panel.panel-success
+							.panel-heading
+								Acciones
+							.panel-body.text-center
+								= link_to sales_path, class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Ir a ventas" do
+									%span.glyphicon.glyphicon-list-alt
+								= link_to edit_sale_path(@sale), class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Editar esta venta" do
+									%span.glyphicon.glyphicon-pencil
+								= link_to sale_path(@sale.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-default","data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Imprimir comprobante" do
+									%i.fa.fa-print
+								= link_to quotation_convert_to_quotation_path(@sale.id), :class=>"btn btn-info","data-toggle"=>"tooltip", "data-placement"=>"bottom",  :title=> "Convertir a cotización" do
+									%i.fa.fa-retweet
+
+					.col-md-12
+						.panel.panel-success
+							.panel-heading
+								Detalle de venta
+							.panel-body
+								.articulo-seleccionado
+									%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-success "}
+										%i.fa.fa-search
+										Buscar artículo
+									%h5
 										Código:
-										%strong#code_search
-									%span
-										Cant. Tienda:
-										%strong#stock_search
-									%span
-										Cant. Bodega:
-										%strong#stock_store_search
+										%strong.text-info#code_search
+									%h5
+										Descripción: 
+										%strong.text-info#description_search
+										
+										
 
 									.text-right
 										%button.btn.btn-default{"data-toggle"=>"tooltip", "data-placement"=>"left", :id=>"ptope", :title=> ""}
 											%i.fa.fa-eye
 
-								= form_for @sale_detail, html: { role: "form" } do |f|
-									-if @sale.errors.any?
-										.alert.alert-danger.alert-dismissable{role: "alert"}
-											%button.close{type: "button", data: {dismiss: "alert"} }
-												%span{aria: {hidden: "true"} } &times;
-												%span.sr-only Close
-											%h4= "#{pluralize(@sale.errors.count, "error")} Prohibió la venta de esta venta:"
+									= form_for @sale_detail, html: { role: "form" } do |f|
+										-if @sale.errors.any?
+											.alert.alert-danger.alert-dismissable{role: "alert"}
+												%button.close{type: "button", data: {dismiss: "alert"} }
+													%span{aria: {hidden: "true"} } &times;
+													%span.sr-only Close
+												%h4= "#{pluralize(@sale.errors.count, "error")} Prohibió la venta de esta venta:"
 
-											%ul
-												- @sale.errors.full_messages.each do |msg|
-													%li= msg
-									
-									= f.hidden_field :article_id, :id=> "id_search", :required => :true
-									= f.hidden_field :sale_id, :value => @sale.id
-									.row
-										.col-md-3
-											.form-group
-												= f.label "Tienda", :for => :stock
-												= f.number_field :stock, class: 'form-control'
-												%small#emailHelp.form-text.text-muted
-													Ingrese un valor numérico mayor o igual a 0
+												%ul
+													- @sale.errors.full_messages.each do |msg|
+														%li= msg
+										
+										= f.hidden_field :article_id, :id=> "id_search", :required => :true
+										= f.hidden_field :sale_id, :value => @sale.id
+										.row
+											.col-md-3
+												.form-group
+													= f.label "Tienda", :for => :stock
+													%small.text-info#stock_search
+													= f.number_field :stock, class: 'form-control', :step=>"any"
+													%small#emailHelp.form-text.text-muted
+														Ingrese un valor numérico mayor o igual a 0
 
-										.col-md-3
-											.form-group
-												= f.label "Bodega", :for => :stock_store
-												= f.number_field :stock_store, class: 'form-control'
-												%small#emailHelp.form-text.text-muted
-													Ingrese un valor numérico mayor o igual a 0
-										.col-md-3
-											.form-group
-												= f.label "Precio Venta", :for => :pou
-												= f.number_field :pou, class: 'form-control', :id => "pou_search"
-												%small#emailHelp.form-text.text-muted
-													Ingrese el precio sin puntos ni símbolos
-										.col-md-3
-											%br
-											=f.submit "Agregar", :class=>"btn btn-success btn-block"
-							
-						
-					.col-md-3
-						= link_to sales_path, class: 'btn btn-default',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Ir a ventas" do
-							%span.glyphicon.glyphicon-list-alt
-						= link_to edit_sale_path(@sale), class: 'btn btn-primary',"data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Editar esta venta" do
-							%span.glyphicon.glyphicon-pencil
-						= link_to sale_path(@sale.id, :format => :pdf), :target =>"_blank", :class=>"btn btn-info","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Imprimir comprobante" do
-							%i.fa.fa-print
-						= link_to quotation_convert_to_quotation_path(@sale.id), :class=>"btn btn-warning","data-toggle"=>"tooltip", "data-placement"=>"bottom", :id=>"ptope", :title=> "Convertir a cotización" do
-							%i.fa.fa-retweet
-						%hr
-						.panel.panel-primary
-							.panel-heading
-								Seleccione artículos
-							.panel-body
-
-								%a{:href => articles_path, "data-remote"=> "true" , :class=>"btn btn-primary btn-block"}
-									%i.fa.fa-search
-									Seleccione un artículo
-						.panel.panel-primary
-							.panel-heading
-								Destacados
-							.panel-body
-								%p proximamente
-
-					.col-md-12
-						.panel.panel-default
-							.panel-heading
-								Detalle de venta
+											.col-md-3
+												.form-group
+													= f.label "Bodega", :for => :stock_store
+													%small.text-info#stock_store_search
+													= f.number_field :stock_store, class: 'form-control', :step=>"any"
+													%small#emailHelp.form-text.text-muted
+														Ingrese un valor numérico mayor o igual a 0
+											.col-md-4
+												.form-group
+													= f.label "Precio Venta", :for => :pou
+													= f.number_field :pou, class: 'form-control', :id => "pou_search"
+													%small#emailHelp.form-text.text-muted
+														Ingrese el precio sin puntos ni símbolos
+											.col-md-1
+												%br
+												=f.submit "Agregar", :class=>"btn btn-success btn-block"
 							.panel-body
 								- if @sale.sale_details.count > 0
 									%table.table.table-striped.table-bordered.table-hover.homelist
@@ -173,23 +173,23 @@
 													%td= detail.stock
 													%td= detail.stock_store
 													%td= number_to_currency(detail.pou)
-													- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pou.to_i
+													- neto = (detail.stock.to_f + detail.stock_store.to_f) * detail.pou.to_i
 													%td= number_to_currency(neto)
 													%td
-														= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+														= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
 															%i.fa.fa-trash-o
 								
-								.panel.text-right
-									.panel-body
-										%small.text-muted
-											Neto: 
-										%h5= number_to_currency(@tot_neto)
-										%small.text-muted
-											IVA: 
-										%h5= number_to_currency(@tot_iva)
-										%small.text-muted
-											Total: 
-										%h5= number_to_currency(@tot_total)
+								.text-right
+									%small.text-muted
+										Neto: 
+									%h5= number_to_currency(@tot_neto)
+									%small.text-muted
+										IVA: 
+									%h5= number_to_currency(@tot_iva)
+									%small.text-muted
+										Total: 
+									%h5= number_to_currency(@tot_total)
+							
 .modal.fade#searchArticle
 	.modal-dialog.modal-lg
 		.modal-content

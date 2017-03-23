@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314174303) do
+ActiveRecord::Schema.define(version: 20170320134534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 20170314174303) do
     t.integer  "pin"
     t.integer  "pou"
     t.integer  "discount"
-    t.integer  "stock"
-    t.integer  "stock_store"
-    t.integer  "stock_min"
+    t.float    "stock"
+    t.float    "stock_store"
+    t.float    "stock_min"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.datetime "deleted_at"
@@ -90,8 +90,8 @@ ActiveRecord::Schema.define(version: 20170314174303) do
 
   create_table "purchase_details", force: :cascade do |t|
     t.integer  "article_id"
-    t.integer  "stock"
-    t.integer  "stock_store"
+    t.float    "stock"
+    t.float    "stock_store"
     t.integer  "pin"
     t.integer  "purchase_id"
     t.datetime "created_at",  null: false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 20170314174303) do
 
   create_table "quotation_details", force: :cascade do |t|
     t.integer  "article_id"
-    t.integer  "stock"
+    t.float    "stock"
     t.integer  "pou"
     t.integer  "discount"
     t.integer  "quotation_id"
@@ -149,8 +149,8 @@ ActiveRecord::Schema.define(version: 20170314174303) do
 
   create_table "sale_details", force: :cascade do |t|
     t.integer  "article_id"
-    t.integer  "stock"
-    t.integer  "stock_store"
+    t.float    "stock"
+    t.float    "stock_store"
     t.integer  "pou"
     t.integer  "discount"
     t.integer  "sale_id"

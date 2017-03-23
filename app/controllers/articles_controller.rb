@@ -59,7 +59,7 @@ class ArticlesController < ApplicationController
             @article.pictures.create(image: image)
           }
         end
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
+        format.html { redirect_to @article, notice: 'Artículo creado correctamente.' }
         format.json { render :show, status: :created, location: @article }
         format.js   { render "show.js.erb", location: @article }
       else
@@ -87,7 +87,7 @@ class ArticlesController < ApplicationController
             @article.pictures.create(image: image)
           }
         end
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
+        format.html { redirect_to @article, notice: 'Artículo actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }
@@ -101,7 +101,7 @@ class ArticlesController < ApplicationController
   def destroy
     @article.destroy
     respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+      format.html { redirect_to articles_url, notice: 'Artículo eliminado correctamente.' }
       format.json { head :no_content }
     end
   end

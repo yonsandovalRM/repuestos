@@ -19,7 +19,7 @@
 				<td><%= detail.stock %></td>
 				<td><%= detail.stock_store %></td>
 				<td><%= number_to_currency(detail.pin) %></td>
-				<% neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i %>
+				<% neto = (detail.stock.to_f + detail.stock_store.to_f) * detail.pin.to_i %>
 				<td><%= number_to_currency(neto) %></td>
 			</tr>
 		<% end %>

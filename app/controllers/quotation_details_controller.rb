@@ -28,7 +28,7 @@ class QuotationDetailsController < ApplicationController
 
     respond_to do |format|
       if @quotation_detail.save
-        format.html { redirect_to @quotation_detail, notice: 'Quotation detail was successfully created.' }
+        format.html { redirect_to @quotation_detail, notice: 'Artículo añadido correctamente.' }
         format.json { render :show, status: :created, location: @quotation_detail }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class QuotationDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @quotation_detail.update(quotation_detail_params)
-        format.html { redirect_to @quotation_detail, notice: 'Quotation detail was successfully updated.' }
+        format.html { redirect_to @quotation_detail, notice: 'Artículo actualizado correctamente.' }
         format.json { render :show, status: :ok, location: @quotation_detail }
       else
         format.html { render :edit }

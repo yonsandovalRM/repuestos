@@ -112,14 +112,14 @@
 						.col-md-3
 							.form-group
 								= f.label "Stock Tienda", :for => :stock
-								= f.number_field :stock, class: 'form-control'
+								= f.number_field :stock, class: 'form-control', :step=>"any"
 								%small#emailHelp.form-text.text-muted
 									Ingrese un valor numérico mayor o igual a 0
 
 						.col-md-3
 							.form-group
 								= f.label "Stock Bodega", :for => :stock_store
-								= f.number_field :stock_store, class: 'form-control'
+								= f.number_field :stock_store, class: 'form-control', :step=>"any"
 								%small#emailHelp.form-text.text-muted
 									Ingrese un valor numérico mayor o igual a 0
 						.col-md-3
@@ -158,10 +158,10 @@
 									%td= detail.stock
 									%td= detail.stock_store
 									%td= number_to_currency(detail.pin)
-									- neto = (detail.stock.to_i + detail.stock_store.to_i) * detail.pin.to_i
+									- neto = (detail.stock.to_f + detail.stock_store.to_f) * detail.pin.to_i
 									%td= number_to_currency(neto)
 									%td
-										= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger" do
+										= link_to  detail, data: { confirm: 'Estas seguro que deseas eliminar?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
 											%i.fa.fa-trash-o
 				- else
 					.well
