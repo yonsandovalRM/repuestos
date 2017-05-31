@@ -146,7 +146,7 @@ h1 .subtitle{
     border-top-color: #FFFFFF;
 }
 .navbar-transparent .navbar-nav > li > a, [class*="navbar-ct"] .navbar-nav > li > a{
-    color: #FFFFFF;
+        color: rgba(42, 54, 84, .8);
     border-color: #FFFFFF;
     text-align: center;
 }
@@ -174,9 +174,8 @@ h1 .subtitle{
     color: #2C93FF;
 }
 .navbar-transparent .navbar-nav > .active > a, .navbar-transparent .navbar-nav > .active > a:hover, .navbar-transparent .navbar-nav > .active > a:focus, .navbar-transparent .navbar-nav > li > a:hover, .navbar-transparent .navbar-nav > li > a:focus, [class*="navbar-ct"] .navbar-nav > .active > a, [class*="navbar-ct"] .navbar-nav > .active > a:hover, [class*="navbar-ct"] .navbar-nav > .active > a:focus, [class*="navbar-ct"] .navbar-nav > li > a:hover, [class*="navbar-ct"] .navbar-nav > li > a:focus {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
-    color: #FFFFFF;
+    background: transparent;
+    color: rgba(42, 54, 84, 1);
     opacity: 1;
 }
 .navbar-transparent .navbar-nav > .dropdown > a .caret, [class*="navbar-ct"] .navbar-nav > .dropdown > a .caret{
@@ -202,8 +201,8 @@ h1 .subtitle{
     text-shadow: none;
 }
 [class*="navbar-ct"] .label{
-    background-color: #FFFFFF;
-    color: #FF4C40;
+    background-color: #2a3654;
+    color: #ffffff;
 }
 .navbar-default:not(.navbar-transparent) .btn-default:hover{
     color: #2C93FF;
@@ -241,7 +240,7 @@ h1 .subtitle{
 /*     border-bottom: 1px solid rgba(255,255,255,.6); */
 }
 .navbar:not(.navbar-transparent).navbar-ct-blue{
-    background-color: #35456d;
+    background-color: #fff;
 }
 .navbar:not(.navbar-transparent).navbar-ct-azzure{
     background-color: #5BCAFF;
@@ -266,7 +265,7 @@ h1 .subtitle{
     border: 0;
 }
 .navbar-toggle .icon-bar {
-    background-color: #FFFFFF;
+    background-color: #2a3654;
 }
 .navbar-collapse, .navbar-form {
     border-color: rgba(0, 0, 0, 0);
@@ -277,12 +276,11 @@ h1 .subtitle{
 .navbar-brand-logo{
     padding: 0;
 }
-.navbar-brand-logo .logo{
-    border: 1px solid #333333;
-    border-radius: 50%;
+.navbar-brand-logo .logo {
+    /* border-radius: 50%; */
     float: left;
     overflow: hidden;
-    width: 60px;
+    width: 160px;
 }
 .navbar .navbar-brand-logo .brand{
     color: #FFFFFF;

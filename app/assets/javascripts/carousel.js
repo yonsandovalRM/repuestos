@@ -5,4 +5,6 @@ $(document).on('turbolinks:load', function() {
 	    items: 1
     });
     window.lightbox.init();
+	jQuery(".best_in_place").best_in_place();
+	
 });

@@ -45,6 +45,9 @@ GEM
       rake (>= 0.8.7)
     arel (7.1.4)
     bcrypt (3.1.11)
+    best_in_place (3.0.3)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     bootstrap-generators (3.3.4)
       railties (>= 3.1.0)
     bootstrap3-datetimepicker-rails (4.14.30)
@@ -52,6 +55,8 @@ GEM
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.16.0)
+    chartjs-ror (3.3.1)
+      rails (>= 3.1)
     climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -232,10 +237,12 @@ PLATFORMS
 DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
   annotate
+  best_in_place (~> 3.0.1)
   bootstrap-generators (~> 3.3.4)
   bootstrap3-datetimepicker-rails (~> 4.14.30)
   byebug
   cancancan (~> 1.16)
+  chartjs-ror
   cocoon
   coffee-rails (~> 4.2)
   devise

@@ -161,6 +161,7 @@ $(document).on('turbolinks:load', function() {
 	});
 	$('.homelist').DataTable({
 		destroy: true,
+		 "order": [[ 0, "desc" ]],
 		language: {
 			"decimal":        "",
 			"emptyTable":     "No hay datos disponibles",

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :search_suggestions
+  get 'reports/index'
   root 'web#index'
   get  'web/tienda'
   get  'web/contacto'
@@ -13,6 +15,9 @@ Rails.application.routes.draw do
   resources :sale_details
   resources :sales do
     get :convert_to_sale
+    collection do 
+      get 'find_fordate'
+    end
   end
   resources :customers do
     get :search_customer

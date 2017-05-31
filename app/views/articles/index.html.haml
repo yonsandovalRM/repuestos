@@ -11,8 +11,6 @@
   .col-md-8
     .panel
       .panel-body
-          
-
         #accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
           .panel.panel-default
             #headingOne.panel-heading{:role => "tab"}
@@ -83,10 +81,10 @@
         %h5= @articles.count
         %small.text-muted
           Artículos en tienda
-        %h5= @articles.sum('stock')
+        -# %h5= @articles.sum('stock')
         %small.text-muted
           Artículos en bodega
-        %h5= @articles.sum('stock_store')
+        -# %h5= @articles.sum('stock_store')
       .panel-footer
         = link_to new_article_path, class: 'btn btn-success' do
           %span.glyphicon.glyphicon-plus

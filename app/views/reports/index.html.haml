@@ -1,0 +1,18 @@
+.page-header
+	%h1 Reportes y gráficos estadísticos
+	%p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas repudiandae delectus, reiciendis nisi enim eaque repellat, ex accusamus aut ut molestiae omnis quae, aperiam natus nihil, aspernatur quam. Necessitatibus, quo.
+
+	.row
+		.col-md-6
+			%h3 Ventas mensuales
+			%small.text-muted
+				Últimos 6 meses
+
+			= bar_chart @data, @options
+		.col-md-6
+			%h3 Cantidad de nuevos clientes
+			%small.text-muted
+				Últimos 6 meses
+			= pie_chart @data2, @options2
+
+		= @ventas_diarias

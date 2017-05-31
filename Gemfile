@@ -77,6 +77,7 @@ gem 'cancancan', '~> 1.16'
 gem 'wicked'
 gem 'annotate'
 gem 'toastr-rails'
+gem 'chartjs-ror'
 
 group :development, :test do
 

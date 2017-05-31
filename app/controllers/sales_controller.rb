@@ -4,16 +4,43 @@ class SalesController < ApplicationController
   # GET /sales
   # GET /sales.json
   def index
-    @sales = Sale.order(created_at: :desc)
+    @sales = Sale.order(created_at: :desc).last(30)
     @masvendidos = SaleDetail.select("sale_details.article_id, COUNT(article_id) AS t_count").group("sale_details.article_id").order("t_count DESC").limit(3)
     
+  end
+   def find_fordate
+    
+    
+    if params[:desde].present? and params[:hasta].present?
+      desde = Date.parse(params[:desde]).strftime('%Y-%m-%d')
+      hasta = Date.parse(params[:hasta]).strftime('%Y-%m-%d')
+      @sales = Sale.order(created_at: :desc).where(created_at: desde..hasta)
+      @masvendidos = SaleDetail.select("sale_details.article_id, COUNT(article_id) AS t_count").group("sale_details.article_id").order("t_count DESC").limit(3)
+    
+    
+      respond_to do |format|
+        format.html { render "index" }
+      end
+    else
+      @sales = Sale.order(created_at: :desc)
+      @masvendidos = SaleDetail.select("sale_details.article_id, COUNT(article_id) AS t_count").group("sale_details.article_id").order("t_count DESC").limit(3)
+      respond_to do |format|
+        format.html { render "index" }
+      end
+    end
+   
+    # if @customer_search.present?
+    #   format.js { render "search.js.erb", location: @customer_search }
+    # else
+    #   format.js { render "create_customer.js.erb", location: @customer_search }
+    # end
   end
 
   # GET /sales/1
   # GET /sales/1.json
   def show
     @sale_detail = SaleDetail.new
-    
+    @destacados = Article.all
     if @sale.sale_details.count > 0
       @sale.sale_details.each do |detail|
         @tot_neto = @tot_neto.to_i + ((detail.stock.to_f + detail.stock_store.to_f) * detail.pou.to_i)
@@ -129,6 +156,6 @@ class SalesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sale_params
-      params.require(:sale).permit(:user_id, :payment_method_id, :number_doc, :type_document_id, :status_payment_id, :observation, :customer_id)
+      params.require(:sale).permit(:user_id, :payment_method_id, :number_doc, :type_document_id, :status_payment_id, :observation, :customer_id, :date_doc)
     end
 end

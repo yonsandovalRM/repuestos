@@ -9,7 +9,7 @@ class ArticlesController < ApplicationController
     if params[:tag]
       @articles = Article.tagged_with(params[:tag])
     else
-      @articles = Article.all
+      @articles = Article.all.last(30)
     end
     
     respond_to do |format|

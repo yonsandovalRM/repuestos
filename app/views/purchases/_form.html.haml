@@ -17,10 +17,10 @@
 					Seleccione un proveedor
 			.form-group
 				= f.label "Rut", :for => :rut
-				%input{:type => "text", :id => "supplierRut", :class => "form-control", :disabled => "true"}
+				%input{:type => "text", :id => "supplierRut", :class => "form-control", :disabled => "true", :required => "true"}
 			.form-group
 				= f.label "Nombre", :for => :supplier_id
-				%input{:type => "text", :id => "supplierName", :class => "form-control", :disabled => "true"}
+				%input{:type => "text", :id => "supplierName", :class => "form-control", :disabled => "true", :required => "true"}
 				= f.hidden_field :supplier_id, :id=>"supplierID"
 				= link_to new_supplier_path, remote: true do
 					Nuevo proveedor

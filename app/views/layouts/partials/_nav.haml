@@ -9,38 +9,36 @@
           %span.icon-bar
         %a{:href => root_path(), :class=>"navbar-brand navbar-brand-logo" }
           .logo
-            %img{:src => asset_path('logo.png'), :class => "img-responsive"}
-          .brand
-            Repuestos Catalán
+            %img{:src => asset_path('logo.jpg'), :class => "img-responsive"}
       #navbar.collapse.navbar-collapse
         %ul.nav.navbar-nav.navbar-right
           
 
           %li
             %a{:href => sales_path()}
-              %i.pe-7s-cash
+              %i.pe-7s-cart
                 %span.label
                   = @ventas
               %p Ventas
           %li
             %a{:href => purchases_path()}
-              %i.pe-7s-cart
+              %i.pe-7s-shopbag
                 %span.label
                   = @compras
               %p Compras
           %li
             %a{:href => quotations_path()}
-              %i.pe-7s-drawer
+              %i.pe-7s-bell
                 %span.label
                   = @cotizaciones
               %p Cotizaciones
           %li
-            %a{:href => purchases_path()}
+            %a{:href => reports_index_path}
               %i.pe-7s-graph1
               %p Reportes
           %li
             %a{:href => articles_path()}
-              %i.pe-7s-note2
+              %i.pe-7s-config
                 %span.label
                   = @articulos
               %p Artículos
@@ -52,13 +50,13 @@
               %p Clientes
           %li
             %a{:href => suppliers_path()}
-              %i.pe-7s-users
+              %i.pe-7s-id
                 %span.label
                   = @proveedores
               %p Proveedores
           %li.dropdown
             %a{:href => "#", :class=>"dropdown-toggle", "data-toggle"=>"dropdown", :role=>"button", "aria-haspopup"=>"true", "aria-expanded"=>"false"}
-              %i.pe-7s-config
+              %i.pe-7s-browser
               %p Mantenedores
             %ul.dropdown-menu
               %li
@@ -101,6 +99,16 @@
         %em
           hace 
           = time_ago_in_words(current_user.last_sign_in_at)
+      .quickaccess
+        %span
+          %a{:href => new_sale_path()}
+            %i.pe-7s-cart
+        %span
+          %a{:href => new_purchase_path()}
+            %i.pe-7s-shopbag
+        %span
+          %a{:href => new_article_path()}
+            %i.pe-7s-config
 - else
   %div{:style=>"width:100%; height: 40px;"}
               

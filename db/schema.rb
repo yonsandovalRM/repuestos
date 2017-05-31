@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320134534) do
+ActiveRecord::Schema.define(version: 20170508182702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -170,11 +170,19 @@ ActiveRecord::Schema.define(version: 20170320134534) do
     t.integer  "customer_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.datetime "date_doc"
     t.index ["customer_id"], name: "index_sales_on_customer_id", using: :btree
     t.index ["payment_method_id"], name: "index_sales_on_payment_method_id", using: :btree
     t.index ["status_payment_id"], name: "index_sales_on_status_payment_id", using: :btree
     t.index ["type_document_id"], name: "index_sales_on_type_document_id", using: :btree
     t.index ["user_id"], name: "index_sales_on_user_id", using: :btree
+  end
+
+  create_table "search_suggestions", force: :cascade do |t|
+    t.string   "term"
+    t.integer  "popularity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "states", force: :cascade do |t|

@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = Customer.all.last(30)
     respond_to do |format|
       format.html { render :index }
       format.js {  }

@@ -21,6 +21,7 @@
 //= require jquery.remotipart
 //= require cocoon
 //= require moment
+//= require Chart.min
 //= require bootstrap-datetimepicker
 //= require moment/es
 //= require autocomplete-rails
@@ -29,6 +30,8 @@
 //= require lightbox
 //= require bootstrap-tagsinput
 //= require sales
+//= require best_in_place
+//= require best_in_place.jquery-ui
 //= require_tree .
 
 

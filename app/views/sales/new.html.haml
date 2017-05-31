@@ -21,20 +21,20 @@
 					%small
 						Ingrese el run del cliente sin puntos. Ej: 12345678-9
 					%small#alert-rut
-					%p 
-					.form-group
-						%a{:href => customers_path, "data-remote"=> "true" , :class=>"btn btn-success btn-block"}
-							%i.fa.fa-search
-							Seleccione un cliente
-					%em Si no desea registrar cliente para esta venta deje los campos vacíos y de click en continuar.
-					.form-group
-						%label{:for => "cRun"}
-							Run
-						%input{:type => "text", :id => "cRun", :class => "form-control", :disabled => "true"}
-					.form-group
-						%label{:for => "cName"}
-							Nombre
-						%input{:type => "text", :id => "cName", :class => "form-control", :disabled => "true"}
+				%p 
+				.form-group
+					%a{:href => customers_path, "data-remote"=> "true" , :class=>"btn btn-success btn-block"}
+						%i.fa.fa-search
+						Seleccione un cliente
+				%em Si no desea registrar cliente para esta venta deje los campos vacíos y de click en continuar.
+				.form-group
+					%label{:for => "cRun"}
+						Run
+					%input{:type => "text", :id => "cRun", :class => "form-control", :disabled => "true"}
+				.form-group
+					%label{:for => "cName"}
+						Nombre
+					%input{:type => "text", :id => "cName", :class => "form-control", :disabled => "true"}
 				%hr
 				= form_for @sale, html: {  role: "form" } do |f|
 					-if @sale.errors.any?

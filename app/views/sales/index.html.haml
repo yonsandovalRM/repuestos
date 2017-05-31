@@ -1,9 +1,47 @@
 .row
-	.col-md-8
+	.col-md-9
 		.panel
 			.panel-body
+				#accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+					.panel.panel-default
+						#headingOne.panel-heading{:role => "tab"}
+							%h4.panel-title
+								%a{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapseOne", :role => "button"}
+									Filtros avanzados
+									%i.fa.fa-caret-down 
+						#collapseOne.panel-collapse.collapse{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+							.panel-body
+								.row
+									.col-md-12
+										%small.text-muted 
+											Filtrar por fecha
+										= form_tag(find_fordate_sales_path, :method => :get, :class=>"form-inline") do
+											.form-group
+												#desde.input-group.date
+													= text_field_tag :desde, nil, {:class=>"form-control", :required=>"true"}
+													%span.input-group-addon
+														%span.glyphicon.glyphicon-calendar
+											%small.text-muted
+												hasta
+											.form-group
+												#hasta.input-group.date
+													= text_field_tag :hasta, nil, {:class=>"form-control", :required=>"true"}
+													%span.input-group-addon
+														%span.glyphicon.glyphicon-calendar
+												
+									
+											%button.btn.btn-success{:type=>"submit"}
+												%i.fa.fa-search
+												Buscar
+								.row
+									.col-md-12
+										%hr
+										= link_to sales_path, :class=>"btn btn-default" do
+											%i.fa.fa-filter
+											Quitar filtros
 
 				.table-responsive
+					
 					%table.table.table-striped.table-bordered.table-hover.homelist
 						%thead
 							%tr
@@ -15,13 +53,11 @@
 								%th Pago
 								%th Cliente
 								%th
-								%th
-								%th
 
 						%tbody
 							- @sales.each do |sale|
 								%tr
-									%td= sale.created_at.strftime('%d.%m.%Y')
+									%td= sale.created_at.strftime('%d-%m-%Y')
 									%td= sale.user.username
 									%td
 										-if sale.payment_method.present?
@@ -43,13 +79,7 @@
 									%td
 										= link_to sale, :class=>"btn btn-info btn-xs" do
 											%i.fa.fa-eye
-									%td
-										= link_to edit_sale_path(sale), :class=>"btn btn-warning btn-xs" do
-											%i.fa.fa-pencil-square-o
-									%td
-										= link_to  sale, data: { confirm: 'Estas seguro de eliminar?' }, method: :delete, :class=>"btn btn-danger btn-xs" do
-											%i.fa.fa-trash-o
-	.col-md-4
+	.col-md-3
 		.panel
 			.panel-body
 				= link_to new_sale_path, class: 'btn btn-success btn-block' do

@@ -19,7 +19,7 @@
 								%th N. Documento
 								%th Proveedor
 								%th Rut
-								-# %th Tipo
+								%th Tipo
 								%th Fecha
 								%th Estado
 								%th Pago
@@ -36,12 +36,20 @@
 												%i.fa.fa-exclamation-circle
 									
 									%td= purchase.number_doc
-									%td= purchase.supplier.bname
-									%td= purchase.supplier.rut
-									-# - if purchase.type_document.present?
-									-# 	%td= purchase.type_document.name
-									-# - else
-									-# 	%td
+									- if purchase.supplier.present?
+										- if purchase.supplier.bname.present?
+											%td= purchase.supplier.bname
+									- else
+										%td
+									- if purchase.supplier.present?
+										- if purchase.supplier.rut.present?
+											%td= purchase.supplier.rut
+									- else
+										%td
+									- if purchase.type_document.present?
+										%td= purchase.type_document.name
+									- else
+										%td
 									- if purchase.date_doc.present?
 										%td= purchase.date_doc.strftime('%d-%m-%Y')
 									- else
