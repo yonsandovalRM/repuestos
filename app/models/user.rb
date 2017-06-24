@@ -27,6 +27,10 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  before_save :default_values
+  def default_values
+    self.isadmin ||= true # note self.status = 'P' if self.status.nil? might be safer (per @frontendbeauty)
+  end
     if Rails.env.production?
 	  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :registerable 
 	else
