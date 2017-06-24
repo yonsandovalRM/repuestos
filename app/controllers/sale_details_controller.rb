@@ -1,4 +1,5 @@
 class SaleDetailsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_sale_detail, only: [:show, :edit, :update, :destroy]
 
   # GET /sale_details
